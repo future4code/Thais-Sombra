@@ -119,7 +119,7 @@ const idadeUsuario = Number(prompt("Usuário, qual a sua idade?"))
 //c) A idade do usuário em horas
 
 idadeUsuarioMeses = idadeUsuario * 12
-idadeUsuarioDias = idadeUsuarioMeses * 365
+idadeUsuarioDias = idadeUsuario * 365
 idadeUsuarioHoras = idadeUsuarioDias * 24
     console.log("Você já viveu", idadeUsuarioMeses, "meses ou", idadeUsuarioDias, "dias ou", idadeUsuarioHoras, "horas")
 
