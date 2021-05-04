@@ -143,10 +143,10 @@ numerosIguais = numero1 === numero2
     console.log("O primeiro numero é igual ao segundo?", numerosIguais)
 
 divisaoPrimeiroPeloSegundo = numero1 % numero2
-comparativoDivisao = divisaoPrimeiroPeloSegundo === 0
+comparativoDivisao = (numero1 >= numero2) && (divisaoPrimeiroPeloSegundo === 0)
     console.log("O primeiro numero é divisível pelo segundo?", comparativoDivisao)
 
 divisaoSegundoPeloPrimeiro = numero2 % numero1
-comparativoDivisao = divisaoSegundoPeloPrimeiro === 0
+comparativoDivisao = (numero2 >= numero1) && (divisaoSegundoPeloPrimeiro === 0)
     console.log("O segundo numero é divisível pelo primeiro?", comparativoDivisao)
 
