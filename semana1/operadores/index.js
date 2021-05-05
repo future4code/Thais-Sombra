@@ -150,3 +150,110 @@ divisaoSegundoPeloPrimeiro = numero2 % numero1
 comparativoDivisao = (numero2 >= numero1) && (divisaoSegundoPeloPrimeiro === 0)
     console.log("O segundo numero é divisível pelo primeiro?", comparativoDivisao)
 
+// CHALLENGE SEMANA 1 - AULA 4
+
+/* PRIMEIRO - CONVERSÃO TEMPERATURA
+*/
+
+let fahrenheit = 77
+    temperaturaFahrenheitKelvin = ((fahrenheit - 32)*(5/9)) + 273.15
+    console.log("77ºF é equivalente a", temperaturaFahrenheitKelvin, "K")
+
+let celsius = 80
+    temperaturaCelsiusFahrenheit = celsius *(9/5) + 32
+    console.log("80ºC é equivalente a", temperaturaCelsiusFahrenheit, "ºF")
+
+celsius = 30
+    temperaturaCelsiusFahrenheit = celsius *(9/5) + 32
+    temperaturaCelsiusKelvin = celsius + 273.15
+    console.log("30ºC é equivalente a", temperaturaCelsiusFahrenheit, "ºF e equivalente a", temperaturaCelsiusKelvin, "K")
+
+celsius = Number(prompt("Insira um valor em graus Celsius:"))
+    temperaturaCelsiusFahrenheit = celsius *(9/5) + 32
+    temperaturaCelsiusKelvin = celsius + 273.15
+    console.log("A conversão de", celsius, "ºC é equivalente a", temperaturaCelsiusFahrenheit, "ºF e equivalente a", temperaturaCelsiusKelvin, "K")
+
+/* SEGUNDO - CONSUMO DE ENERGIA
+
+*/
+
+const consumoEnergia = 280
+const tarifa = 0.05
+valorPago = consumoEnergia * tarifa
+    console.log("O valor a ser pago será de:", valorPago, "reais")
+
+const desconto = 0.15
+
+valorPago = valorPago*(1-desconto)
+    console.log("O valor com desconto de 15% será de:", valorPago)
+
+/* TERCEIRO - CONVERSOR DE UNIDADE */
+
+/*a) Procure uma forma de converter libra (lb) para quilograma (kg) e escreva um 
+programa que converta 20lb para kg. Imprima  a resposta no console da seguinte forma: 
+`20lb equivalem a X kg` - 1 lb -> 0,45kg */
+
+const libra = 20
+const conversaoLbKg = 0.45
+conversaoKg = libra * conversaoLbKg 
+
+console.log(libra ,"lb equivalem a", conversaoKg, "kg")
+
+/*b) Procure uma forma de converter onça (oz) para quilograma (kg) e escreva um 
+programa que converta 10.5oz para kg. Imprima  a resposta no console da seguinte forma: 
+`10.5oz equivalem a X kg` -> 1oz -> 0,0283495 */
+
+const oz = 10.5
+const conversaoOzKg = 0.0284
+conversaoKg = oz * conversaoOzKg 
+
+console.log(oz, "oz equivalem a ", conversaoKg, "kg")
+
+/*c) Procure uma forma de converter milha (mi) para metro (m) e escreva um programa 
+que converta 100mi para m. Imprima  a resposta no console da seguinte forma: 
+`100mi equivalem a X m` -> 1mi -> 1609,34 */
+
+const mi = 100
+const conversaoMiM = 1609.34
+conversaoM = mi * conversaoMiM
+
+console.log(mi, "mi equivalem a", conversaoM, "m")
+
+/*d) Procure uma forma de converter pés (ft) para metro (m) e escreva um programa 
+que converta 50ft para m. Imprima  a resposta no console da seguinte forma: 
+`50ft equivalem a X m` -> 1 ft -> 0,3048 */
+
+const ft = 50
+const conversaoFtM = 0.3048
+conversaoM = ft * conversaoFtM
+
+console.log(ft, "ft equivalem a", conversaoM, "m")
+
+/*e) Procure uma forma de converter galão (gal) para litro (l) e escreva um programa 
+que converta 103.56gal para litro. Imprima  a resposta no console da seguinte forma: 
+`103.56gal equivalem a X l' -> 1 gal -> 3,785 L */
+
+const gal = 103.56
+const conversaoGalL = 3.785
+conversaoL = gal * conversaoGalL 
+
+console.log(gal, "gal equivalem a", conversaoL, "L")
+
+/*f) Procure uma forma de converter xícara (xic) para litro (l) e escreva um programa 
+que converta 450xic para litro. Imprima  a resposta no console da seguinte forma: 
+`450 xic equivalem a X l` -> 1xic -> 250 mL ou 0,25L */
+
+const xic = 450
+const conversaoXicL = 0.25
+conversaoL = xic * conversaoXicL 
+
+console.log(xic, "xic equivalem a", conversaoL, "L")
+
+/*g) Escolha ao menos **um** dos itens anteriores e modifique o programa para que ele 
+peça ao usuário o valor da unidade original antes de converter */
+
+const oz2 = Number(prompt("Insira um valor em oz para conversão em kg:"))
+const conversaoOz2Kg = 0.0284
+conversaoKg = oz2 * conversaoOzKg 
+
+console.log(oz2, "oz equivalem a", conversaoKg, "kg")
