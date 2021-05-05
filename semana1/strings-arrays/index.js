@@ -122,9 +122,17 @@ console.log(listaDeTarefas)
 /* 1.Receba uma frase e retorne um array onde cada elemento é uma das palavras 
 da frase, ignorando os espaços */
 
+const minhaFrase = prompt("Escreva uma frase:")
+const splits = minhaFrase.split(" ")
 
+console.log(splits);
 
-/* Dado o array ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"], 
+/* 2. Dado o array ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"], 
 faça um programa que acha o índice da palavra Abacaxi e imprime tanto 
 o índice quanto o tamanho do array */
 
+const frutas = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"]
+
+const indice = frutas.indexOf("Abacaxi")
+const qtdString = frutas.length
+console.log(`Abacaxi está no índice ${indice}, ou seja, na posição ${indice + 1 } de um total de ${qtdString} itens`)
