@@ -136,6 +136,6 @@ function checaValidadeInscricaoLabenu() {
    const maior18 = prompt("Você tem mais de 18 anos?") 
    const formacao = prompt("Você possui ensino médio completo?")
    const disponibilidade = prompt("Você possui disponibilidade exclusiva durante os horários do curso?")
-   return((maior18.toUpperCase()==="SIM")&&(formacao.toUpperCase()==="SIM")&&(disponibilidade.toUpperCase()==="SIM"))
+   console.log((maior18.toUpperCase()==="SIM")&&(formacao.toUpperCase()==="SIM")&&(disponibilidade.toUpperCase()==="SIM"))
 
 }
