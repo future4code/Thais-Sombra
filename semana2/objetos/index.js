@@ -135,18 +135,16 @@ const objetoHumano = {
 	profissao: 'Guerreiro'
 }
 const segundoObjetoHumano = {
-	... objetoHumano
+	nome: 'Ragnar',
+	idade: 24,
+	profissao: 'Agricultor'
 }
-
-segundoObjetoHumano.nome = 'Ragnar'
-segundoObjetoHumano.idade = 30
-segundoObjetoHumano.profissao = 'Agricultor'
 
 //b) Escreva uma função que receba esses objetos e retorne um array com as seguintes informações:
 
 function retornarArrayHumano (objeto){
 	const array = []
-	array.push(objetoHumano.nome, objetoHumano.nome.length,objetoHumano.idade,objetoHumano.profissao, objetoHumano.profissao.length)
+	array.push(objeto.nome, objeto.nome.length,objeto.idade,objeto.profissao, objeto.profissao.length)
 	console.log(array)
 }
 
@@ -157,9 +155,7 @@ retornarArrayHumano(segundoObjetoHumano)
 
 //a) Crie uma variável de escopo global que guarde um array vazio chamada carrinho
 
-const carrinho = [
-	
-]
+const carrinho = []
 	
 const fruta1 = {
 	nome: 'Uva',
@@ -184,7 +180,6 @@ function comprarFrutas (fruta1,fruta2,fruta3){
 }
 
 console.log(comprarFrutas(fruta1, fruta2, fruta3))
-
 // DESAFIO
 
 // 1. Crie um função que pergunte ao usuário seu nome, sua idade e sua profissão e depois imprima no console um objeto com essas propriedades. Depois de imprimir o novo objeto, imprima também o tipo dele para garantir que é um objeto.
@@ -193,4 +188,50 @@ function userDataQuestions (){
 	const nome = prompt('Informe o seu nome:')
 	const idade = Number(prompt('Informe a sua idade:'))
 	const profissao = prompt('Informe a sua profissão:')
+	const userData = {
+		nome: nome,
+		idade: idade,
+		profissao: profissao
+	}
+	return userData
 }
+
+const userData = userDataQuestions()
+console.log(userData)
+console.log(typeof userData)
+
+// 2.Crie uma função que receba dois objetos que representam filmes. Eles devem ter as propriedades: ano de lançamento e nome. A função deve retornar uma mensagem no seguinte modelo:
+
+const filme1 ={
+	nome: "Titanic",
+	anoDeLancamento: 1991
+}
+const filme2 ={
+	nome: "Mortal Kombat",
+	anoDeLancamento: 1995
+}
+
+function compararFilmes (filme1,filme2){
+	const maior = filme1.anoDeLancamento < filme2.anoDeLancamento
+	const igual = filme1.anoDeLancamento === filme2.anoDeLancamento
+	console.log(`O primeiro filme foi lançado antes do segundo? ${maior}`)
+	console.log(`O primeiro filme foi lançado no mesmo ano do segundo? ${igual}`)
+}
+
+compararFilmes(filme1,filme2)
+
+// 3. Crie uma função a mais pro exercício 3 de escrita de código. Essa função vai auxiliar o controle de estoque do sacolão: ela deve receber por parâmetro uma das frutas e retornar esse mesmo objeto com a propriedade disponibilidade com o valor invertido. 
+
+function inverteEstoque(fruta){
+	fruta.disponibilidade = !fruta.disponibilidade
+	return fruta
+}
+
+console.log(inverteEstoque(fruta2))
+
+function inverteEstoqueV2(fruta){
+	fruta.disponibilidade = false
+	return fruta
+}
+
+console.log(inverteEstoqueV2(fruta1))
