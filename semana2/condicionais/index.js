@@ -191,15 +191,14 @@ function comprarIngressos(){
     const categoria = Number(prompt('Informe a categoria:\n [ 1, 2, 3 ou 4]'))
     const quantidadeIngressos = Number(prompt('Informe quantos ingressos deseja comprar:'))
     const custoUnitario = buscarCustoIngresso(etapaDoJogo, categoria)
-    arrayCompra.push(userName,tipoDeJogo,etapaDoJogo,categoria,quantidadeIngressos, custoUnitario)
+    arrayCompra.push(userName,tipoDeJogo,custoUnitario[0],categoria,quantidadeIngressos, custoUnitario[1])
     return arrayCompra
 }
 
 function imprimirComprovante(arrayCompra){
     switch (arrayCompra[1]){
         case 'IN':
-            //chamar função usada no DO e multiplicar ingresso por 4.1
-            let custoTotal = arrayCompra[5]*4.1*arrayCompra[4]
+            let custoTotalIn = arrayCompra[5]*4.1*arrayCompra[4]
             let custoIngressoInternacional = arrayCompra[5]*4.1
             console.log(`---Dados da compra---`)
             console.log(`Nome do cliente: ${arrayCompra[0]}`)
@@ -209,19 +208,19 @@ function imprimirComprovante(arrayCompra){
             console.log(`Quantidade de Ingressos: ${arrayCompra[4]} ingressos`)
             console.log(`---Valores---`)
             console.log(`Valor do ingresso: U$ ${custoIngressoInternacional}`)
-            console.log(`Valor total: U$ ${custoTotal}`)
+            console.log(`Valor total: U$ ${custoTotalIn}`)
             break
         case 'DO':
-            custoTotal = arrayCompra[5]*arrayCompra[4]
+            let custoTotalDo = arrayCompra[5]*arrayCompra[4]
             console.log(`---Dados da compra---`)
             console.log(`Nome do cliente: ${arrayCompra[0]}`)
-            console.log(`Tipo de jogo: Internacional`)
+            console.log(`Tipo de jogo: Nacional`)
             console.log(`Etapa do jogo: ${arrayCompra[2]}`)
             console.log(`Categoria: ${arrayCompra[3]}`)
             console.log(`Quantidade de Ingressos: ${arrayCompra[4]} ingressos`)
             console.log(`---Valores---`)
             console.log(`Valor do ingresso: R$ ${arrayCompra[5]}`)
-            console.log(`Valor total: R$ ${custoTotal}`)
+            console.log(`Valor total: R$ ${custoTotalDo}`)
             break
     }
 }
@@ -231,41 +230,41 @@ function buscarCustoIngresso(etapaDoJogo, categoria){
         case 1:
             switch (etapaDoJogo) {
                 case "SF":
-                    return 1320
+                    return ['Semifinais', 1320]
                 case "DT":
-                    return 660
+                    return ['Decisão do 3º lugar', 660]
                 case "FI":
-                    return 1980
+                    return ['Final', 1980]
             }  
         break 
         case 2:
             switch (etapaDoJogo) {
                 case "SF":
-                    return 880
+                    return ['Semifinais', 880]
                 case "DT":
-                    return 440
+                    return ['Decisão do 3º lugar', 440]
                 case "FI":
-                    return 1320
+                    return ['Final', 1320]
             }   
         break   
         case 3:
             switch (etapaDoJogo) {
                 case "SF":
-                    return 550
+                    return ['Semifinais', 550]
                 case "DT":
-                    return 330
+                    return ['Decisão do 3º lugar', 330]
                 case "FI":
-                    return 880
+                    return ['Final', 880]
             }   
         break     
         case 4:
             switch (etapaDoJogo) {
                 case "SF":
-                    return 220
+                    return ['Semifinais', 220]
                 case "DT":
-                    return 170
+                    return ['Decisão do 3º lugar', 170]
                 case "FI":
-                    return 330
+                    return ['Final', 330]
             }   
         break     
     }
