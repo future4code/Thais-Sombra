@@ -85,7 +85,7 @@ c) Haverá algum erro no console? Justifique usando os conceitos de bloco ou esc
 */
 
 // Exercícios de escrita de código
-/*
+
 // Exercício 1
 console.log(':::::: Exercício 01 ::::::')
 function avaliarIdadeDirecao(){
@@ -177,7 +177,7 @@ function irAoCinemaSnack() {
 }
 
 irAoCinemaSnack()
-*/
+
 console.log(':::::: Desafio 02 ::::::')
 
 const dadosDaCompra = comprarIngressos()
