@@ -85,7 +85,7 @@ c) Haverá algum erro no console? Justifique usando os conceitos de bloco ou esc
 */
 
 // Exercícios de escrita de código
-
+/*
 // Exercício 1
 console.log(':::::: Exercício 01 ::::::')
 function avaliarIdadeDirecao(){
@@ -177,6 +177,7 @@ function irAoCinemaSnack() {
 }
 
 irAoCinemaSnack()
+*/
 
 console.log(':::::: Desafio 02 ::::::')
 
@@ -193,79 +194,107 @@ function comprarIngressos(){
     const custoUnitario = buscarCustoIngresso(etapaDoJogo, categoria)
     arrayCompra.push(userName,tipoDeJogo,custoUnitario[0],categoria,quantidadeIngressos, custoUnitario[1])
     return arrayCompra
+   
 }
 
 function imprimirComprovante(arrayCompra){
-    switch (arrayCompra[1]){
+    const nome = arrayCompra[0]
+    const tipoDoJogo = arrayCompra[1]
+    const etapa = arrayCompra[2]
+    const categoria = arrayCompra[3]
+    const qtdIngressos = arrayCompra[4]
+    const custo = arrayCompra[5]
+
+    if (tipoDoJogo === "IN"){
+        tipo = "Internacional"
+    } else if (tipoDoJogo === "DO"){
+        tipo = "Nacional"
+    } else {
+
+    }
+
+    switch (tipoDoJogo){
         case 'IN':
-            let custoTotalIn = arrayCompra[5]*4.1*arrayCompra[4]
-            let custoIngressoInternacional = arrayCompra[5]*4.1
-            console.log(`---Dados da compra---`)
-            console.log(`Nome do cliente: ${arrayCompra[0]}`)
-            console.log(`Tipo de jogo: Internacional`)
-            console.log(`Etapa do jogo: ${arrayCompra[2]}`)
-            console.log(`Categoria: ${arrayCompra[3]}`)
-            console.log(`Quantidade de Ingressos: ${arrayCompra[4]} ingressos`)
-            console.log(`---Valores---`)
-            console.log(`Valor do ingresso: U$ ${custoIngressoInternacional}`)
-            console.log(`Valor total: U$ ${custoTotalIn}`)
+            let custoTotalIn = (custo*qtdIngressos)/4.1
+            let custoIngressoInternacional = custo/4.1
+            let comprovanteIN = `
+            ---Dados da compra---
+            Nome do cliente: ${nome}
+            Tipo de jogo: Internacional
+            Etapa do jogo: ${etapa}
+            Categoria: ${categoria}
+            Quantidade de Ingressos: ${qtdIngressos} ingressos
+            ---Valores---
+            Valor do ingresso: U$ ${custoIngressoInternacional}
+            Valor total: U$ ${custoTotalIn}
+            `
+            console.log(comprovanteIN)
             break
         case 'DO':
-            let custoTotalDo = arrayCompra[5]*arrayCompra[4]
-            console.log(`---Dados da compra---`)
-            console.log(`Nome do cliente: ${arrayCompra[0]}`)
-            console.log(`Tipo de jogo: Nacional`)
-            console.log(`Etapa do jogo: ${arrayCompra[2]}`)
-            console.log(`Categoria: ${arrayCompra[3]}`)
-            console.log(`Quantidade de Ingressos: ${arrayCompra[4]} ingressos`)
-            console.log(`---Valores---`)
-            console.log(`Valor do ingresso: R$ ${arrayCompra[5]}`)
-            console.log(`Valor total: R$ ${custoTotalDo}`)
+            let custoTotalDo = custo*qtdIngressos
+            let comprovanteDo = `
+            ---Dados da compra---
+            Nome do cliente: ${nome}
+            Tipo de jogo: Nacional
+            Etapa do jogo: ${etapa}
+            Categoria: ${categoria}
+            Quantidade de Ingressos: ${qtdIngressos} ingressos
+            ---Valores---
+            Valor do ingresso: R$ ${custo}
+            Valor total: R$ ${custoTotalDo}
+            `
+            console.log(comprovanteDo)
+            break
+        default:
             break
     }
+
+    
 }
 
 function buscarCustoIngresso(etapaDoJogo, categoria){
-    switch (categoria) {
-        case 1:
-            switch (etapaDoJogo) {
-                case "SF":
+    switch (etapaDoJogo) {
+        case 'SF':
+            switch (categoria) {
+                case 1:
                     return ['Semifinais', 1320]
-                case "DT":
-                    return ['Decisão do 3º lugar', 660]
-                case "FI":
-                    return ['Final', 1980]
-            }  
-        break 
-        case 2:
-            switch (etapaDoJogo) {
-                case "SF":
+                case 2:
                     return ['Semifinais', 880]
-                case "DT":
-                    return ['Decisão do 3º lugar', 440]
-                case "FI":
-                    return ['Final', 1320]
-            }   
-        break   
-        case 3:
-            switch (etapaDoJogo) {
-                case "SF":
+                case 3:
                     return ['Semifinais', 550]
-                case "DT":
-                    return ['Decisão do 3º lugar', 330]
-                case "FI":
-                    return ['Final', 880]
-            }   
-        break     
-        case 4:
-            switch (etapaDoJogo) {
-                case "SF":
+                case 4:
                     return ['Semifinais', 220]
-                case "DT":
+                default:
+                    break
+            }
+        case 'DT':
+            switch (categoria) {
+                case 1:
+                    return ['Decisão do 3º lugar', 660]
+                case 2:
+                    return ['Decisão do 3º lugar', 440]
+                case 3:
+                    return ['Decisão do 3º lugar', 330]
+                case 4:
                     return ['Decisão do 3º lugar', 170]
-                case "FI":
+                default:
+                    break
+            }
+        case 'FI':
+            switch (categoria) {
+                case 1:
+                    return ['Final', 1980]
+                case 2:
+                    return ['Final', 1320]
+                case 3:
+                    return ['Final', 880]
+                case 4:
                     return ['Final', 330]
-            }   
-        break     
+                default:
+                    break
+            }
+        default:
+            break    
     }
+
 }
