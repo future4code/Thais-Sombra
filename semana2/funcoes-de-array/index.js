@@ -133,7 +133,7 @@ console.log(":::::: Exercício 2.b ::::::")
 
 const novoArrayProdutos = produtos.map((produto) => {
     return {
-        nome: produto.nome, preco: produto.preco * 0.95
+        nome: produto.nome, preco: (produto.preco * 0.95).toFixed(2)
     }
 })
 
