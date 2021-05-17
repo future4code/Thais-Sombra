@@ -368,7 +368,9 @@ testEx17C()
 // Teste exercício 18 - A
 
 function textEx18A() {
-  const output = [{nome: "Pedro", idade: 15, altura: 1.9}, {nome: "Luciano", idade: 22, altura: 1.8} ]
+  const output = [
+    {nome: "Pedro", idade: 15, altura: 1.9}, 
+    {nome: "Luciano", idade: 22, altura: 1.8} ]
   if(arrayCompare(retornaPessoasAutorizadas(), output)) {
     console.log('%c Você acertou a questão número 18A', 'color: #00FF00')
   } else {
