@@ -159,7 +159,17 @@ function segundoMaiorEMenor(array) {
 //Exercício 11
 
 function ordenaArray(array) {
-
+   let newArray = [...array]
+   for (let j = 0; j < newArray.length - 1; j++) {
+       for (let i = 0; i < newArray.length - 1; i++) {
+           if (newArray[i] > newArray[i + 1]) {
+               let temporario = newArray[i]
+               newArray[i] = newArray[i + 1]
+               newArray[i + 1] = temporario
+           }
+       }
+   }
+   return newArray
 }
 
 // Exercício 12
