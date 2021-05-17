@@ -216,7 +216,6 @@ testEx12()
 
 function testEx13() {
   const output = 'Venha assistir ao filme O Diabo Veste Prada, de 2006, dirigido por David Frankel e estrelado por Meryl Streep, Anne Hathaway, Emily Blunt, Stanley Tucci.'
-  
   if (imprimeChamada() === output) {
     console.log('%c Você acertou a questão número 13', 'color: #00FF00')
   } else {
