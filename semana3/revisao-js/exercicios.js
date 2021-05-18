@@ -70,14 +70,14 @@ function retornaExpressoesBooleanas() {
 //Exercício 7
 
 function retornaNNumerosPares(n) {
-   let array = []
-   let i = 0
-   while (array.length < n) {
-      array.push(i)
-      i = i + 2
+   const novoArray = [];
+   for(let number = 0; novoArray.length < n; number++) {
+    if(number % 2 === 0) {
+      novoArray.push(number)
+    }
    }
-   return array
-}
+   return novoArray
+  }
 
 // Exercício 8
 
@@ -205,7 +205,17 @@ function imprimeChamada() {
       diretor: 'David Frankel',
       atores: ['Meryl Streep', 'Anne Hathaway', 'Emily Blunt', 'Stanley Tucci']
     }
-      frase = `Venha assistir ao filme ${filmeAstro.nome}, de ${filmeAstro.ano}, dirigido por ${filmeAstro.diretor} e estrelado por ${filmeAstro.atores[0]}, ${filmeAstro.atores[1]}, ${filmeAstro.atores[2]}, ${filmeAstro.atores[3]}.`
+
+   let atoresConcat = ""
+      for(let i = 0; i < filmeAstro.atores.length; i++) {
+         if(i === filmeAstro.atores.length - 1) {
+            atoresConcat += filmeAstro.atores[i]
+         } else {
+         atoresConcat += filmeAstro.atores[i] + ", "
+         }
+      }
+
+      frase = `Venha assistir ao filme ${filmeAstro.nome}, de ${filmeAstro.ano}, dirigido por ${filmeAstro.diretor} e estrelado por ${atoresConcat}.`
    
       return frase
 }
@@ -243,7 +253,7 @@ const arrayDePessoas = [
 
 function maioresDe18(arrayDePessoas) {
    const adultos = arrayDePessoas.filter((pessoa) =>{
-      return pessoa.idade >= 18
+      return pessoa.idade > 18
    })
    return adultos
 }
@@ -252,7 +262,7 @@ function maioresDe18(arrayDePessoas) {
 
 function menoresDe18(arrayDePessoas) {
    const naoAdultos = arrayDePessoas.filter((pessoa) =>{
-      return pessoa.idade <= 18
+      return pessoa.idade < 18
    })
    return naoAdultos
 }
@@ -266,6 +276,14 @@ function multiplicaArrayPor2(array) {
    }
    return newArray
 }
+/* Opçãp de resolução com map
+function multiplicaArrayPor2(array) {
+   const novoArray = array.map((num) => {
+    return num * 2
+    })
+   return novoArray
+  }
+*/
 
 // Exercício 17, letra B
 
@@ -276,7 +294,14 @@ function multiplicaArrayPor2S(array) {
    }
    return newArray
 }
-
+/* Opção de resolução com map
+function multiplicaArrayPor2S(array) {
+   const novoArray = array.map((num) => {
+    return(num * 2).toString()
+    })
+   return novoArray
+  }
+*/
 // Exercício 17, letra C
 
 function verificaParidade(array) {
@@ -290,7 +315,19 @@ function verificaParidade(array) {
    }
    return newArray
 }
-
+/* Opção de resolução com map
+function verificaParidade(array) {
+   const novoArray = array.map((num) => {
+     if (num % 2 === 0) {
+       return `${num} é par`
+     } else {
+       return `${num} é ímpar`
+     }
+   })
+ 
+   return novoArray
+ }
+*/
 // Exercício 18
 
 const pessoas = [
@@ -349,11 +386,26 @@ const consultasNome = [
 //Exercício 19, letra A
 
 function ordenaPorNome() {
+   for(let i = 0; i < consultasNome.length; i++) {
+     for(let j = 0; j < consultasNome.length - i - 1; j++) {
+       if(consultasNome[j].nome > consultasNome[j + 1].nome) {
+         const temp = consultasNome[j]
+         consultasNome[j] = consultasNome[j + 1]
+         consultasNome[j + 1] = temp
+       }
+     }
+   }
+   return consultasNome
+ }
+ 
+/* Opção de resolução com sort
+function ordenaPorNome() {
    consultasNome.sort(function (a, b) {
       return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;    
     })
     return consultasNome.sort()
 }
+*/
 
 // Exercício 19, letra B
 
@@ -365,12 +417,30 @@ const consultasData = [
 ]
 
 function ordenaPorData() {
-   //consultasData.sort(function (x, y) {
-     // let c = new Date(x.dataDaConsulta)
-     // let d = new Date(y.dataDaConsulta)  
-     // return c - d
-   // })
-   // return consultasData.sort()
+   for(let i = 0; i < consultasData.length; i++) {
+      for(let j = 0; j < consultasData.length - i - 1; j++) {
+  
+        const arrayData1 = consultasData[j].dataDaConsulta.split('/')
+        const dia1 = Number(arrayData1[0])
+        const mes1 = Number(arrayData1[1])
+        const ano1 = Number(arrayData1[2])
+  
+        const arrayData2 = consultasData[j + 1].dataDaConsulta.split('/')
+        const dia2 = Number(arrayData2[0])
+        const mes2 = Number(arrayData2[1])
+        const ano2 = Number(arrayData2[2])
+  
+        const data1 = new Date(ano1, mes1 -1, dia1).getTime()
+        const data2 = new Date(ano2, mes2-1, dia2).getTime()
+  
+        if(data1 > data2) {
+          const temp = consultasData[j]
+          consultasData[j] = consultasData[j + 1]
+          consultasData[j + 1] = temp
+        }
+      }
+    }
+    return consultasData
 }
 
 //Exercício 20
@@ -385,7 +455,12 @@ const contas = [
 ]
 
 function atualizaSaldo() {
-   const saldoClientes = contas.map((conta)=>{
-      return {...conta, saldoTotal: conta.saldoTotal}
+   contas.forEach((conta) => {
+      let totalDeCompras = 0
+      conta.compras.forEach((valor) => {
+         totalDeCompras += valor
+      })
+      conta.saldoTotal -= totalDeCompras
    })
+    return contas
 }
