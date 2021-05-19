@@ -1,0 +1,94 @@
+p{
+    background-color: rgba(0, 0, 0, 0.24);
+    color: rgb(0, 0, 0);
+    font: 1rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+
+*{
+    margin: 0%;
+    padding: 0%;    
+}
+
+header{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.img-wrapper{
+    width: 100%;
+    height: 100vh
+}
+
+.img-wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+}
+
+.banner{
+    position: absolute;
+    top: 15%;
+    left: 3%;
+}
+
+.banner h1{
+    background-color: rgba(224, 221, 221, 0.651);
+    color: rgb(0, 0, 0);
+    font: 1rem;
+}
+
+.banner h4{
+    color: rgb(0, 0, 0);
+    font: 1rem;
+}
+
+.menu{
+    position: absolute;
+    top: 0%;
+    left: 30%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font: 1rem;
+}
+
+#button {
+    background-color: #000000;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 1px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.flaticon img{
+    width: 34px;
+    height: 34px;
+    margin: 0px 20px 0px 20px;
+}
+
+footer{
+    text-align: center;
+}
+
+#menu ul{
+    margin: 0;
+    background-color: black;
+    list-style: none;
+}
+
+#menu ul li{
+    display: inline;
+}
+
+#menu ul li a{
+    padding: 10px 10px;
+    display: inline-block
+}

@@ -1,0 +1,17 @@
+table{
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 20px;
+    border-color: rgb(0, 0, 0);
+}
+
+img{
+    max-width: 70px;
+}
+
+td img {
+    max-width: 70px;
+}
+
