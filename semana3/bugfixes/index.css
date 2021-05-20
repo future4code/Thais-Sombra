@@ -104,6 +104,10 @@ table {
     text-align: center;
 }
 
+div > table {
+    margin: auto;
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
@@ -128,6 +132,11 @@ td button:active {
 .container-do-search {
     margin-top: 20px;
     height: 100px;
+}
+
+.container-voltar {
+    margin-top: 50px;
+    text-align: center;
 }
 
 
