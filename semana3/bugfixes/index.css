@@ -114,6 +114,15 @@ td > img {
     width: 50px;
 }
 
+td button:hover {
+    background-color: #918346;
+    cursor: pointer;
+}
+
+td button:active {
+    color: white;
+}
+
 .container-do-search {
     margin-top: 20px;
     height: 100px;
