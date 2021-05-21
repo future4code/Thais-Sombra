@@ -1,0 +1,36 @@
+.projetos-blackjack {
+    position: relative;
+    width: 50%;
+    float:right;
+}
+
+.projetos-portfolio {
+    position: relative;
+    width: 50%;
+    left: 5%;
+    float:right;
+}
+
+.projetos-blackjack img {
+    position: relative;
+    width: 80%;
+    padding: 1rem;
+}
+
+.projetos-blackjack p{
+    width: 50%;
+    left: 10%;
+    text-align: center;
+}
+
+.projetos-portfolio img {
+    position: relative;
+    width: 80%;
+    padding: 1rem;
+}
+
+.projetos-portfolio p{
+    width: 50%;
+    left: 10%;
+    text-align: center;
+}
