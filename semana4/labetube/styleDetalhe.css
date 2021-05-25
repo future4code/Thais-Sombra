@@ -3,7 +3,6 @@ main {
     flex-direction: column;
     width: 100vw;
     height: 70vh;
-    margin: 10px;
     align-items: center;
     text-align: left;
 }
