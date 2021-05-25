@@ -1,20 +1,17 @@
 main {
     display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 70vh;
     margin: 10px;
+    align-items: center;
+    text-align: left;
 }
-
-.card-unico-video {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(249, 250, 168);
-    border-width: 2px;
-    border-style: double;
-    border-color: rgb(0, 0, 0);
-}
-
 
 .video {
   height: 70%;
+}
+
+main h3 {
+    align-self: flex-start;
 }
