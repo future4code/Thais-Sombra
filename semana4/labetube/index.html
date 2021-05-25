@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script src="https://kit.fontawesome.com/7cd1d8c4e6.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
     <title>Labetube</title>
 </head>
 <body>
     <header>
         <div class="menu-superior">
-            <h2>LabeTube</h2>
-            <input type="text">
+            <i id="logo" class="fab fa-youtube" alt="Youtube Logo"></i>
+            <h3>LabeTube</h3>
         </div>
+        <form class="barra-pesquisa">
+            <input type="search" placeholder="Search" aria-label="Search"/>
+            <button type="submit" class="button-search">
+                <i id="lupa" class="fas fa-search"></i>
+            </button>
+        </form>
     </header>
+
+    <div class="categorias">
+        <section class="categoria-secao">
+            <button class="categoria ativa">Tudo</button>
+            <button class="categoria">Games</button>
+            <button class="categoria">Programação</button>
+            <button class="categoria">Música</button>
+            <button class="categoria">Filmes</button>
+            <button class="categoria">Lives</button>
+            <button class="categoria">Vlogs</button>
+            <button class="categoria">Tecnologia</button>
+            <button class="categoria">Outros</button>
+        </section>
+    </div>
+
     <main>
         <div class="card-video">
             <a href="detalheVideo1.html"><img class='imagem' src="/img/video1.png" alt="Imagem 1"></a>
@@ -52,4 +74,5 @@
         <p>Labetube - Projeto criado por Thaís Sombra</p>
     </footer>
 </body>
+
 </html>
