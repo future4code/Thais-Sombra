@@ -1,0 +1,39 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-style: normal;
+    list-style-type: none;
+}
+
+.menu-superior {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: gainsboro;
+}
+
+main {
+    display: grid;
+    grid-template-rows: 2fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 10px;
+    margin: 10px;
+}
+
+.card-video {
+    display: flex;
+    height: 200px;
+    background-color: rgb(249, 250, 168);
+    border-width: 2px;
+    border-style: double;
+    border-color: rgb(0, 0, 0);
+}
+
+footer {
+    padding: 10px;
+    background-color: gainsboro;
+    border-width: 2px;
+    border-style: double;
+    border-color: gray;
+}
