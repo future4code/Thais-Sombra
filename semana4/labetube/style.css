@@ -14,7 +14,7 @@
 
 main {
     display: grid;
-    grid-template-rows: 2fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     row-gap: 10px;
     column-gap: 10px;
@@ -23,11 +23,17 @@ main {
 
 .card-video {
     display: flex;
+    flex-direction: column;
     height: 200px;
     background-color: rgb(249, 250, 168);
     border-width: 2px;
     border-style: double;
     border-color: rgb(0, 0, 0);
+}
+
+.card-video p {
+    text-align: center;
+    margin: 15px;
 }
 
 .imagem {
