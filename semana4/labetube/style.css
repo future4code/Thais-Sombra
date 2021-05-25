@@ -30,6 +30,10 @@ main {
     border-color: rgb(0, 0, 0);
 }
 
+.imagem {
+    max-width: 100%;
+}
+
 footer {
     padding: 10px;
     background-color: gainsboro;
