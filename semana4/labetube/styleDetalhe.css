@@ -7,10 +7,34 @@ main {
     text-align: left;
 }
 
-.video {
-  height: 70%;
-}
-
 main h3 {
     align-self: flex-start;
+}
+
+@media screen and (max-device-width : 480px) {
+
+  *{
+    max-width: 100vw;
+  }
+  header {
+      top:0;
+      background-color: white;
+      position: fixed;
+  }
+
+  .barra-pesquisa {
+      position: fixed;   
+      margin-left: 9rem;     
+  }
+
+  .video {
+    margin-top: 100px;
+    width: 100vw;
+  }
+  
+
+  footer {
+      position: sticky;
+  }
+
 }
