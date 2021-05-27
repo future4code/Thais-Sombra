@@ -15,6 +15,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-content: center;
+    background-color: rgb(255, 255, 255);
+    width: 100vw;
 }
 
 a { 
@@ -24,13 +26,15 @@ a {
 .menu-superior {
     display: flex;
     justify-content: left;
-    padding: 10px;
+    padding: 10px; 
+
 }
 
 .barra-pesquisa {
     display: flex;
     justify-content: left;
     padding: 10px;
+
 }
 
 #logo {
@@ -104,7 +108,6 @@ main {
     column-gap: 15px;
     margin-left: 20px;
     margin-right: 20px;
-    height: 70vh;
 }
 
 .card-video {
@@ -142,4 +145,47 @@ footer {
 footer p:hover {
     color: thistle;
     cursor: pointer;
+}
+
+/*Roberthividade*/
+
+@media screen and (max-device-width : 480px) {
+
+    header {
+        top:0;
+        background-color: white;
+        position: fixed;
+    }
+
+    .menu-superior {
+
+    }
+
+    .barra-pesquisa {
+        position: fixed;   
+        margin-left: 9rem;     
+    }
+
+    .categorias {
+
+        margin-top: 50px;
+    }
+
+    .grid-card {
+        grid-template-columns: 1fr;
+        /* celulares */
+    }
+
+    footer {
+        position: sticky;
+    }
+
+}
+
+@media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+    /* tablets */
+}
+
+@media screen and (min-device-width : 1200px) {
+   /* computadores */
 }
