@@ -6,6 +6,8 @@ import {IconeComContador} from '../IconeComContador/IconeComContador'
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
+import iconeMarcarPreto from '../../img/bookmark-black.svg'
+import iconeMarcarBranco from '../../img/bookmark-white.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
 const PostContainer = styled.div`
@@ -45,7 +47,8 @@ class Post extends React.Component {
     curtido: false,
     numeroCurtidas: 0,
     comentando: false,
-    numeroComentarios: 0
+    numeroComentarios: 0,
+    marcado:false
   }
 
   onClickCurtida = () => {
@@ -65,6 +68,12 @@ class Post extends React.Component {
     })
   }
 
+  onClickMarcar = () => {
+    this.setState({
+      marcado: !this.state.marcado
+    })
+  }
+
   onChangeComentario = (event) => {
     console.log(event.target.value)
   }
@@ -77,6 +86,15 @@ class Post extends React.Component {
   }
 
   render() {
+
+    let iconeMarcar
+
+    if(this.state.marcado) {
+      iconeMarcar = iconeMarcarPreto
+    } else {
+      iconeMarcar = iconeMarcarBranco
+    }
+
     let iconeCurtida
 
     if(this.state.curtido) {
@@ -95,6 +113,7 @@ class Post extends React.Component {
       <PostHeader>
         <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
         <p>{this.props.nomeUsuario}</p>
+        
       </PostHeader>
 
       <PostPhoto src={this.props.fotoPost} alt={'Imagem do post'}/>
@@ -110,6 +129,11 @@ class Post extends React.Component {
           icone={iconeComentario}
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
+        />
+        
+        <IconeComContador
+          icone={iconeMarcar}
+          onClickIcone={this.onClickMarcar}
         />
       </PostFooter>
       {componenteComentario}
