@@ -163,8 +163,8 @@ class Post extends React.Component {
           onClickIcone={this.onClickMarcar}
         />
       </PostFooter>
-      {componenteComentario}
       {componenteShare}
+      {componenteComentario}
     </PostContainer>
   }
 }

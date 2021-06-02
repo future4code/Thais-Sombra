@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import IconeFacebook from  '../../img/facebook.svg'
+
+import iconeFacebookPreto from  '../../img/facebook-black.svg'
+import iconeFacebookColor from  '../../img/Facebook-color.svg'
+import iconeInstagramPreto from  '../../img/instagram-black.svg'
+import iconeInstagramColor from  '../../img/instagram-color.svg'
+import iconeTwitterPreto from  '../../img/twitter-black.svg'
+import iconeTwitterColor from  '../../img/twitter-color.svg'
 
 
 const ShareContainer = styled.div`
@@ -26,23 +32,91 @@ const IconImage = styled.img`
     width: 30px;
 `
 
+const SocialMediaIcons = styled.div`
+    display: flex;
+    flex-direction:row;   
+    justify-content: space-evenly;
+`
+
 export class SecaoShare extends Component {
 	state = {
-		valorInputComentario:""
+		valorInputComentario:"",
+        shareInstagram: false,
+        shareFacebook: false,
+        shareTwitter: false,
 	}
 
 	onChangeComentario = (event) =>  {
 		this.setState({valorInputComentario: event.target.value	})
 	}
 
+    onClickFacebook = () => {
+        this.setState({
+          shareFacebook: !this.state.shareFacebook,
+          shareInstagram: false,
+          shareTwitter: false
+        })
+      }
+    
+      onClickTwitter = () => {
+        this.setState({
+            shareFacebook: false,
+            shareInstagram: false,
+            shareTwitter:  !this.state.shareTwitter
+        })
+      }
+
+      onClickInstagram = () => {
+        this.setState({
+            shareFacebook: false,
+            shareInstagram: !this.state.shareInstagram,
+            shareTwitter: false
+        })
+      }
+    
 	render() {
-		console.log('Comentário', this.state.valorInputComentario)
+        
+            let redeSocialEscolhida
+
+            let iconeFacebook
+        
+            if(this.state.shareFacebook) {
+              iconeFacebook = iconeFacebookPreto
+              redeSocialEscolhida = "Facebook"
+            } else {
+              iconeFacebook = iconeFacebookColor
+            }
+
+            let iconeTwitter
+        
+            if(this.state.shareTwitter) {
+              iconeTwitter = iconeTwitterPreto
+              redeSocialEscolhida = "Twitter"
+            } else {
+              iconeTwitter = iconeTwitterColor
+            }
+
+            let iconeInstagram
+        
+            if(this.state.shareInstagram) {
+              iconeInstagram = iconeInstagramPreto
+              redeSocialEscolhida = "Instagram"
+            } else {
+              iconeInstagram = iconeInstagramColor
+            }
+
+            console.log('Comentário', this.state.valorInputComentario)
+            console.log(`Post compartilhado no ${redeSocialEscolhida}`)
 		return (
             <ShareContainer>
-                <IconImage alt={'Icone'} src={IconeFacebook} />
+                <SocialMediaIcons>
+                    <IconImage alt={'Icone'} src={iconeFacebook} onClick={this.onClickFacebook}/>
+                    <IconImage alt={'Icone'} src={iconeTwitter} onClick={this.onClickTwitter}/>
+                    <IconImage alt={'Icone'} src={iconeInstagram} onClick={this.onClickInstagram}/>
+                </SocialMediaIcons>
                 <CommentContainer>
                     <InputComentario
-                        placeholder={'Comentário'}
+                        placeholder={'Mensagem'}
                         value={this.state.valorInputComentario}
                         onChange={this.onChangeComentario}
                         />
