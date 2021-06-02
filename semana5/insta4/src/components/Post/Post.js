@@ -65,6 +65,10 @@ class Post extends React.Component {
     })
   }
 
+  onChangeComentario = (event) => {
+    console.log(event.target.value)
+  }
+
   aoEnviarComentario = () => {
     this.setState({
       comentando: false,
