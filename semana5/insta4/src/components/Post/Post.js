@@ -67,13 +67,15 @@ class Post extends React.Component {
 
   onClickComentario = () => {
     this.setState({
-      comentando: !this.state.comentando
+      comentando: !this.state.comentando,
+      share:false,
     })
   }
 
   onClickShare = () => {
     this.setState({
-      share: !this.state.share
+      share: !this.state.share,
+      comentando: false,
     })
   }
 
