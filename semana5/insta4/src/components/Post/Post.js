@@ -94,6 +94,12 @@ class Post extends React.Component {
     })
   }
 
+  aoCompartilharPost = () => {
+    this.setState({
+      share: false,
+    })
+  }
+
   render() {
 
     let iconeMarcar
