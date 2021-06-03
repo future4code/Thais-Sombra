@@ -73,16 +73,26 @@ export class SecaoShare extends Component {
             shareTwitter: false
         })
       }
-    
+
+      aoCompartilharPost = () => {
+        this.setState({
+          share: false,
+        })
+        if (this.state.shareFacebook){
+          console.log(`Post compartilhado no Facebook com a mensagem: ${this.state.valorInputComentario}`)
+        }  else if (this.state.shareTwitter){
+          console.log(`Post compartilhado no Twitter com a mensagem: ${this.state.valorInputComentario}`)
+        } else {
+          console.log(`Post compartilhado no Instagram com a mensagem: ${this.state.valorInputComentario}`)
+        }
+      }
+   
 	render() {
         
-            let redeSocialEscolhida
-
             let iconeFacebook
         
             if(this.state.shareFacebook) {
               iconeFacebook = iconeFacebookPreto
-              redeSocialEscolhida = "Facebook"
             } else {
               iconeFacebook = iconeFacebookColor
             }
@@ -91,7 +101,6 @@ export class SecaoShare extends Component {
         
             if(this.state.shareTwitter) {
               iconeTwitter = iconeTwitterPreto
-              redeSocialEscolhida = "Twitter"
             } else {
               iconeTwitter = iconeTwitterColor
             }
@@ -100,19 +109,32 @@ export class SecaoShare extends Component {
         
             if(this.state.shareInstagram) {
               iconeInstagram = iconeInstagramPreto
-              redeSocialEscolhida = "Instagram"
             } else {
               iconeInstagram = iconeInstagramColor
             }
 
             console.log('Comentário', this.state.valorInputComentario)
-            console.log(`Post compartilhado no ${redeSocialEscolhida}`)
-		return (
-            <ShareContainer>
+
+            return (
+                
+              <ShareContainer>
+
                 <SocialMediaIcons>
-                    <IconImage alt={'Icone'} src={iconeFacebook} onClick={this.onClickFacebook}/>
-                    <IconImage alt={'Icone'} src={iconeTwitter} onClick={this.onClickTwitter}/>
-                    <IconImage alt={'Icone'} src={iconeInstagram} onClick={this.onClickInstagram}/>
+                    <IconImage 
+                        alt={'Icone'} 
+                        src={iconeFacebook} 
+                        onClick={this.onClickFacebook}
+                        />
+                    <IconImage 
+                        alt={'Icone'} 
+                        src={iconeTwitter} 
+                        onClick={this.onClickTwitter}
+                        />
+                    <IconImage 
+                        alt={'Icone'} 
+                        src={iconeInstagram} 
+                        onClick={this.onClickInstagram}
+                        />
                 </SocialMediaIcons>
                 <CommentContainer>
                     <InputComentario
@@ -120,8 +142,9 @@ export class SecaoShare extends Component {
                         value={this.state.valorInputComentario}
                         onChange={this.onChangeComentario}
                         />
-                    <button onClick={this.props.aoCompartilhar}>Enviar</button>
+                    <button onClick={this.aoCompartilharPost}>Enviar</button>
                 </CommentContainer>
-            </ShareContainer>
-        )}
+              </ShareContainer>
+        )
+    }
 }

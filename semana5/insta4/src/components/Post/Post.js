@@ -96,12 +96,7 @@ class Post extends React.Component {
     })
   }
 
-  aoCompartilharPost = () => {
-    this.setState({
-      share: false,
-    })
-  }
-
+  
   render() {
 
     let iconeMarcar
@@ -129,7 +124,7 @@ class Post extends React.Component {
     let componenteShare
 
     if(this.state.share) {
-      componenteShare = <SecaoShare aoCompartilhar={this.aoCompartilharPost}/>
+      componenteShare = <SecaoShare />
     }
 
     return <PostContainer>
