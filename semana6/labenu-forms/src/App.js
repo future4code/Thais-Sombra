@@ -7,9 +7,14 @@ import Etapa3 from './Components/Etapa3';
 import Etapa4 from './Components/Etapa4';
 
 
+const Container = styled.div`
+    text-align: center;
+`
+
+
 class App extends React.Component {
   state = {
-    etapa:4
+    etapa:1
   }
   render() {
     const renderizaTela = () => {
@@ -27,7 +32,7 @@ class App extends React.Component {
       }
     }
     return (
-      <div>{renderizaTela()}</div>
+      <Container>{renderizaTela()}</Container>
     )
   }
 }
