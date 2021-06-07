@@ -14,7 +14,7 @@ const Container = styled.div`
 
 class App extends React.Component {
   state = {
-    etapa:1
+    etapa:3
   }
   render() {
     const renderizaTela = () => {
