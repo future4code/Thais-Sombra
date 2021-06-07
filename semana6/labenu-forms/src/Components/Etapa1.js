@@ -21,6 +21,8 @@ export default class Etapa1 extends React.Component {
         this.setState({
             idade: event.target.value
         })
+        console.log(this.state.idade)
+
     }
 
     onChangeInputEmail = (event) => {
@@ -34,9 +36,12 @@ export default class Etapa1 extends React.Component {
             escolaridade: event.target.value
         })
         console.log(this.state.escolaridade)
+        console.log(event.target.value)
     }
 
+    
     render(){
+        console.log(this.state)
         return (
             <div>
                 <h3>ETAPA 1 - DADOS GERAIS</h3>

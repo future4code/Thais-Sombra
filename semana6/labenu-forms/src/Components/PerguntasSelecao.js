@@ -4,9 +4,16 @@ export default function PerguntasSelecao (props) {
     return (
         <div>
             <p>{props.pergunta}</p>
-            <select>{props.opcoes.map((opcao) => (
-                <option value={opcao}>{opcao}</option>
-            ))} 
+            <select onChange={props.onChange}>
+                {props.opcoes.map((opcao, index) => (
+                <option 
+                    key={index} 
+                    value={opcao}
+                    >
+                    {opcao}
+                </option>
+                ))
+                } 
             </select>
         </div>
     )
