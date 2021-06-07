@@ -4,7 +4,7 @@ export default function PerguntasAbertas(props) {
     return (
       <div>
         <p>{props.pergunta}</p>
-        <input onChange={props.onChange} value={props.value} />
+        <input onChange={props.onChange} value ={props.value}/>
       </div>
     );
 }
