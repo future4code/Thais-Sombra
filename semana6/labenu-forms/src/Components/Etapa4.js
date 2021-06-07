@@ -5,7 +5,8 @@ export default class Etapa4 extends React.Component {
         return (
             <div>
                 <h3>O FORMULÁRIO ACABOU</h3>
-                <p>Muito obrigada por participar! Entraremos em contato!</p>
+                <p>Muito obrigada por participar!</p>
+                <p>Entraremos em contato!</p>
             </div>
         )
     }
