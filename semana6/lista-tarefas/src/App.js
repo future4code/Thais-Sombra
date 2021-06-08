@@ -27,7 +27,7 @@ class App extends React.Component {
         completa: false
       },
       {
-        id: Date.now(),
+        id: Date.now() + 1,
         texto: 'Passear com o Floki',
         completa: true
       }
@@ -59,7 +59,19 @@ class App extends React.Component {
   }
 
   selectTarefa = (id) => {
+    const novaListaTarefas = this.state.tarefas.map((tarefa) => {
+      if (id === tarefa.id) {
+        const alteraStatus = {
+          ...tarefa,
+          completa: !tarefa.completa
+        }
+        return alteraStatus
+      } else {
+        return tarefa
+      } 
+    })
 
+    this.setState({ tarefas: novaListaTarefas });
   }
 
   onChangeFilter = (event) => {
