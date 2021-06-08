@@ -63,6 +63,13 @@ class App extends React.Component {
     this.setState({ tarefas: [...this.state.tarefas, novaTarefa] });
   }
 
+  apagaTarefa = (id) => {
+    const novaListaTarefas = this.state.tarefas.filter((tarefa) => {
+      return id !== tarefa.id
+    })
+    this.setState({ tarefas: novaListaTarefas });
+  }
+
   selectTarefa = (id) => {
     const novaListaTarefas = this.state.tarefas.map((tarefa) => {
       if (id === tarefa.id) {
@@ -118,6 +125,7 @@ class App extends React.Component {
               <Tarefa
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
+                onDoubleClick = {() => this.apagaTarefa(tarefa.id)}
               >
                 {tarefa.texto}
               </Tarefa>
