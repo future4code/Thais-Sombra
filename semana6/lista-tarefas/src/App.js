@@ -23,13 +23,13 @@ class App extends React.Component {
       tarefas: [
       {
         id: Date.now(), 
-        texto: 'Lavar a louça',
-        completa: false
+        texto: 'Chorar em posição fetal com react',
+        completa: true
       },
       {
         id: Date.now() + 1,
-        texto: 'Passear com o Floki',
-        completa: true
+        texto: 'Postar milhões de dúvidas no slack',
+        completa: false
       }
     ],
       inputValue: '',
