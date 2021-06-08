@@ -10,6 +10,10 @@ const TarefaContainer = styled.div`
   flex-direction: row;
   box-sizing: border-box;
   width: 100vw;
+
+  @media (max-width: 800px){
+    flex-direction: column;
+  };
 `
 
 const TarefaListContainer = styled.div`
@@ -50,7 +54,15 @@ const Tarefa = styled.li`
 const InputsContainer = styled.div`
   display: flex;
   gap: 10px;
-  `
+
+  @media (max-width: 800px){
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  };
+
+`
 
 const Header = styled.div`
   display: flex;
@@ -58,7 +70,14 @@ const Header = styled.div`
   justify-content:space-around;
   margin: 50px;
   width: 100vw;
-  `
+
+  @media (max-width: 800px){
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  };
+`
 
 const Icons = styled.div`
   cursor:pointer;
