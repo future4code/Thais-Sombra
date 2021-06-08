@@ -96,6 +96,10 @@ class App extends React.Component {
     this.setState({filtro: event.target.value})
   }
 
+  limparLista = () => {
+    this.setState({tarefas:[]})
+  }
+
   render() {
     const listaFiltrada = this.state.tarefas.filter(tarefa => {
       switch (this.state.filtro) {
@@ -115,7 +119,7 @@ class App extends React.Component {
     const listaFinalizada = this.state.tarefas.filter(tarefa => {
       return tarefa.completa
     })
-
+    
     return (
       <div className="App">
         <h1>Lista de tarefas</h1>
@@ -133,6 +137,7 @@ class App extends React.Component {
             <option value="completas">Completas</option>
           </select>
         </InputsContainer>
+            <button onClick={this.limparLista}>Limpar Lista</button>
 
         <TarefaContainer>
           <TarefaList>
@@ -166,6 +171,7 @@ class App extends React.Component {
         
           </TarefaList>
         </TarefaContainer>
+
 
       </div>
     )
