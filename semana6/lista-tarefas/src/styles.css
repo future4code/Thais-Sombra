@@ -1,7 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(12, 5, 19);
+  color: #fff;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
+}
+
+button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    rgba(93,12,255,1) 0%,
+    rgba(155,0,250,1) 100%
+  );
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.TarefaListContainer:nth-child(4n+1) {
+  background: linear-gradient(
+    90deg,
+    rgba(93,12,255,1)0%,
+    rgba(155,0,250,1)100%
+  );
+}
+
+.TarefaListContainer:nth-child(4n+2) {
+  background: linear-gradient(
+    90deg,
+    rgba(255,12,241,1)0%,
+    rgba(250,0,135,1)100%
+  );
+}
+
+.TarefaListContainer:nth-child(4n+3) {
+  background: linear-gradient(
+    90deg,
+    rgba(20,159,255,1)0%,
+    rgba(17,122,255,1)100%
+  );
 }

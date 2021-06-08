@@ -1,27 +1,84 @@
 import React from 'react'
 import styled from 'styled-components'
 import './styles.css'
+import { RiCloseCircleLine } from 'react-icons/ri'
+import { TiEdit } from 'react-icons/ti'
+import todoDragon from './img/todoDragon.png'
 
 const TarefaContainer = styled.div`
   display: flex;
   flex-direction: row;
+  box-sizing: border-box;
+  width: 100vw;
+`
+
+const TarefaListContainer = styled.div`
+  display: flex;
+  background-color: lightblue;
+  justify-content: space-between;
+  align-items: left;
+  display:flex;
+  flex-direction: row;
+  margin: 5px;
+  padding: 15px;
+  width: 100%;
+  background-color: ${({completa}) => (completa ? 'lightgreen' : 'lightred')};
+  color: #fff;
+  font-weight: 700;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,118,20,1)0%,
+    rgba(255,84,17,1)100%
+  );
 `
 
 const TarefaList = styled.ul`
-  padding: 100px;
-  width: 200px;
-
+  padding: 50px;
+  width: 50%;
+  list-style: none;
+  background-color: rgb(255, 255, 255, 0.1);
+  margin: 50px;
+  justify-content: center;
 `
 
 const Tarefa = styled.li`
   text-align: left;
   text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
-`
+  `
 
 const InputsContainer = styled.div`
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   gap: 10px;
+  `
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  margin: 50px;
+  width: 100vw;
+  `
+
+const Icons = styled.div`
+  cursor:pointer;
+  justify-content: space-between;
+  `
+
+const Logo = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  width: 100vw;
+  height: 100px;
+  background-color: rgb(255, 255, 255, 0.1);
+`
+
+const LogoImg= styled.img`
+  width: 60px;
+  margin-right: 15px;
 `
 
 class App extends React.Component {
@@ -67,6 +124,7 @@ class App extends React.Component {
     };
 
     this.setState({ tarefas: [...this.state.tarefas, novaTarefa] });
+    this.setState({ inputValue: ''})
   }
 
   apagaTarefa = (id) => {
@@ -100,8 +158,12 @@ class App extends React.Component {
     this.setState({tarefas:[]})
   }
 
+  atualizaTarefa = () => {
+
+  }
+
   render() {
-    const listaFiltrada = this.state.tarefas.filter(tarefa => {
+  /*   const listaFiltrada = this.state.tarefas.filter(tarefa => {
       switch (this.state.filtro) {
         case 'pendentes':
           return !tarefa.completa
@@ -110,7 +172,7 @@ class App extends React.Component {
         default:
           return true
       }
-    })
+    }) */
 
     const listaPendente = this.state.tarefas.filter(tarefa => {
       return !tarefa.completa
@@ -122,35 +184,45 @@ class App extends React.Component {
     
     return (
       <div className="App">
-        <h1>Lista de tarefas</h1>
-        <InputsContainer>
-          <input value={this.state.inputValue} onChange={this.onChangeInput}/>
-          <button onClick={this.criaTarefa}>Adicionar</button>
-        </InputsContainer>
-        <br/>
+        <Logo>
+          <LogoImg src={todoDragon}></LogoImg>
+         <h1>Lista de tarefas</h1>
+        </Logo>
+        <Header>
+          <InputsContainer>
+            <input placeholder={"Tarefa"} value={this.state.inputValue} onChange={this.onChangeInput}/>
+            <button onClick={this.criaTarefa}>Adicionar</button>
+          </InputsContainer>
 
-        <InputsContainer>
-          <label>Filtro</label>
-          <select value={this.state.filter} onChange={this.onChangeFilter}>
-            <option value="">Nenhum</option>
-            <option value="pendentes">Pendentes</option>
-            <option value="completas">Completas</option>
-          </select>
-        </InputsContainer>
+          <InputsContainer>
+            <label>Filtro</label>
+            <select value={this.state.filter} onChange={this.onChangeFilter}>
+              <option value="">Nenhum</option>
+              <option value="pendentes">Pendentes</option>
+              <option value="completas">Completas</option>
+            </select>
+          </InputsContainer>
+          
             <button onClick={this.limparLista}>Limpar Lista</button>
+        </Header>
 
         <TarefaContainer>
           <TarefaList>
             <h3>Tarefas pendentes</h3>
             {listaPendente.map(tarefa => {
               return (
-                <Tarefa
-                completa={tarefa.completa}
-                onClick={() => this.selectTarefa(tarefa.id)}
-                onDoubleClick = {() => this.apagaTarefa(tarefa.id)}
-                >
-                  {tarefa.texto}
-                </Tarefa>
+                <TarefaListContainer className="TarefaListContainer">
+                  <Tarefa
+                    completa={tarefa.completa}
+                    onClick={() => this.selectTarefa(tarefa.id)}
+                    >
+                      {tarefa.texto}
+                  </Tarefa>
+                  <Icons>
+                    <RiCloseCircleLine  onClick = {() => this.apagaTarefa(tarefa.id)}/>
+                    <TiEdit />
+                  </Icons>
+              </TarefaListContainer>
               )
             })}
           </TarefaList>
@@ -159,13 +231,18 @@ class App extends React.Component {
             <h3>Tarefas finalizadas</h3>
             {listaFinalizada.map(tarefa => {
               return (
-                <Tarefa
-                completa={tarefa.completa}
-                onClick={() => this.selectTarefa(tarefa.id)}
-                onDoubleClick = {() => this.apagaTarefa(tarefa.id)}
-                >
-                {tarefa.texto}
-                </Tarefa>
+                <TarefaListContainer>
+                  <Tarefa
+                    completa={tarefa.completa}
+                    onClick={() => this.selectTarefa(tarefa.id)}
+                    >
+                      {tarefa.texto}
+                  </Tarefa>
+                  <Icons>
+                    <RiCloseCircleLine onClick = {() => this.apagaTarefa(tarefa.id)}/>
+                    <TiEdit />
+                  </Icons>
+              </TarefaListContainer>
               )
             })}
         
