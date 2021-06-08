@@ -2,9 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import './styles.css'
 
+const TarefaContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
 const TarefaList = styled.ul`
-  padding: 0;
+  padding: 100px;
   width: 200px;
+
 `
 
 const Tarefa = styled.li`
@@ -102,6 +108,14 @@ class App extends React.Component {
       }
     })
 
+    const listaPendente = this.state.tarefas.filter(tarefa => {
+      return !tarefa.completa
+    })
+
+    const listaFinalizada = this.state.tarefas.filter(tarefa => {
+      return tarefa.completa
+    })
+
     return (
       <div className="App">
         <h1>Lista de tarefas</h1>
@@ -119,19 +133,40 @@ class App extends React.Component {
             <option value="completas">Completas</option>
           </select>
         </InputsContainer>
-        <TarefaList>
-          {listaFiltrada.map(tarefa => {
-            return (
-              <Tarefa
+
+        <TarefaContainer>
+          <TarefaList>
+            <h3>Tarefas pendentes</h3>
+            {listaPendente.map(tarefa => {
+              return (
+                <Tarefa
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
                 onDoubleClick = {() => this.apagaTarefa(tarefa.id)}
-              >
+                >
+                  {tarefa.texto}
+                </Tarefa>
+              )
+            })}
+          </TarefaList>
+
+          <TarefaList>
+            <h3>Tarefas finalizadas</h3>
+            {listaFinalizada.map(tarefa => {
+              return (
+                <Tarefa
+                completa={tarefa.completa}
+                onClick={() => this.selectTarefa(tarefa.id)}
+                onDoubleClick = {() => this.apagaTarefa(tarefa.id)}
+                >
                 {tarefa.texto}
-              </Tarefa>
-            )
-          })}
-        </TarefaList>
+                </Tarefa>
+              )
+            })}
+        
+          </TarefaList>
+        </TarefaContainer>
+
       </div>
     )
   }
