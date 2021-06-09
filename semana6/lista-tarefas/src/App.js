@@ -8,11 +8,11 @@ import todoDragon from './img/todoDragon.png'
 const TarefaContainer = styled.div`
   display: flex;
   flex-direction: row;
-  box-sizing: border-box;
   width: 100vw;
 
   @media (max-width: 800px){
     flex-direction: column;
+    align-items: center;
   };
 `
 
@@ -26,7 +26,6 @@ const TarefaListContainer = styled.div`
   margin: 5px;
   padding: 15px;
   width: 100%;
-  background-color: ${({completa}) => (completa ? 'lightgreen' : 'lightred')};
   color: #fff;
   font-weight: 700;
   border-radius: 10px;
@@ -35,6 +34,7 @@ const TarefaListContainer = styled.div`
     rgba(255,118,20,1)0%,
     rgba(255,84,17,1)100%
   );
+
 `
 
 const TarefaList = styled.ul`
@@ -44,45 +44,72 @@ const TarefaList = styled.ul`
   background-color: rgb(255, 255, 255, 0.1);
   margin: 50px;
   justify-content: center;
+  @media (max-width: 800px){
+    width: 90%;
+    margin: 10px;
+  };
 `
+
 
 const Tarefa = styled.li`
   text-align: left;
   text-decoration: ${({completa}) => (completa ? 'line-through' : 'none')};
+  cursor: pointer;
+  :hover{
+    opacity: 0.7;
+  }
   `
 
-const InputsContainer = styled.div`
-  display: flex;
-  gap: 10px;
-
-  @media (max-width: 800px){
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-  };
-
-`
 
 const Header = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
+  justify-content:center;
+  align-self: center;
+  text-align: center;
   margin: 50px;
   width: 100vw;
-
+  height: 150px;
+  
   @media (max-width: 800px){
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 20px;
   };
+  `
+  const InputsContainer = styled.div`
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+  
+  
+    @media (max-width: 800px){
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 15px;
+      width:100%
+    };
+  `
+
+const Buttons = styled.div`
+  display: flex;
+  width: 40%;
+  height: 100%;
+  justify-content:space-around;
+  align-items: center;
+
+  @media (max-width: 800px){
+      width:100%;
+  };
 `
 
 const Icons = styled.div`
   cursor:pointer;
   justify-content: space-between;
-  `
+`
 
 const Logo = styled.div`
   display: flex;
@@ -93,11 +120,18 @@ const Logo = styled.div`
   width: 100vw;
   height: 100px;
   background-color: rgb(255, 255, 255, 0.1);
+
+  @media (max-width: 800px){
+    justify-content: center;
+  };
 `
 
-const LogoImg= styled.img`
+const LogoImg = styled.img`
   width: 60px;
   margin-right: 15px;
+  @media (max-width: 800px){
+    width: 100px;
+  };
 `
 
 class App extends React.Component {
@@ -210,19 +244,20 @@ class App extends React.Component {
         <Header>
           <InputsContainer>
             <input placeholder={"Tarefa"} value={this.state.inputValue} onChange={this.onChangeInput}/>
-            <button onClick={this.criaTarefa}>Adicionar</button>
           </InputsContainer>
 
-          <InputsContainer>
+          {/* <InputsContainer>
             <label>Filtro</label>
             <select value={this.state.filter} onChange={this.onChangeFilter}>
-              <option value="">Nenhum</option>
-              <option value="pendentes">Pendentes</option>
-              <option value="completas">Completas</option>
+            <option value="">Nenhum</option>
+            <option value="pendentes">Pendentes</option>
+            <option value="completas">Completas</option>
             </select>
-          </InputsContainer>
-          
+          </InputsContainer> */}
+          <Buttons>
+            <button onClick={this.criaTarefa}>Adicionar</button>
             <button onClick={this.limparLista}>Limpar Lista</button>
+          </Buttons>
         </Header>
 
         <TarefaContainer>

@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -32,6 +33,9 @@ button {
   text-transform: capitalize;
   font-weight: 700;
   border-radius: 10px;
+  margin: 8px;
+  height: 70px;
+  width: 150px;
 }
 
 button:hover {
@@ -60,4 +64,10 @@ button:hover {
     rgba(20,159,255,1)0%,
     rgba(17,122,255,1)100%
   );
+}
+
+input {
+  width: 80%;
+  height: 50px;
+  
 }
