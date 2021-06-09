@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import './styles.css'
 import { RiCloseCircleLine } from 'react-icons/ri'
 import { TiEdit } from 'react-icons/ti'
+import { FaTrashAlt } from 'react-icons/fa'
 import todoDragon from './img/todoDragon.png'
+import { BiPlusMedical } from 'react-icons/bi'
 
 const TarefaContainer = styled.div`
   display: flex;
@@ -255,8 +257,8 @@ class App extends React.Component {
             </select>
           </InputsContainer> */}
           <Buttons>
-            <button onClick={this.criaTarefa}>Adicionar</button>
-            <button onClick={this.limparLista}>Limpar Lista</button>
+            <button onClick={this.criaTarefa}><BiPlusMedical/> Adicionar</button>
+            <button onClick={this.limparLista}><FaTrashAlt/> Limpar Lista</button>
           </Buttons>
         </Header>
 
