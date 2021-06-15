@@ -30,10 +30,6 @@ const ButtonChangePage = styled.button`
 
 const Header = styled.div`
   display: flex;
-  flex-direction: row;
-      @media (max-width: 900px){
-        flex-direction: column;
-      }
 `
 
 export default class App extends React.Component {
