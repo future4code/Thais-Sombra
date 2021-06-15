@@ -6,11 +6,15 @@ import { FiMail } from 'react-icons/fi';
 import { IoCloseCircle } from 'react-icons/io5'
 import axios from 'axios';
 
+//import User-List from './components/User-List'
+import Register from './components/Register'
+
 
 const MainContainer = styled.div`
   background-color: #282c34;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `
 
 const Main = styled.div`
@@ -94,7 +98,8 @@ export default class App extends React.Component {
   state = {
     usersList: [],
     inputUserName:'',
-    inputUserEmail:'',    
+    inputUserEmail:'', 
+    render: 'User List',   
   }
 
   onChangeUserName = (event) => {
@@ -151,19 +156,71 @@ export default class App extends React.Component {
     })
   }
 
+  
+  changePage = () => {
+    if (this.state.render === "User List") {
+      this.setState ({render: "Register new user" })
+    } else {
+      this.setState ({render: "User List" })
+    }
+  }  
+
   render () {
+
     const userList = this.state.usersList.map((user) => {
-    return (
-    <Campo>
-      <p key={user.id}>
-        {user.name}</p>
-      <p>  
-        <DeleteButton>
-          <IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/>
-        </DeleteButton> 
-      </p>
-    </Campo>
+      return (
+        <Campo>
+          <p key={user.id}>
+            {user.name}</p>
+          <p>  
+            <DeleteButton>
+              <IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/>
+            </DeleteButton> 
+          </p>
+        </Campo>
     )})
+    
+    let renderPage
+
+    switch (this.state.render){
+      case 'User List':
+        renderPage = <>
+         <Main>
+          <Title>Usuários Cadastrados</Title>
+          {userList}
+         </Main>
+        </>
+        break
+      case 'Register new user':
+        renderPage = <>
+          <UserForm>
+            <Title>Cadastrar Usuário</Title>
+            <Campo>
+              <Icones> <FaUserAstronaut /> </Icones>
+                <Input 
+                  type="text" 
+                  placeholder='Nome'
+                  value={this.state.inputUserName}
+                  onChange={this.onChangeUserName}
+                />
+            </Campo>
+            <Campo>
+              <Icones> <FiMail /> </Icones>
+                <Input
+                  type="text" 
+                  placeholder='e-mail'
+                  value={this.state.inputUserEmail}
+                  onChange={this.onChangeUserEmail}
+                />
+            </Campo>
+            <BotaoLogar onClick={this.createUser} >Salvar</BotaoLogar>
+          </UserForm>
+        </>
+        break
+      default:
+        return <></>
+    }
+    
     return (
       <MainContainer>
         <header className="App-header">
@@ -179,33 +236,9 @@ export default class App extends React.Component {
           >
             Api Labenusers
           </a>
+          <BotaoLogar onClick={this.changePage}>{this.state.render}</BotaoLogar>
         </header>
-        <UserForm>
-          <Title>Cadastrar Usuário</Title>
-          <Campo>
-            <Icones> <FaUserAstronaut /> </Icones>
-              <Input 
-                type="text" 
-                placeholder='Nome'
-                value={this.state.inputUserName}
-                onChange={this.onChangeUserName}
-              />
-          </Campo>
-          <Campo>
-            <Icones> <FiMail /> </Icones>
-              <Input
-                type="text" 
-                placeholder='e-mail'
-                value={this.state.inputUserEmail}
-                onChange={this.onChangeUserEmail}
-              />
-          </Campo>
-          <BotaoLogar onClick={this.createUser} >Salvar</BotaoLogar>
-        </UserForm>
-        <Main>
-          <Title>Usuários Cadastrados</Title>
-          {userList}
-        </Main>
+       {renderPage}
       </MainContainer>
     )
   }
