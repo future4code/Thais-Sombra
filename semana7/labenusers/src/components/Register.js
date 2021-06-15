@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 
@@ -10,7 +11,7 @@ const UserForm = styled.div`
     text-align: center;
     justify-content: space-between;
     align-items: center;
-    `
+`
 
 const Campo = styled.div`
     display:flex;
@@ -22,7 +23,7 @@ const Campo = styled.div`
     justify-content: space-around;
     align-items: center;
     margin: 5px;
-    `
+`
 
 const Input = styled.input`
     border:none;
@@ -55,32 +56,74 @@ const Title = styled.h2`
   color: white;
 `
 
+const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
+
+const headers = {
+  headers: {
+    Authorization: "thais-sombra-molina"
+  }
+}
+
 export default class Register extends React.Component {
+
+    state = {
+        usersList: [],
+        inputUserName:'',
+        inputUserEmail:'', 
+    }
+    
+      onChangeUserName = (event) => {
+        this.setState({inputUserName: event.target.value})
+      }
+    
+      onChangeUserEmail = (event) => {
+        this.setState({inputUserEmail: event.target.value})
+      }
+    
+      createUser = () => {
+        const body = {
+          name: this.state.inputUserName,
+          email: this.state.inputUserEmail
+        };
+    
+        axios.post(url, body, headers)
+          .then((res) => {
+            res = "Usuário cadastrado com sucesso!"
+            alert(res);
+            this.setState({ 
+              inputUserName: '',
+              inputUserEmail: '' 
+            })
+          })
+          .catch((err) => {
+            alert(err.response.data.message)
+          })
+      }
+
     render(){
         return (
             <UserForm>
-                <Title>Cadastrar Usuário</Title>
+                <Title>Create User</Title>
                 <Campo>
-                    <Icones> <FaUserAstronaut /> </Icones>
+                <Icones> <FaUserAstronaut /> </Icones>
                     <Input 
-                        type="text" 
-                        placeholder='Nome'
-                        value={this.state.inputUserName}
-                        onChange={this.onChangeUserName}
+                    type="text" 
+                    placeholder='Nome'
+                    value={this.state.inputUserName}
+                    onChange={this.onChangeUserName}
                     />
                 </Campo>
                 <Campo>
-                    <Icones> <FiMail /> </Icones>
+                <Icones> <FiMail /> </Icones>
                     <Input
-                        type="text" 
-                        placeholder='e-mail'
-                        value={this.state.inputUserEmail}
-                        onChange={this.onChangeUserEmail}
+                    type="text" 
+                    placeholder='e-mail'
+                    value={this.state.inputUserEmail}
+                    onChange={this.onChangeUserEmail}
                     />
                 </Campo>
-                <BotaoLogar onClick={this.createUser} >Salvar</BotaoLogar>
-    </UserForm>
-    )
-
-}
+                <BotaoLogar onClick={this.createUser}>Save</BotaoLogar>
+            </UserForm>
+        )
+    }
 }

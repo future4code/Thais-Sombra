@@ -2,13 +2,12 @@ import './App.css';
 import React from 'react';
 import styled from 'styled-components';
 import { FaUserAstronaut } from 'react-icons/fa';
-import { FiMail } from 'react-icons/fi';
 import { IoCloseCircle } from 'react-icons/io5';
 import { FaArrowRight } from 'react-icons/fa'
 import axios from 'axios';
 
-//import User-List from './components/User-List'
-//import Register from './components/Register'
+import UserList from './components/UserList'
+import Register from './components/Register'
 
 
 const MainContainer = styled.div`
@@ -27,15 +26,6 @@ const Main = styled.div`
   flex-direction:column;
 `
 
-const UserForm = styled.div`
-    height: 250px;
-    display:flex;
-    flex-direction:column;
-    text-align: center;
-    justify-content: space-between;
-    align-items: center;
-    `
-
 const Campo = styled.div`
     display:flex;
     background-color: white;
@@ -46,19 +36,6 @@ const Campo = styled.div`
     justify-content: space-around;
     align-items: center;
     margin: 5px;
-    `
-
-const Input = styled.input`
-    border:none;
-    width:100%;
-    padding-left: 0px;
-    font-size: 1.2rem;
-    border-style: none;
-`
-
-const Icones = styled.i`
-    margin: 15px;
-    color: darkgray;
 `
 
 const BotaoLogar = styled.button`
@@ -107,7 +84,7 @@ export default class App extends React.Component {
     usersList: [],
     inputUserName:'',
     inputUserEmail:'', 
-    render: 'User List',  
+    render: 'Register new user',  
     buttonText: 'Register new user', 
   }
 
@@ -177,6 +154,7 @@ export default class App extends React.Component {
         buttonText: this.state.render,
         render: "User List",
       })
+      this.getAllUsers()
     }
   }  
 
@@ -198,39 +176,11 @@ export default class App extends React.Component {
     let renderPage
 
     switch (this.state.render){
-      case 'User List':
-        renderPage = <>
-         <Main>
-          <Title>Users List</Title>
-          {userList}
-         </Main>
-        </>
+      case "Register new user":
+        renderPage = <Register />
         break
-      case 'Register new user':
-        renderPage = <>
-          <UserForm>
-            <Title>Create User</Title>
-            <Campo>
-              <Icones> <FaUserAstronaut /> </Icones>
-                <Input 
-                  type="text" 
-                  placeholder='Nome'
-                  value={this.state.inputUserName}
-                  onChange={this.onChangeUserName}
-                />
-            </Campo>
-            <Campo>
-              <Icones> <FiMail /> </Icones>
-                <Input
-                  type="text" 
-                  placeholder='e-mail'
-                  value={this.state.inputUserEmail}
-                  onChange={this.onChangeUserEmail}
-                />
-            </Campo>
-            <BotaoLogar onClick={this.createUser} >Save</BotaoLogar>
-          </UserForm>
-        </>
+      case 'User List':
+        renderPage = <UserList/>         
         break
       default:
         return <></>
