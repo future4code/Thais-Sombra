@@ -16,6 +16,11 @@ const MainContainer = styled.div`
 const Main = styled.div`
   background-color: #282c34;
   height: 50vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction:column;
 `
 
 const UserForm = styled.div`
@@ -30,11 +35,11 @@ const UserForm = styled.div`
 const Campo = styled.div`
     display:flex;
     background-color: white;
-    color:darkgray;
+    color:black;
     border-radius: 5px;
     height: 50px;
     width: 300px;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     margin: 5px;
     `
@@ -49,6 +54,7 @@ const Input = styled.input`
 
 const Icones = styled.i`
     margin: 15px;
+    color: darkgray;
 `
 
 const BotaoLogar = styled.button`
@@ -63,6 +69,15 @@ const BotaoLogar = styled.button`
     margin: 30px;
     border-radius: 5px;
     cursor: pointer;
+`
+
+const DeleteButton = styled.span`
+    color: red;
+
+`
+
+const Title = styled.h2`
+  color: white;
 `
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
@@ -108,10 +123,10 @@ export default class App extends React.Component {
           inputUserName: '',
           inputUserEmail: '' 
         })
-        this.getAllUers();
+        this.getAllUsers();
       })
       .catch((err) => {
-        alert(err.response.data)
+        alert(err.response.data.message)
       })
   }
 
@@ -121,20 +136,32 @@ export default class App extends React.Component {
         this.setState({ usersList: res.data })
       })
       .catch((err) => {
-        alert(err.response.data)
+        alert(err.response.data.message)
       })
   }
 
-  deleUSer = () => {
-    const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/:id"
-    axios.delete(urlDel,headers)
+  deleteUSer = (userId) => {
+    const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
+    axios.delete((urlDel+userId),headers)
+    .then((res) => {
+      this.getAllUsers();
+    })
+    .catch((err) =>{
+      alert(err.response.data.message)
+    })
   }
 
   render () {
     const userList = this.state.usersList.map((user) => {
     return (
     <Campo>
-      <p key={user.id}>{user.name} <IoCloseCircle onClick={this.deleteUser} /></p>
+      <p key={user.id}>
+        {user.name}</p>
+      <p>  
+        <DeleteButton>
+          <IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/>
+        </DeleteButton> 
+      </p>
     </Campo>
     )})
     return (
@@ -154,29 +181,30 @@ export default class App extends React.Component {
           </a>
         </header>
         <UserForm>
-                    <Campo>
-                        <Icones> <FaUserAstronaut /> </Icones>
-                        <Input 
-                            type="text" 
-                            placeholder='Nome'
-                            value={this.state.inputUserName}
-                            onChange={this.onChangeUserName}
-                        />
-                    </Campo>
-                    <Campo>
-                        <Icones> <FiMail /> </Icones>
-                        <Input
-                            type="text" 
-                            placeholder='e-mail'
-                            value={this.state.inputUserEmail}
-                            onChange={this.onChangeUserEmail}
-                        />
-                    </Campo>
-                    <BotaoLogar onClick={this.createUser} >Salvar</BotaoLogar>
+          <Title>Cadastrar Usuário</Title>
+          <Campo>
+            <Icones> <FaUserAstronaut /> </Icones>
+              <Input 
+                type="text" 
+                placeholder='Nome'
+                value={this.state.inputUserName}
+                onChange={this.onChangeUserName}
+              />
+          </Campo>
+          <Campo>
+            <Icones> <FiMail /> </Icones>
+              <Input
+                type="text" 
+                placeholder='e-mail'
+                value={this.state.inputUserEmail}
+                onChange={this.onChangeUserEmail}
+              />
+          </Campo>
+          <BotaoLogar onClick={this.createUser} >Salvar</BotaoLogar>
         </UserForm>
         <Main>
-          <h2>Usuários Cadastrados</h2>
-        {userList}
+          <Title>Usuários Cadastrados</Title>
+          {userList}
         </Main>
       </MainContainer>
     )
