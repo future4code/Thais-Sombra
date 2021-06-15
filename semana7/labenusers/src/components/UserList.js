@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+import { IoCloseCircle } from 'react-icons/io5';
+
 const Campo = styled.div`
     display:flex;
     background-color: white;
@@ -14,8 +16,20 @@ const Campo = styled.div`
     margin: 5px;
 `
 
+const Main = styled.div`
+  background-color: #282c34;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction:column;
+`
+
 const Title = styled.h2`
   color: white;
+`
+const DeleteButton = styled.span`
+    color: red;
 `
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
@@ -32,19 +46,23 @@ export default class UserList extends React.Component {
         usersList: [],
     }
     
-      getAllUsers = () => {
-        axios.get(url, headers)
-          .then((res) => {
-            this.setState({ usersList: res.data })
-          })
-          .catch((err) => {
-            alert(err.response.data.message)
-          })
+    componentDidMount () {
+      this.getAllUsers();
+    }
+  
+    getAllUsers = () => {
+      axios.get(url, headers)
+        .then((res) => {
+          this.setState({ usersList: res.data })
+        })
+        .catch((err) => {
+          alert(err.response.data.message)
+        })
       }
     
-      deleteUSer = (userId) => {
-        const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
-        axios.delete((urlDel+userId),headers)
+    deleteUSer = (userId) => {
+      const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
+      axios.delete((urlDel+userId),headers)
         .then(() => {
           this.getAllUsers();
         })

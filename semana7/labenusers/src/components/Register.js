@@ -72,32 +72,32 @@ export default class Register extends React.Component {
         inputUserEmail:'', 
     }
     
-      onChangeUserName = (event) => {
-        this.setState({inputUserName: event.target.value})
-      }
+    onChangeUserName = (event) => {
+      this.setState({inputUserName: event.target.value})
+    }
     
-      onChangeUserEmail = (event) => {
-        this.setState({inputUserEmail: event.target.value})
-      }
+    onChangeUserEmail = (event) => {
+      this.setState({inputUserEmail: event.target.value})
+    }
     
-      createUser = () => {
-        const body = {
-          name: this.state.inputUserName,
-          email: this.state.inputUserEmail
-        };
+    createUser = () => {
+      const body = {
+        name: this.state.inputUserName,
+        email: this.state.inputUserEmail
+      };
     
-        axios.post(url, body, headers)
-          .then((res) => {
-            res = "Usuário cadastrado com sucesso!"
-            alert(res);
-            this.setState({ 
-              inputUserName: '',
-              inputUserEmail: '' 
-            })
+      axios.post(url, body, headers)
+        .then((res) => {
+          res = "Usuário cadastrado com sucesso!"
+          alert(res);
+          this.setState({ 
+            inputUserName: '',
+            inputUserEmail: '' 
           })
-          .catch((err) => {
-            alert(err.response.data.message)
-          })
+        })
+        .catch((err) => {
+          alert(err.response.data.message)
+        })
       }
 
     render(){
