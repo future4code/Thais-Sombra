@@ -3,7 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
-import { IoCloseCircle } from 'react-icons/io5'
+import { IoCloseCircle } from 'react-icons/io5';
+import { FaArrowRight } from 'react-icons/fa'
 import axios from 'axios';
 
 //import User-List from './components/User-List'
@@ -99,7 +100,8 @@ export default class App extends React.Component {
     usersList: [],
     inputUserName:'',
     inputUserEmail:'', 
-    render: 'User List',   
+    render: 'User List',  
+    buttonText: 'Register new user', 
   }
 
   onChangeUserName = (event) => {
@@ -159,9 +161,15 @@ export default class App extends React.Component {
   
   changePage = () => {
     if (this.state.render === "User List") {
-      this.setState ({render: "Register new user" })
+      this.setState ({
+        buttonText: this.state.render,
+        render: "Register new user",
+      })
     } else {
-      this.setState ({render: "User List" })
+      this.setState ({
+        buttonText: this.state.render,
+        render: "User List",
+      })
     }
   }  
 
@@ -236,7 +244,7 @@ export default class App extends React.Component {
           >
             Api Labenusers
           </a>
-          <BotaoLogar onClick={this.changePage}>{this.state.render}</BotaoLogar>
+          <BotaoLogar onClick={this.changePage}>{this.state.buttonText} <FaArrowRight/></BotaoLogar>
         </header>
        {renderPage}
       </MainContainer>
