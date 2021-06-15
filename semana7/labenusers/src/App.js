@@ -8,7 +8,7 @@ import { FaArrowRight } from 'react-icons/fa'
 import axios from 'axios';
 
 //import User-List from './components/User-List'
-import Register from './components/Register'
+//import Register from './components/Register'
 
 
 const MainContainer = styled.div`
@@ -20,7 +20,6 @@ const MainContainer = styled.div`
 
 const Main = styled.div`
   background-color: #282c34;
-  height: 50vh;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -83,6 +82,14 @@ const DeleteButton = styled.span`
 
 const Title = styled.h2`
   color: white;
+`
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+      @media (max-width: 900px){
+        flex-direction: column;
+      }
 `
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
@@ -194,7 +201,7 @@ export default class App extends React.Component {
       case 'User List':
         renderPage = <>
          <Main>
-          <Title>Usuários Cadastrados</Title>
+          <Title>Users List</Title>
           {userList}
          </Main>
         </>
@@ -202,7 +209,7 @@ export default class App extends React.Component {
       case 'Register new user':
         renderPage = <>
           <UserForm>
-            <Title>Cadastrar Usuário</Title>
+            <Title>Create User</Title>
             <Campo>
               <Icones> <FaUserAstronaut /> </Icones>
                 <Input 
@@ -221,7 +228,7 @@ export default class App extends React.Component {
                   onChange={this.onChangeUserEmail}
                 />
             </Campo>
-            <BotaoLogar onClick={this.createUser} >Salvar</BotaoLogar>
+            <BotaoLogar onClick={this.createUser} >Save</BotaoLogar>
           </UserForm>
         </>
         break
@@ -231,7 +238,7 @@ export default class App extends React.Component {
     
     return (
       <MainContainer>
-        <header className="App-header">
+        <Header className="App-header">
           <FaUserAstronaut className="App-logo" alt="logo" />
           <p>
             Labenusers
@@ -245,7 +252,7 @@ export default class App extends React.Component {
             Api Labenusers
           </a>
           <BotaoLogar onClick={this.changePage}>{this.state.buttonText} <FaArrowRight/></BotaoLogar>
-        </header>
+        </Header>
        {renderPage}
       </MainContainer>
     )
