@@ -143,7 +143,7 @@ export default class App extends React.Component {
   deleteUSer = (userId) => {
     const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
     axios.delete((urlDel+userId),headers)
-    .then((res) => {
+    .then(() => {
       this.getAllUsers();
     })
     .catch((err) =>{
