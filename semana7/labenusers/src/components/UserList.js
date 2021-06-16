@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import { MdDetails } from 'react-icons/md'
+import { MdEdit } from 'react-icons/md'
 import { IoCloseCircle } from 'react-icons/io5';
+
+import UserDetails from './UserDetails';
 
 const Campo = styled.div`
     display:flex;
@@ -22,17 +25,37 @@ const Main = styled.div`
   align-items: center;
   text-align: center;
   display: flex;
-  flex-direction:column;
+  flex-direction:row;
 `
 
 const Title = styled.h2`
   color: white;
 `
-const DeleteButton = styled.span`
-    color: red;
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
-const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
+const DetailsButton = styled.span`
+  color: darkgray;
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  justify-content: space-between;
+  cursor: pointer;
+    &:hover {
+      color:red;
+    };
+`
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  justify-content: space-between;
+`
+
+const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/'
 
 const headers = {
   headers: {
@@ -44,6 +67,8 @@ export default class UserList extends React.Component {
 
     state = {
         usersList: [],
+        userDetailsBox: false,
+        userId: '',
     }
     
     componentDidMount () {
@@ -61,11 +86,8 @@ export default class UserList extends React.Component {
       }
     
     deleteUSer = (userId) => {
-
-     
       if (window.confirm("Tem certeza que deseja excluir o usuário?")){
-        const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
-          axios.delete((urlDel+userId),headers)
+        axios.delete((url+userId),headers)
           .then(() => {
             this.getAllUsers();
           })
@@ -75,24 +97,41 @@ export default class UserList extends React.Component {
       }
     }
 
-    render(){
+    userDetails = (userId) => {
+      this.setState({
+        userDetailsBox: !this.state.userDetailsBox,
+        userId: userId,
+      })
+    }
+    
+  render(){
       const userList = this.state.usersList.map((user) => {
         return (
           <Campo>
             <p key={user.id}>
               {user.name}</p>
-            <p>  
-              <DeleteButton>
-                <IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/>
-              </DeleteButton> 
-            </p>
+              <Buttons>
+                <DetailsButton><IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/></DetailsButton>
+                <DetailsButton><MdDetails onClick={()=>this.userDetails(user.id)}/></DetailsButton>
+                <DetailsButton><MdEdit /></DetailsButton>
+              </Buttons>  
           </Campo>
       )})
 
+      let userBox
+
+      if (this.state.userDetailsBox){
+        userBox = <UserDetails 
+                    user={this.state.userId}
+                  />
+      }
         return (
              <Main>
-              <Title>Users List</Title>
-              {userList}
+              <Box>
+                <Title>Users List</Title>
+                {userList}
+              </Box>
+                {userBox}
             </Main>
         )
   }
