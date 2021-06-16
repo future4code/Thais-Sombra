@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { MdDetails } from 'react-icons/md'
-import { MdEdit } from 'react-icons/md'
+import { IoIosArrowDown } from 'react-icons/io'
 import { IoCloseCircle } from 'react-icons/io5';
-
 import UserDetails from './UserDetails';
 import IconButton from './IconButton';
+import Title from './Title';
+import { FaSearch } from 'react-icons/fa';
+import Search from './Search';
 
 const Campo = styled.div`
     display:flex;
@@ -29,10 +30,6 @@ const Main = styled.div`
   flex-direction:row;
 `
 
-const Title = styled.h2`
-  color: white;
-`
-
 const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,6 +41,7 @@ const Buttons = styled.div`
   width: 100px;
   justify-content: space-between;
 `
+
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/'
 
 const headers = {
@@ -95,27 +93,17 @@ export default class UserList extends React.Component {
         })
     }
 
-    editUser = (userId) => {
-      if (!this.state.userDetailsBox){
-        this.setState({
-          userDetailsBox: !this.state.userDetailsBox,
-          userId: userId,
-        })
-      } else {
-        this.setState({
-          refreshUserDetails: true,
-          userDetailsBox: false,
-          userDetailsBox: true,
-        })
-
-      }
+    onChangeSearch = (event) => {
+      this.setState({userName: event.target.value})
     }
+  
+
+  render(){
+
     
-    render(){
-      
-      const userList = this.state.usersList.map((user) => {
-        return (
-          <Campo>
+    const userList = this.state.usersList.map((user) => {
+      return (
+        <Campo>
             <p key={user.id}>
               {user.name}</p>
               <Buttons>
@@ -125,11 +113,7 @@ export default class UserList extends React.Component {
                 />
                 <IconButton
                   onClick={()=>this.userDetails(user.id)}
-                  icone={<MdDetails/>}
-                />
-                <IconButton
-                  onClick={()=>this.editUser(user.id)}
-                  icone={<MdEdit/>}
+                  icone={<IoIosArrowDown/>}
                 />
               </Buttons>  
           </Campo>
@@ -137,22 +121,34 @@ export default class UserList extends React.Component {
       
       let userBox
       
+      
       if (this.state.userDetailsBox){
         userBox = <UserDetails 
                     user={this.state.userId}
                     deleteUser = {this.deleteUSer}
                     userDetails = {this.userDetails}
                     getAllUsers={this.getAllUsers}
+                    editUser={this.editUser}
                   />
       }
-        return (
-             <Main>
-              <Box>
-                <Title>Users List</Title>
-                {userList}
-              </Box>
-                {userBox}
-            </Main>
+        return (<>
+              <Search
+                  placeholder="Search a user"
+                  value="user"
+                  onChange={this.onChangeSearch}
+                  icone={<FaSearch />}
+                />
+                
+              <Main>
+                <Box>
+                  <Title 
+                    texto = "Users List"
+                  />
+                  {userList}
+                </Box>
+                  {userBox}
+              </Main>
+            </>
         )
   }
 }

@@ -5,6 +5,7 @@ import { FaUserAstronaut } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import Button from './Button'
 import Campo from './Campo'
+import Title from './Title';
 
 const UserForm = styled.div`
     height: 250px;
@@ -13,10 +14,6 @@ const UserForm = styled.div`
     text-align: center;
     justify-content: space-between;
     align-items: center;
-`
-
-const Title = styled.h2`
-  color: white;
 `
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
@@ -65,7 +62,9 @@ export default class Register extends React.Component {
     render(){
         return (
             <UserForm>
-                <Title>Create User</Title>
+                <Title 
+                  texto = "Create User"
+                />
                 <Campo
                   icone ={<FaUserAstronaut/>}
                   placeholder='Nome'

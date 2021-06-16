@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { MdDetails } from 'react-icons/md'
+import { IoIosArrowBack } from 'react-icons/io'
 import { MdEdit } from 'react-icons/md'
 import { IoCloseCircle } from 'react-icons/io5';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import { FaSave } from 'react-icons/fa';
 import IconButton from './IconButton';
-import Input from './Input'
 import Campo from './Campo'
+import Title from './Title';
 
 const Buttons = styled.div`
   display: flex;
@@ -25,10 +25,9 @@ const FieldNameEmail = styled.div`
   border-radius: 5px;
   width: 300px;
 
-p {
-  margin: 2px;
-}
-
+  p {
+    margin: 2px;
+  }
 `
 
 const FieldEditeUSer = styled.div`
@@ -44,6 +43,7 @@ const FieldEditeUSer = styled.div`
   margin: 5px;
   padding: 15px;
 `
+
 const FieldEditContainer = styled.div`
   display:flex;
   flex-direction: column;
@@ -56,11 +56,6 @@ const FieldEditContainer = styled.div`
   align-items: center;
   margin: 5px;
   padding: 15px;
-`
-
-const Icones = styled.i`
-    margin: 0px;
-    color: darkgray;
 `
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/'
@@ -115,7 +110,7 @@ export default class UserDetails extends React.Component {
     .then((res)=> {
       alert("Alterações realizadas com sucesso!")
       this.setState({})
-      this.setState({editUser: !this.state.editUser})
+      this.props.userDetails()
       this.props.getAllUsers()
     })
     .catch((err) =>{
@@ -164,7 +159,10 @@ export default class UserDetails extends React.Component {
                         />
         }
 
-      return (<>
+      return (<>     
+                <Title 
+                  texto = "Edit User >>>>>"
+                />
                 <FieldEditeUSer>
                   {editUSerFields}
                   <Buttons>
@@ -174,7 +172,7 @@ export default class UserDetails extends React.Component {
                       />
                       <IconButton
                         onClick={()=>this.props.userDetails(this.state.userId)}
-                        icone={<MdDetails/>}
+                        icone={<IoIosArrowBack/>}
                       />
                       {editButton}
                   </Buttons>  
