@@ -89,6 +89,7 @@ export default class UserList extends React.Component {
       if (window.confirm("Tem certeza que deseja excluir o usuário?")){
         axios.delete((url+userId),headers)
           .then(() => {
+            this.setState({userDetailsBox: false})
             this.getAllUsers();
           })
           .catch((err) =>{
@@ -123,6 +124,7 @@ export default class UserList extends React.Component {
       if (this.state.userDetailsBox){
         userBox = <UserDetails 
                     user={this.state.userId}
+                    deleteUser = {this.deleteUSer}
                   />
       }
         return (

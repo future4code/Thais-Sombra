@@ -61,6 +61,7 @@ export default class UserDetails extends React.Component {
   state={
     userName:'',
     userEmail:'',
+    userId: '',
   }
 
   componentDidMount () {
@@ -72,7 +73,8 @@ export default class UserDetails extends React.Component {
     .then((res) => {
       this.setState({
         userName:res.data.name,
-        userEmail: res.data.email
+        userEmail: res.data.email,
+        userId: res.data.id,
       })
     })
     .catch((err) =>{
@@ -87,7 +89,7 @@ export default class UserDetails extends React.Component {
               <p><FiMail /> {this.state.userEmail}</p>
             </FieldNameEmail>
             <Buttons>
-              <DetailsButton><IoCloseCircle /></DetailsButton>
+              <DetailsButton><IoCloseCircle onClick={()=>this.props.deleteUser(this.state.userId)}/></DetailsButton>
               <DetailsButton><MdDetails /></DetailsButton>
               <DetailsButton><MdEdit /></DetailsButton>
             </Buttons>  
