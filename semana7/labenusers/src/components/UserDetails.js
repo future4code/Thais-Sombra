@@ -6,6 +6,7 @@ import { MdEdit } from 'react-icons/md'
 import { IoCloseCircle } from 'react-icons/io5';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
+import { FaSave } from 'react-icons/fa';
 
 const Campo = styled.div`
     display:flex;
@@ -57,6 +58,19 @@ p {
 
 `
 
+const Input = styled.input`
+    border:none;
+    width:100%;
+    padding-left: 0px;
+    font-size: 1.2rem;
+    border-style: none;
+`
+
+const Icones = styled.i`
+    margin: 0px;
+    color: darkgray;
+`
+
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/'
 
 const headers = {
@@ -71,6 +85,15 @@ export default class UserDetails extends React.Component {
     userName:'',
     userEmail:'',
     userId: '',
+    editUser: false,
+  }
+ 
+  onChangeUserName = (event) => {
+    this.setState({userName: event.target.value})
+  }
+
+  onChangeUserEmail = (event) => {
+    this.setState({userEmail: event.target.value})
   }
 
   componentDidMount () {
@@ -90,19 +113,48 @@ export default class UserDetails extends React.Component {
       alert(err.response.data.message)
     })
   }
+  
+  editUser = () => {
+    this.setState({editUser: !this.state.editUser})
+  }
+
     render(){
-        return (
-          <Campo>
+      let editUSerFields
+      if (!this.state.editUser){
+          editUSerFields = <FieldNameEmail>
+          <p><FaUserAstronaut /> {this.state.userName}</p>
+          <p><FiMail /> {this.state.userEmail}</p>
+        </FieldNameEmail>
+        } else {
+          editUSerFields=   <Campo>
             <FieldNameEmail>
-              <p><FaUserAstronaut /> {this.state.userName}</p>
-              <p><FiMail /> {this.state.userEmail}</p>
+              <Icones> <FaUserAstronaut /> </Icones>
+              <Input 
+                type="text" 
+                placeholder='Nome'
+                value={this.state.userName}
+                onChange={this.onChangeUserName}
+              />
+              <Icones> <FiMail /> </Icones>
+              <Input
+                type="text" 
+                placeholder='e-mail'
+                value={this.state.userEmail}
+                onChange={this.onChangeUserEmail}
+              />
             </FieldNameEmail>
+          </Campo>
+      }
+        return (<>
+          <Campo>
+            {editUSerFields}
             <Buttons>
               <DetailsButton><IoCloseCircle onClick={()=>this.props.deleteUser(this.state.userId)}/></DetailsButton>
               <DetailsButton><MdDetails onClick={()=>this.props.userDetails(this.state.userId)}/></DetailsButton>
-              <DetailsButton><MdEdit /></DetailsButton>
+              <DetailsButton><MdEdit onClick={()=>this.editUser()}/></DetailsButton>
             </Buttons>  
-        </Campo>
+          </Campo>
+</>
         )
     }
 }

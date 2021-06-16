@@ -2,9 +2,9 @@ import './App.css';
 import React from 'react';
 import styled from 'styled-components';
 import { FaUserAstronaut } from 'react-icons/fa';
-import { FaArrowRight } from 'react-icons/fa'
-import UserList from './components/UserList'
-import Register from './components/Register'
+import { FaArrowRight } from 'react-icons/fa';
+import UserList from './components/UserList';
+import Register from './components/Register';
 
 
 const MainContainer = styled.div`
@@ -36,7 +36,7 @@ export default class App extends React.Component {
 
   state = {
     render: 'Register new user',  
-    buttonText: 'Register new user', 
+    buttonText: 'User List', 
   }
 
   changePage = () => {
