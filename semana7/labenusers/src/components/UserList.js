@@ -62,7 +62,6 @@ const Buttons = styled.div`
   width: 100px;
   justify-content: space-between;
 `
-
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/'
 
 const headers = {
