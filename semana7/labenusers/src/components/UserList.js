@@ -41,12 +41,20 @@ const DetailsButton = styled.span`
   color: darkgray;
   display: flex;
   flex-direction: row;
-  width: 100px;
   justify-content: space-between;
   cursor: pointer;
-    &:hover {
-      color:red;
-    };
+  &:hover {
+    opacity: 0.6;
+  };
+  &:nth-child(1){
+    color: red;
+  };
+  &:nth-child(2){
+    color: darkblue;
+  };
+  &:nth-child(3){
+    color: darkmagenta;
+  }
 `
 const Buttons = styled.div`
   display: flex;
@@ -105,7 +113,7 @@ export default class UserList extends React.Component {
       })
     }
     
-  render(){
+    render(){
       const userList = this.state.usersList.map((user) => {
         return (
           <Campo>
@@ -118,13 +126,14 @@ export default class UserList extends React.Component {
               </Buttons>  
           </Campo>
       )})
-
+      
       let userBox
-
+      
       if (this.state.userDetailsBox){
         userBox = <UserDetails 
                     user={this.state.userId}
                     deleteUser = {this.deleteUSer}
+                    userDetails = {this.userDetails}
                   />
       }
         return (

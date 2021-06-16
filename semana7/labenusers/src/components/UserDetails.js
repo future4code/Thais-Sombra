@@ -29,12 +29,21 @@ const DetailsButton = styled.span`
   color: darkgray;
   display: flex;
   flex-direction: row;
-  width: 100px;
   justify-content: space-between;
   cursor: pointer;
-    &:hover {
-      color:red;
-    };
+  &:hover {
+    opacity: 0.6;
+  };
+  &:nth-child(1){
+    color: red;
+  };
+  &:nth-child(2){
+    transform: rotate(90deg);
+    color: darkblue;
+  };
+  &:nth-child(3){
+    color: darkmagenta;
+  }
 `
 
 const FieldNameEmail = styled.div`
@@ -90,7 +99,7 @@ export default class UserDetails extends React.Component {
             </FieldNameEmail>
             <Buttons>
               <DetailsButton><IoCloseCircle onClick={()=>this.props.deleteUser(this.state.userId)}/></DetailsButton>
-              <DetailsButton><MdDetails /></DetailsButton>
+              <DetailsButton><MdDetails onClick={()=>this.props.userDetails(this.state.userId)}/></DetailsButton>
               <DetailsButton><MdEdit /></DetailsButton>
             </Buttons>  
         </Campo>
