@@ -61,15 +61,19 @@ export default class UserList extends React.Component {
       }
     
     deleteUSer = (userId) => {
-      const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
-      axios.delete((urlDel+userId),headers)
-        .then(() => {
-          this.getAllUsers();
-        })
-        .catch((err) =>{
-          alert(err.response.data.message)
-        })
+
+     
+      if (window.confirm("Tem certeza que deseja excluir o usuário?")){
+        const urlDel = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/"
+          axios.delete((urlDel+userId),headers)
+          .then(() => {
+            this.getAllUsers();
+          })
+          .catch((err) =>{
+            alert(err.response.data.message)
+          })
       }
+    }
 
     render(){
       const userList = this.state.usersList.map((user) => {

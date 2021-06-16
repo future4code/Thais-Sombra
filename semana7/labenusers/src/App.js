@@ -62,7 +62,7 @@ export default class App extends React.Component {
         renderPage = <Register />
         break
       case 'User List':
-        renderPage = <UserList/>         
+        renderPage = <UserList />         
         break
       default:
         return <></>
