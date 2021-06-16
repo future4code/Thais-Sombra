@@ -165,8 +165,9 @@ export default class UserDetails extends React.Component {
             </FieldNameEmail>
           </Campo>
           editButton = <DetailsButton><FaSave onClick={()=>this.editUser(this.state.userId)}/></DetailsButton>
-      }
-        return (<>
+        }
+
+      return (<>
           <Campo>
             {editUSerFields}
             <Buttons>

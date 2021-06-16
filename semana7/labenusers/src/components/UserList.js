@@ -77,6 +77,7 @@ export default class UserList extends React.Component {
         usersList: [],
         userDetailsBox: false,
         userId: '',
+        refreshUserDetails: false,
     }
     
     componentDidMount () {
@@ -108,12 +109,29 @@ export default class UserList extends React.Component {
 
     userDetails = (userId) => {
       this.setState({
-        userDetailsBox: !this.state.userDetailsBox,
-        userId: userId,
-      })
+          userDetailsBox: !this.state.userDetailsBox,
+          userId: userId,
+        })
+    }
+
+    editUser = (userId) => {
+      if (!this.state.userDetailsBox){
+        this.setState({
+          userDetailsBox: !this.state.userDetailsBox,
+          userId: userId,
+        })
+      } else {
+        this.setState({
+          refreshUserDetails: true,
+          userDetailsBox: false,
+          userDetailsBox: true,
+        })
+
+      }
     }
     
     render(){
+      
       const userList = this.state.usersList.map((user) => {
         return (
           <Campo>
@@ -122,7 +140,7 @@ export default class UserList extends React.Component {
               <Buttons>
                 <DetailsButton><IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/></DetailsButton>
                 <DetailsButton><MdDetails onClick={()=>this.userDetails(user.id)}/></DetailsButton>
-                <DetailsButton><MdEdit /></DetailsButton>
+                <DetailsButton><MdEdit onClick={()=>this.editUser(user.id)}/></DetailsButton>
               </Buttons>  
           </Campo>
       )})
