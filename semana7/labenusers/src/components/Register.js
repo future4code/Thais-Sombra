@@ -88,8 +88,7 @@ export default class Register extends React.Component {
     
       axios.post(url, body, headers)
         .then((res) => {
-          res = "Usuário cadastrado com sucesso!"
-          alert(res);
+          alert("Usuário cadastrado com sucesso!");
           this.setState({ 
             inputUserName: '',
             inputUserEmail: '' 

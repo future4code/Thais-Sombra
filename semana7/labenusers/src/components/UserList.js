@@ -134,6 +134,7 @@ export default class UserList extends React.Component {
                     user={this.state.userId}
                     deleteUser = {this.deleteUSer}
                     userDetails = {this.userDetails}
+                    getAllUsers={this.getAllUsers}
                   />
       }
         return (

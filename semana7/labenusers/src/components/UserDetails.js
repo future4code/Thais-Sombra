@@ -13,7 +13,8 @@ const Campo = styled.div`
     background-color: white;
     color:black;
     border-radius: 5px;
-    height: 50px;
+    min-height: 50px;
+    height: auto;
     width: 300px;
     justify-content: space-around;
     align-items: center;
@@ -114,17 +115,36 @@ export default class UserDetails extends React.Component {
     })
   }
   
-  editUser = () => {
+  editUser = (user) => {
+    const body = {
+      name: this.state.userName,
+      email: this.state.userEmail
+    };
+    axios.put((url+user),body,headers)
+    .then((res)=> {
+      alert("Alterações realizadas com sucesso!")
+      this.setState({})
+      this.setState({editUser: !this.state.editUser})
+      this.props.getAllUsers()
+    })
+    .catch((err) =>{
+      alert(err.response.data.message)
+    })
+  }
+
+  inputEditUser = () =>{
     this.setState({editUser: !this.state.editUser})
   }
 
     render(){
       let editUSerFields
+      let editButton
       if (!this.state.editUser){
           editUSerFields = <FieldNameEmail>
           <p><FaUserAstronaut /> {this.state.userName}</p>
           <p><FiMail /> {this.state.userEmail}</p>
         </FieldNameEmail>
+          editButton = <DetailsButton><MdEdit onClick={()=>this.inputEditUser()}/></DetailsButton>
         } else {
           editUSerFields=   <Campo>
             <FieldNameEmail>
@@ -144,6 +164,7 @@ export default class UserDetails extends React.Component {
               />
             </FieldNameEmail>
           </Campo>
+          editButton = <DetailsButton><FaSave onClick={()=>this.editUser(this.state.userId)}/></DetailsButton>
       }
         return (<>
           <Campo>
@@ -151,7 +172,7 @@ export default class UserDetails extends React.Component {
             <Buttons>
               <DetailsButton><IoCloseCircle onClick={()=>this.props.deleteUser(this.state.userId)}/></DetailsButton>
               <DetailsButton><MdDetails onClick={()=>this.props.userDetails(this.state.userId)}/></DetailsButton>
-              <DetailsButton><MdEdit onClick={()=>this.editUser()}/></DetailsButton>
+              {editButton}
             </Buttons>  
           </Campo>
 </>
