@@ -5,6 +5,7 @@ import { FaUserAstronaut } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa';
 import UserList from './components/UserList';
 import Register from './components/Register';
+import Button from './components/Button'
 
 
 const MainContainer = styled.div`
@@ -83,7 +84,11 @@ export default class App extends React.Component {
           >
             Api Labenusers
           </a>
-          <ButtonChangePage onClick={this.changePage}>{this.state.buttonText} <FaArrowRight/></ButtonChangePage>
+          <Button 
+            onClick={this.changePage}
+            value={this.state.buttonText}
+            icone={<FaArrowRight/>}
+          />
         </Header>
        {renderPage}
       </MainContainer>

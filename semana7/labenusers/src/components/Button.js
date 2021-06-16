@@ -17,7 +17,7 @@ const Button1 = styled.button`
 
 const Button = (props) =>{
     return (
-       <Button1 onClick={()=>props.onClick()}>{props.value}</Button1>
+       <Button1 onClick={()=>props.onClick()}>{props.value}{props.icone}</Button1>
     )
 }
 

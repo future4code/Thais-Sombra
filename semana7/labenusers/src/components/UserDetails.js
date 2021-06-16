@@ -7,19 +7,10 @@ import { IoCloseCircle } from 'react-icons/io5';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import { FaSave } from 'react-icons/fa';
+import IconButton from './IconButton';
+import Input from './Input'
+import Campo from './Campo'
 
-const Campo = styled.div`
-    display:flex;
-    background-color: white;
-    color:black;
-    border-radius: 5px;
-    min-height: 50px;
-    height: auto;
-    width: 300px;
-    justify-content: space-around;
-    align-items: center;
-    margin: 5px;
-`
 const Buttons = styled.div`
   display: flex;
   flex-direction: row;
@@ -27,31 +18,12 @@ const Buttons = styled.div`
   justify-content: space-between;
 `
 
-const DetailsButton = styled.span`
-  color: darkgray;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.6;
-  };
-  &:nth-child(1){
-    color: red;
-  };
-  &:nth-child(2){
-    transform: rotate(90deg);
-    color: darkblue;
-  };
-  &:nth-child(3){
-    color: darkmagenta;
-  }
-`
-
 const FieldNameEmail = styled.div`
   display:flex;
   flex-direction: column;
   text-align: left;
+  border-radius: 5px;
+  width: 300px;
 
 p {
   margin: 2px;
@@ -59,12 +31,31 @@ p {
 
 `
 
-const Input = styled.input`
-    border:none;
-    width:100%;
-    padding-left: 0px;
-    font-size: 1.2rem;
-    border-style: none;
+const FieldEditeUSer = styled.div`
+  display:flex;
+  flex-direction: row;
+  text-align: left;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  width: auto;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px;
+  padding: 15px;
+`
+const FieldEditContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+  text-align: left;
+  height: auto;
+  width: auto;
+  background-color: white;
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px;
+  padding: 15px;
 `
 
 const Icones = styled.i`
@@ -139,44 +130,56 @@ export default class UserDetails extends React.Component {
     render(){
       let editUSerFields
       let editButton
+
       if (!this.state.editUser){
           editUSerFields = <FieldNameEmail>
-          <p><FaUserAstronaut /> {this.state.userName}</p>
-          <p><FiMail /> {this.state.userEmail}</p>
-        </FieldNameEmail>
-          editButton = <DetailsButton><MdEdit onClick={()=>this.inputEditUser()}/></DetailsButton>
+                              <p><FaUserAstronaut /> {this.state.userName}</p>
+                              <p><FiMail /> {this.state.userEmail}</p>
+                            </FieldNameEmail>
+
+          editButton = <IconButton
+                          onClick={()=>this.inputEditUser()}
+                          icone={<MdEdit/>}
+                        />
+
         } else {
-          editUSerFields=   <Campo>
-            <FieldNameEmail>
-              <Icones> <FaUserAstronaut /> </Icones>
-              <Input 
-                type="text" 
-                placeholder='Nome'
-                value={this.state.userName}
-                onChange={this.onChangeUserName}
-              />
-              <Icones> <FiMail /> </Icones>
-              <Input
-                type="text" 
-                placeholder='e-mail'
-                value={this.state.userEmail}
-                onChange={this.onChangeUserEmail}
-              />
-            </FieldNameEmail>
-          </Campo>
-          editButton = <DetailsButton><FaSave onClick={()=>this.editUser(this.state.userId)}/></DetailsButton>
+          editUSerFields= <FieldEditContainer>
+                            <Campo
+                                  icone ={<FaUserAstronaut/>}
+                                  placeholder='Nome'
+                                  value={this.state.userName}
+                                  onChange={this.onChangeUserName}
+                                />
+                              <Campo
+                                  icone ={<FiMail/>}
+                                  placeholder='E-mail'
+                                  value={this.state.userEmail}
+                                  onChange={this.onChangeUserEmail}
+                                />
+                          </FieldEditContainer>
+
+          editButton = <IconButton
+                          onClick={()=>this.editUser(this.state.userId)}
+                          icone={<FaSave/>}
+                        />
         }
 
       return (<>
-          <Campo>
-            {editUSerFields}
-            <Buttons>
-              <DetailsButton><IoCloseCircle onClick={()=>this.props.deleteUser(this.state.userId)}/></DetailsButton>
-              <DetailsButton><MdDetails onClick={()=>this.props.userDetails(this.state.userId)}/></DetailsButton>
-              {editButton}
-            </Buttons>  
-          </Campo>
-</>
+                <FieldEditeUSer>
+                  {editUSerFields}
+                  <Buttons>
+                  <IconButton
+                        onClick={()=>this.props.deleteUser(this.state.userId)}
+                        icone={<IoCloseCircle/>}
+                      />
+                      <IconButton
+                        onClick={()=>this.props.userDetails(this.state.userId)}
+                        icone={<MdDetails/>}
+                      />
+                      {editButton}
+                  </Buttons>  
+                </FieldEditeUSer>
+              </>
         )
     }
 }

@@ -6,6 +6,7 @@ import { MdEdit } from 'react-icons/md'
 import { IoCloseCircle } from 'react-icons/io5';
 
 import UserDetails from './UserDetails';
+import IconButton from './IconButton';
 
 const Campo = styled.div`
     display:flex;
@@ -37,25 +38,6 @@ const Box = styled.div`
   flex-direction: column;
 `
 
-const DetailsButton = styled.span`
-  color: darkgray;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.6;
-  };
-  &:nth-child(1){
-    color: red;
-  };
-  &:nth-child(2){
-    color: darkblue;
-  };
-  &:nth-child(3){
-    color: darkmagenta;
-  }
-`
 const Buttons = styled.div`
   display: flex;
   flex-direction: row;
@@ -137,9 +119,18 @@ export default class UserList extends React.Component {
             <p key={user.id}>
               {user.name}</p>
               <Buttons>
-                <DetailsButton><IoCloseCircle onClick={()=>this.deleteUSer(user.id)}/></DetailsButton>
-                <DetailsButton><MdDetails onClick={()=>this.userDetails(user.id)}/></DetailsButton>
-                <DetailsButton><MdEdit onClick={()=>this.editUser(user.id)}/></DetailsButton>
+                <IconButton
+                  onClick={()=>this.deleteUSer(user.id)}
+                  icone={<IoCloseCircle/>}
+                />
+                <IconButton
+                  onClick={()=>this.userDetails(user.id)}
+                  icone={<MdDetails/>}
+                />
+                <IconButton
+                  onClick={()=>this.editUser(user.id)}
+                  icone={<MdEdit/>}
+                />
               </Buttons>  
           </Campo>
       )})
