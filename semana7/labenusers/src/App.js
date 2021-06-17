@@ -7,26 +7,11 @@ import UserList from './components/UserList';
 import Register from './components/Register';
 import Button from './components/Button'
 
-
 const MainContainer = styled.div`
   background-color: #282c34;
   display: flex;
   flex-direction: column;
   height: 100vh;
-`
-
-const ButtonChangePage = styled.button`
-    background-color: white;
-    color: black;
-    text-transform: uppercase;
-    outline: none;
-    border:none;
-    padding: .78rem 1.5rem;
-    font-weight:700;
-    text-align: center;
-    margin: 30px;
-    border-radius: 5px;
-    cursor: pointer;
 `
 
 const Header = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowForward } from 'react-icons/io'
 import { IoCloseCircle } from 'react-icons/io5';
 import UserDetails from './UserDetails';
 import IconButton from './IconButton';
@@ -57,6 +57,7 @@ export default class UserList extends React.Component {
         userDetailsBox: false,
         userId: '',
         refreshUserDetails: false,
+        userName:'',
     }
     
     componentDidMount () {
@@ -96,7 +97,13 @@ export default class UserList extends React.Component {
     onChangeSearch = (event) => {
       this.setState({userName: event.target.value})
     }
-  
+    
+    searchUsers = () => {
+      axios.get(url,headers)
+      .then((res)=> {
+        this.setState({})
+      })
+    }
 
   render(){
 
@@ -113,14 +120,14 @@ export default class UserList extends React.Component {
                 />
                 <IconButton
                   onClick={()=>this.userDetails(user.id)}
-                  icone={<IoIosArrowDown/>}
+                  icone={<IoIosArrowForward/>}
                 />
               </Buttons>  
-          </Campo>
-      )})
-      
+        </Campo>
+      )
+    })
+
       let userBox
-      
       
       if (this.state.userDetailsBox){
         userBox = <UserDetails 
