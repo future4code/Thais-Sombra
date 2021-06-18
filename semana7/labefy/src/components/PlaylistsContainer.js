@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import axios from 'axios'
-import { IoIosArrowForward } from 'react-icons/io'
 import { IoCloseCircle } from 'react-icons/io5';
 import IconButton from './IconButton';
 import Playlist from "./Playlist";
@@ -24,7 +23,8 @@ export default class PlaylistsContainer extends React.Component {
 
   state={
     playlistTracks:[],
-    playlistChosen: '', 
+    playlistChosen: '',
+    playlistId:'', 
   }
 
   getPlaylistTracks = (playlist) => {
@@ -34,6 +34,7 @@ export default class PlaylistsContainer extends React.Component {
         this.setState({ 
           playlistTracks: res.data.result.tracks, 
           playlistChosen: playlist.name,
+          playlistId: playlist.id
         })
         console.log(this.state.playlistTracks)
       })
@@ -80,6 +81,9 @@ export default class PlaylistsContainer extends React.Component {
               <Playlist 
                 playlistTracks={this.state.playlistTracks}
                 playlistChosen={this.state.playlistChosen}
+                playlistId={this.state.playlistId}
+                url={this.props.url}
+                headers={this.props.headers}
               />
             </>       
         )
