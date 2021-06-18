@@ -43,7 +43,7 @@ export default class PlaylistsContainer extends React.Component {
                   onChange = {this.props.handleFieldChange}
                 >
                 </input>
-                <button>Criar Playlist</button>
+                <button onClick={()=>this.props.createPlaylist()}>Criar Playlist</button>
                 {playList}
 
             </Container>

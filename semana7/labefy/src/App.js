@@ -28,7 +28,6 @@ export default class App extends React.Component {
 
   handleFieldChange = event => {     
     this.setState({[event.target.name]:event.target.value})  
-    console.log(event.target.value)
   }
 
   createPlaylist = () => {
@@ -37,6 +36,14 @@ export default class App extends React.Component {
     }
     axios
       .post(url,body,headers)
+      .then((res)=>{
+        alert('Playlist criada com sucesso!')
+        this.setState({playlistName:''})  
+        this.getAllPlaylists()
+      })
+      .catch((err) => {
+        alert(err.response.data.message)
+      })
   }
 
   getAllPlaylists = () => {
@@ -63,6 +70,7 @@ export default class App extends React.Component {
             playlist={this.state.allPlayLists}
             playlistName = {this.state.playlistName}
             handleFieldChange = {this.handleFieldChange}
+            createPlaylist={this.createPlaylist}
           />
     
           <Playlist />
