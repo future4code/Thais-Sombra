@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import {RiNeteaseCloudMusicFill} from 'react-icons/ri';
 import PlaylistsContainer from './components/PlaylistsContainer'
-import Playlist from './components/Playlist';
 
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
@@ -19,7 +18,8 @@ export default class App extends React.Component {
 
   state = {
     allPlayLists: [],  
-    playlistName: '',  
+    playlistName: '', 
+    playlistDetails:'',
   }
 
   componentDidMount () {
@@ -84,9 +84,10 @@ export default class App extends React.Component {
             handleFieldChange = {this.handleFieldChange}
             createPlaylist={this.createPlaylist}
             deletePlaylist={this.deletePlaylist}
+            url={url}
+            headers={headers}
+
           />
-    
-          <Playlist />
         </main>
         <footer>
 

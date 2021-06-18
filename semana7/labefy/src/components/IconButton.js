@@ -11,7 +11,7 @@ const Icones = styled.span`
     opacity: 0.6;
   };
   &:nth-child(1){
-    color: red;
+    color: none;
   };
   &:nth-child(2){
     color: darkblue;

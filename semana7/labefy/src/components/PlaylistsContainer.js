@@ -14,50 +14,73 @@ background-color:lightsalmon;
 const PlayListDiv = styled.div`
     background-color: lightgrey;
     margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-`
-
-const Buttons = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100px;
-  justify-content: space-between;
 `
 
 export default class PlaylistsContainer extends React.Component {
 
-  
+  state={
+    playlistTracks:[],
+    playlistChosen: '', 
+  }
+
+  getPlaylistTracks = (playlist) => {
+    axios
+      .get(`${this.props.url}/${playlist.id}/tracks`, this.props.headers)
+      .then((res) => {
+        this.setState({ 
+          playlistTracks: res.data.result.tracks, 
+          playlistChosen: playlist.name,
+        })
+        console.log(this.state.playlistTracks)
+      })
+      .catch((err) => {
+        console.log('deu ruim')
+        alert(err.response.data.message)
+      })
+  }
+
     render (){
 
         const playList = this.props.playlist.map((playlist) => {
             return (<>
-                      <PlayListDiv key={playlist.id}>{playlist.name}</PlayListDiv>
+                      <PlayListDiv key={playlist.id}
+                        onClick={()=>this.getPlaylistTracks(playlist)}
+                      >{playlist.name}
                       <IconButton
                         onClick={()=>this.props.deletePlaylist(playlist.id)}
                         icone={<IoCloseCircle/>}
                       />
+                      </PlayListDiv>
                     </>
             )
           })
   
         return (
-            
-            <Container>
-                <h2>Playlists salvas</h2>
-                <input
-                  name="playlistName"
-                  value={this.props.playlistName}
-                  onChange = {this.props.handleFieldChange}
-                >
-                </input>
-                <button 
-                  onClick={()=>this.props.createPlaylist()}>
-                    Criar Playlist
-                </button>
-                {playList}
+            <>
+              <Container>
+                  <h2>Playlists salvas</h2>
+                  <input
+                    name="playlistName"
+                    value={this.props.playlistName}
+                    onChange = {this.props.handleFieldChange}
+                  >
+                  </input>
+                  <button 
+                    onClick={()=>this.props.createPlaylist()}>
+                      Criar Playlist
+                  </button>
+                  {playList}
 
-            </Container>
-                
+              </Container>
+              <Playlist 
+                playlistTracks={this.state.playlistTracks}
+                playlistChosen={this.state.playlistChosen}
+              />
+            </>       
         )
     }
 }
