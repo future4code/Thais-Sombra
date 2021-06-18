@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import axios from 'axios'
 import { IoIosArrowForward } from 'react-icons/io'
 import { IoCloseCircle } from 'react-icons/io5';
 import IconButton from './IconButton';
@@ -24,12 +25,18 @@ const Buttons = styled.div`
 `
 
 export default class PlaylistsContainer extends React.Component {
-    
+
+  
     render (){
 
         const playList = this.props.playlist.map((playlist) => {
-            return (
-              <PlayListDiv key={playlist.id}>{playlist.name}</PlayListDiv>
+            return (<>
+                      <PlayListDiv key={playlist.id}>{playlist.name}</PlayListDiv>
+                      <IconButton
+                        onClick={()=>this.props.deletePlaylist(playlist.id)}
+                        icone={<IoCloseCircle/>}
+                      />
+                    </>
             )
           })
   
@@ -43,7 +50,10 @@ export default class PlaylistsContainer extends React.Component {
                   onChange = {this.props.handleFieldChange}
                 >
                 </input>
-                <button onClick={()=>this.props.createPlaylist()}>Criar Playlist</button>
+                <button 
+                  onClick={()=>this.props.createPlaylist()}>
+                    Criar Playlist
+                </button>
                 {playList}
 
             </Container>

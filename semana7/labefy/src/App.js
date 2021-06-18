@@ -58,6 +58,18 @@ export default class App extends React.Component {
       })
   }
 
+  deletePlaylist = (id) => {
+    if (window.confirm("Tem certeza que deseja excluir esta playlist?"))
+    axios
+      .delete(`${url}/${id}`,headers)
+      .then((res)=>{
+        this.getAllPlaylists()
+      })
+      .catch((err)=>{
+        alert(err.response.data.message)
+      })
+  }
+
   render (){
 
     return (
@@ -71,6 +83,7 @@ export default class App extends React.Component {
             playlistName = {this.state.playlistName}
             handleFieldChange = {this.handleFieldChange}
             createPlaylist={this.createPlaylist}
+            deletePlaylist={this.deletePlaylist}
           />
     
           <Playlist />
