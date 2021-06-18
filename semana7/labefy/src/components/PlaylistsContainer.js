@@ -65,6 +65,7 @@ export default class PlaylistsContainer extends React.Component {
                   <h2>Playlists salvas</h2>
                   <input
                     name="playlistName"
+                    placeholder="Nome da playlist"
                     value={this.props.playlistName}
                     onChange = {this.props.handleFieldChange}
                   >

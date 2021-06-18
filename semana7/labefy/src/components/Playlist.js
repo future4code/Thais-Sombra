@@ -41,6 +41,10 @@ export default class Playlist extends React.Component {
             
             <Container>
                 <h1>{this.props.playlistChosen}</h1>
+                <button 
+                    onClick={()=>this.props.createPlaylist()}>
+                      Adicionar músicas
+                </button>
                 {tracks}
             </Container>
                 
