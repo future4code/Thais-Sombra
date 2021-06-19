@@ -23,8 +23,6 @@ export default class PlaylistsContainer extends React.Component {
 
   state={
     playlistTracks:[],
-    playlistChosen: '',
-    playlistId:'',
     playlist:'',
   }
 
@@ -34,11 +32,9 @@ export default class PlaylistsContainer extends React.Component {
       .then((res) => {
         this.setState({ 
           playlistTracks: res.data.result.tracks, 
-          playlistChosen: playlist.name,
-          playlistId: playlist.id,
           playlist: playlist,
         })
-        console.log(playlist)
+
       })
       .catch((err) => {
         alert(err.response.data.message)

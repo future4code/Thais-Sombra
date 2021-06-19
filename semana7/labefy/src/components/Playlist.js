@@ -6,22 +6,30 @@ import { IoCloseCircle } from "react-icons/io5"
 import { FaPlayCircle } from 'react-icons/fa'
 import { FaPauseCircle } from 'react-icons/fa'
 import axios from "axios"
+import RenderMusic from "./PlayerAudio"
 
 const Container = styled.div`
     width: 70%;
     height:800px;
     background-color:lightgrey;
     text-align: left;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 
 const TrackDiv = styled.div`
-    background-color: lightgrey;
     margin: 5px;
     display: flex;
-    width: 90%auto;
+    height:50px;
+    width: 90%;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+`
 
+const IMG = styled.img`
+    width: 50px;
 `
 
 export default class Playlist extends React.Component {
@@ -29,7 +37,8 @@ export default class Playlist extends React.Component {
         inputAdd: false,
         nomeMusica:'',
         nomeArtista:'',
-        urlMusica:'',    
+        urlMusica:'',
+        tracks:'',  
     }
 
     addTrack = () => {
@@ -73,27 +82,30 @@ export default class Playlist extends React.Component {
             alert(err.response.data.message)
           })
     }
-
+    
+    playMusic = (tracks) => {
+        this.setState({
+            tracks: tracks
+        })
+    }
+    
     handleFieldChange = event => {     
         this.setState({[event.target.name]:event.target.value})  
     }
-
+    
     render(){
-
+        
         const tracks = this.props.playlistTracks.map((tracks) => {
             return (<>
-                      <TrackDiv key={tracks.id}>  
+                    <TrackDiv key={tracks.id}>  
+                    <IMG src="https://picsum.photos/200/200?random=1"></IMG>
                         <p>{tracks.name}</p>
                         <p>{tracks.artist}</p>
                       <IconButton
-                       onClick={()=>this.props.deletePlaylist(tracks.id)}
+                       onClick={()=>this.playMusic(tracks)}
                        icone={<FaPlayCircle />}
-                     />
-                     <IconButton
-                       onClick={()=>this.props.deletePlaylist(tracks.id)}
-                       icone={<FaPauseCircle />}
-                     />
-                      <IconButton
+                    />
+                    <IconButton
                         onClick={()=>this.removeTrackFromPlaylist(tracks.id)}
                         icone={<IoCloseCircle/>}
                       />
@@ -132,6 +144,9 @@ export default class Playlist extends React.Component {
                 {renderAddTrack}
                 <hr/>
                 {tracks}
+
+                <RenderMusic tracks={this.state.tracks} />
+
             </Container>
                 
         )
