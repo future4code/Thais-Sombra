@@ -38,14 +38,15 @@ export default class Playlist extends React.Component {
         })
     }
 
-    addTrackToPlaylist = () => {
+    addTrackToPlaylist = (e) => {
+        e.preventDefault()
         const body = {
-            name:this.state.playlistName,
+            name:this.state.nomeMusica,
             artist:this.state.nomeArtista,
             url:this.state.urlMusica,      
         }
         axios
-        .post((`${this.props.url}${this.props.playlistId}`,body,this.props.headers))
+        .post((`${this.props.url}/${this.props.playlistId}/tracks`,body,this.props.headers))
         .then((res)=>{
             this.setState({
                 inputAdd: false,
@@ -64,6 +65,12 @@ export default class Playlist extends React.Component {
     }
 
     render(){
+
+        console.log(`${this.props.url}/${this.props.playlistId}/tracks`)
+
+        console.log(`${this.props.headers}`)
+
+        console.log('Id playlist:', this.props.playlistId)
 
         const tracks = this.props.playlistTracks.map((tracks) => {
             return (<>
@@ -115,6 +122,7 @@ export default class Playlist extends React.Component {
                       Adicionar músicas
                 </button>
                 {renderAddTrack}
+                <hr/>
                 {tracks}
             </Container>
                 

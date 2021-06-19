@@ -16,7 +16,7 @@ const PlayListDiv = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    cursor:pointer;
 `
 
 export default class PlaylistsContainer extends React.Component {
@@ -36,31 +36,31 @@ export default class PlaylistsContainer extends React.Component {
           playlistChosen: playlist.name,
           playlistId: playlist.id
         })
-        console.log(this.state.playlistTracks)
+
       })
       .catch((err) => {
-        console.log('deu ruim')
         alert(err.response.data.message)
       })
   }
 
     render (){
 
-        const playList = this.props.playlist.map((playlist) => {
-            return (<>
+      const playList = this.props.playlist.map((playlist) => {
+        return (<>
                       <PlayListDiv key={playlist.id}
                         onClick={()=>this.getPlaylistTracks(playlist)}
-                      >{playlist.name}
+                        >{playlist.name}
                       <IconButton
                         onClick={()=>this.props.deletePlaylist(playlist.id)}
                         icone={<IoCloseCircle/>}
-                      />
+                        />
                       </PlayListDiv>
                     </>
             )
           })
-  
-        return (
+          
+        
+          return (
             <>
               <Container>
                   <h2>Playlists salvas</h2>
@@ -69,7 +69,7 @@ export default class PlaylistsContainer extends React.Component {
                     placeholder="Nome da playlist"
                     value={this.props.playlistName}
                     onChange = {this.props.handleFieldChange}
-                  >
+                    >
                   </input>
                   <button 
                     onClick={()=>this.props.createPlaylist()}>
@@ -84,7 +84,7 @@ export default class PlaylistsContainer extends React.Component {
                 playlistId={this.state.playlistId}
                 url={this.props.url}
                 headers={this.props.headers}
-              />
+                />
             </>       
         )
     }
