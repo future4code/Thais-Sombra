@@ -39,6 +39,7 @@ export default class Playlist extends React.Component {
     }
 
     addTrackToPlaylist = (e) => {
+        console.log('chamou')
         e.preventDefault()
         const body = {
             name:this.state.nomeMusica,
@@ -46,14 +47,27 @@ export default class Playlist extends React.Component {
             url:this.state.urlMusica,      
         }
         axios
-        .post((`${this.props.url}/${this.props.playlistId}/tracks`,body,this.props.headers))
-        .then((res)=>{
-            this.setState({
-                inputAdd: false,
-                nomeMusica:'',
-                nomeArtista:'',
-                urlMusica:'',   
+            .post(`${this.props.url}/${this.props.playlist.id}/tracks`,body,this.props.headers)
+            .then((res)=>{
+                this.setState({
+                    inputAdd: false,
+                    nomeMusica:'',
+                    nomeArtista:'',
+                    urlMusica:'',   
+                })
+                this.props.atualizaTracks(this.props.playlist)
             })
+            .catch((err) => {
+                alert(err.response.data.message)
+            })
+    }
+
+    removeTrackFromPlaylist = (tracksId) => {
+        axios
+        .delete(`${this.props.url}/${this.props.playlist.id}/tracks/${tracksId}`,this.props.headers)
+        .then((res)=>{
+            this.props.atualizaTracks(this.props.playlist)
+          
         })
         .catch((err) => {
             alert(err.response.data.message)
@@ -65,12 +79,6 @@ export default class Playlist extends React.Component {
     }
 
     render(){
-
-        console.log(`${this.props.url}/${this.props.playlistId}/tracks`)
-
-        console.log(`${this.props.headers}`)
-
-        console.log('Id playlist:', this.props.playlistId)
 
         const tracks = this.props.playlistTracks.map((tracks) => {
             return (<>
@@ -86,7 +94,7 @@ export default class Playlist extends React.Component {
                        icone={<FaPauseCircle />}
                      />
                       <IconButton
-                        onClick={()=>this.props.deletePlaylist(tracks.id)}
+                        onClick={()=>this.removeTrackFromPlaylist(tracks.id)}
                         icone={<IoCloseCircle/>}
                       />
                       </TrackDiv>
@@ -116,7 +124,7 @@ export default class Playlist extends React.Component {
         return (
             
             <Container>
-                <h1>{this.props.playlistChosen}</h1>
+                <h1>{this.props.playlist.name}</h1>
                 <button 
                     onClick={this.addTrack}>
                       Adicionar músicas

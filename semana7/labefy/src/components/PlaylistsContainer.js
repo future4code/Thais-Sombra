@@ -24,7 +24,8 @@ export default class PlaylistsContainer extends React.Component {
   state={
     playlistTracks:[],
     playlistChosen: '',
-    playlistId:'', 
+    playlistId:'',
+    playlist:'',
   }
 
   getPlaylistTracks = (playlist) => {
@@ -34,9 +35,10 @@ export default class PlaylistsContainer extends React.Component {
         this.setState({ 
           playlistTracks: res.data.result.tracks, 
           playlistChosen: playlist.name,
-          playlistId: playlist.id
+          playlistId: playlist.id,
+          playlist: playlist,
         })
-
+        console.log(playlist)
       })
       .catch((err) => {
         alert(err.response.data.message)
@@ -58,7 +60,6 @@ export default class PlaylistsContainer extends React.Component {
                     </>
             )
           })
-          
         
           return (
             <>
@@ -80,10 +81,10 @@ export default class PlaylistsContainer extends React.Component {
               </Container>
               <Playlist 
                 playlistTracks={this.state.playlistTracks}
-                playlistChosen={this.state.playlistChosen}
-                playlistId={this.state.playlistId}
+                playlist={this.state.playlist}
                 url={this.props.url}
                 headers={this.props.headers}
+                atualizaTracks={this.getPlaylistTracks}
                 />
             </>       
         )

@@ -51,7 +51,6 @@ export default class App extends React.Component {
       .get(url, headers)
       .then((res) => {
         this.setState({ allPlayLists: res.data.result.list })
-        console.log(this.state.allPlayLists)
       })
       .catch((err) => {
         alert(err.response.data.message)
