@@ -6,17 +6,22 @@ import IconButton from './IconButton';
 import Playlist from "./Playlist";
 
 const Container = styled.div`
-width: 30%;
-height:800px;
-background-color:lightsalmon;
+  width: 30%;
+  height:100%;
+  background-color:rgba(0,0,0);
+  color: rgba(255,255,255);
 `
 const PlayListDiv = styled.div`
-    background-color: lightgrey;
-    margin: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    cursor:pointer;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:10px;
+  color: rgba(255,255,255,0.6);
+  cursor:pointer;
+  &:hover{
+    color: rgba(255,255,255,1);
+  };
 `
 
 export default class PlaylistsContainer extends React.Component {

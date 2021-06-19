@@ -25,7 +25,8 @@
 
 .App-header {
   background-color: #282c34;
-  height: 100px;
+  opacity: 0.95;
+  height: 50px;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -57,4 +58,5 @@ main {
 footer {
   height: 100px;
   background-color: #282c34;
+  opacity: 0.98;
 }

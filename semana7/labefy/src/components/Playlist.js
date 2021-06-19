@@ -10,12 +10,13 @@ import RenderMusic from "./PlayerAudio"
 
 const Container = styled.div`
     width: 70%;
-    height:800px;
-    background-color:lightgrey;
+    height:100%;
     text-align: left;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    background: rgb(2,0,36);
+   background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 59%, rgba(92,66,86,1) 100%)
 `
 
 const TrackDiv = styled.div`
@@ -26,6 +27,7 @@ const TrackDiv = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    color:white;
 `
 
 const IMG = styled.img`
