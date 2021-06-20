@@ -2,11 +2,14 @@ import React from "react"
 import styled from "styled-components"
 import axios from 'axios'
 import { IoCloseCircle } from 'react-icons/io5';
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import IconButton from './IconButton';
 import Playlist from "./Playlist";
+import ButtonContainer from './ButtonContainer';
+import Button from './Button'
 
 const Container = styled.div`
-  width: 30%;
+  width: 20%;
   height:100%;
   background-color:rgba(0,0,0);
   color: rgba(255,255,255);
@@ -16,7 +19,7 @@ const PlayListDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding:10px;
+  padding: 10px 50px 20px 50px;
   color: rgba(255,255,255,0.6);
   cursor:pointer;
   &:hover{
@@ -24,11 +27,25 @@ const PlayListDiv = styled.div`
   };
 `
 
+const CriarPlaylist = styled.div`
+  margin: 20px 20px 20px 0;
+  align-items: center;
+  text-align: center;
+  input{
+    height: 30px;
+    width: 200px;
+    font-size: 16px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+`
+
 export default class PlaylistsContainer extends React.Component {
 
   state={
     playlistTracks:[],
     playlist:'',
+    addPlaylist: true,
   }
 
   getPlaylistTracks = (playlist) => {
@@ -46,6 +63,13 @@ export default class PlaylistsContainer extends React.Component {
       })
   }
 
+  addPlaylist = () => {
+    this.setState({
+        addPlaylist: !this.state.addPlaylist
+      })
+      console.log(this.state.addPlaylist)
+  }
+
     render (){
 
       const playList = this.props.playlist.map((playlist) => {
@@ -61,24 +85,39 @@ export default class PlaylistsContainer extends React.Component {
                     </>
             )
           })
+
+          let renderAddPlaylist
+
+          if(this.state.addPlaylist){
+            renderAddPlaylist = <>
+                  <CriarPlaylist>
+                    <input
+                      name="playlistName"
+                      placeholder="Nome da playlist"
+                      value={this.props.playlistName}
+                      onChange = {this.props.handleFieldChange}
+                      >
+                    </input>
+                    <Button
+                      onClick={()=>this.props.createPlaylist()} 
+                      texto='Salvar'
+                    />
+                  </CriarPlaylist>
+            </>
+          }
         
           return (
             <>
               <Container>
-                  <h2>Playlists salvas</h2>
-                  <input
-                    name="playlistName"
-                    placeholder="Nome da playlist"
-                    value={this.props.playlistName}
-                    onChange = {this.props.handleFieldChange}
-                    >
-                  </input>
-                  <button 
-                    onClick={()=>this.props.createPlaylist()}>
-                      Criar Playlist
-                  </button>
+                  <h2>Playlists</h2>
+                  <ButtonContainer 
+                    onClick={this.addPlaylist}
+                    icone={<BsFillPlusSquareFill />}
+                    texto="Criar playlist"
+                  />
+                  {renderAddPlaylist}
+                  <hr/>
                   {playList}
-
               </Container>
               <Playlist 
                 playlistTracks={this.state.playlistTracks}

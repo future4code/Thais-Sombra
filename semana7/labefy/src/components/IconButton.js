@@ -6,27 +6,18 @@ const Icones = styled.span`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.6;
+  color: rgba(255,255,255,0.6);
+  font-size: 30px;
+  cursor:pointer;
+  &:hover{
+    color: rgba(255,255,255,1);
   };
-  &:nth-child(1){
-    color: none;
-  };
-  &:nth-child(2){
-    color: darkblue;
-  };
-  &:nth-child(3){
-    color: darkmagenta;
-  }
 `
 
 const IconButton = (props) =>{
     return (
         
-        <Icones onClick={props.onClick}>{props.icone}</Icones>
-
-            
+        <Icones onClick={props.onClick}>{props.icone}</Icones>            
     )
 }
 

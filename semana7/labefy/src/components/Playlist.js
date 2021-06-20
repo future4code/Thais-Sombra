@@ -4,19 +4,25 @@ import IconButton from "./IconButton"
 import AddTrack from "./AddTrack"
 import { IoCloseCircle } from "react-icons/io5"
 import { FaPlayCircle } from 'react-icons/fa'
-import { FaPauseCircle } from 'react-icons/fa'
+import { BsFillPlusSquareFill } from 'react-icons/bs';
 import axios from "axios"
 import RenderMusic from "./PlayerAudio"
+import ButtonContainer from './ButtonContainer'
+import Button from './Button'
 
 const Container = styled.div`
-    width: 70%;
+    width: 80%;
     height:100%;
     text-align: left;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
     background: rgb(2,0,36);
-   background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 59%, rgba(92,66,86,1) 100%)
+    color:white;
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 59%, rgba(92,66,86,1) 100%);
+    h1{
+        font-size: 80px;
+    }
 `
 
 const TrackDiv = styled.div`
@@ -32,6 +38,15 @@ const TrackDiv = styled.div`
 
 const IMG = styled.img`
     width: 50px;
+`
+
+const HeaderContainer = styled.div`
+    height: 250px;
+`
+
+const AddContainer = styled.div`
+    display: flex;
+    flex-direction: row;
 `
 
 export default class Playlist extends React.Component {
@@ -74,15 +89,17 @@ export default class Playlist extends React.Component {
     }
 
     removeTrackFromPlaylist = (tracksId) => {
-        axios
-        .delete(`${this.props.url}/${this.props.playlist.id}/tracks/${tracksId}`,this.props.headers)
-        .then((res)=>{
-            this.props.atualizaTracks(this.props.playlist)
-          
-        })
-        .catch((err) => {
-            alert(err.response.data.message)
-          })
+        if (window.confirm("Tem certeza que deseja excluir esta música?")){
+            axios
+            .delete(`${this.props.url}/${this.props.playlist.id}/tracks/${tracksId}`,this.props.headers)
+            .then((res)=>{
+                this.props.atualizaTracks(this.props.playlist)
+              
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+              })
+        }
     }
     
     playMusic = (tracks) => {
@@ -100,10 +117,10 @@ export default class Playlist extends React.Component {
         const tracks = this.props.playlistTracks.map((tracks) => {
             return (<>
                     <TrackDiv key={tracks.id}>  
-                    <IMG src="https://picsum.photos/200/200?random=1"></IMG>
+                    <IMG src= "https://picsum.photos/200/200?random=1" />
                         <p>{tracks.name}</p>
                         <p>{tracks.artist}</p>
-                      <IconButton
+                    <IconButton
                        onClick={()=>this.playMusic(tracks)}
                        icone={<FaPlayCircle />}
                     />
@@ -120,30 +137,36 @@ export default class Playlist extends React.Component {
         let renderAddTrack
 
         if (this.state.inputAdd){
-            renderAddTrack = <>
+            renderAddTrack = <AddContainer>
+
                     <AddTrack
                         handleFieldChange = {this.handleFieldChange}
                         onClick={()=>this.addTrackToPlaylist()}
                         nomeMusica={this.state.nomeMusica}
                         nomeArtista={this.state.nomeArtista}
                         urlMusica={this.state.urlMusica}
-                    />
-                    <button 
-                        onClick={this.addTrackToPlaylist}>
-                        Salvar
-                    </button>      
-                </>
+                        />
+                    <Button
+                      onClick={this.addTrackToPlaylist} 
+                      texto='Salvar'
+                      />
+                      </AddContainer>
+
         }
 
         return (
             
             <Container>
-                <h1>{this.props.playlist.name}</h1>
-                <button 
-                    onClick={this.addTrack}>
-                      Adicionar músicas
-                </button>
-                {renderAddTrack}
+                <HeaderContainer>
+                    <h3>playlist</h3>
+                    <h1>{this.props.playlist.name}</h1>
+                    <ButtonContainer 
+                        onClick={this.addTrack}
+                        icone={<BsFillPlusSquareFill />}
+                        texto="Adicionar música"
+                    />
+                    {renderAddTrack}
+                </HeaderContainer>
                 <hr/>
                 {tracks}
 

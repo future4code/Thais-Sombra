@@ -5,6 +5,12 @@ const InputsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
+    margin: 10px 10px 5px 5px;
+    input{
+    height: 30px;
+    font-size: 16px;
+    margin-right: 5px;
+    }
 `
 
 export default class AddTrack extends React.Component {

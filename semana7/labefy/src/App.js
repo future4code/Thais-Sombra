@@ -58,15 +58,16 @@ export default class App extends React.Component {
   }
 
   deletePlaylist = (id) => {
-    if (window.confirm("Tem certeza que deseja excluir esta playlist?"))
-    axios
-      .delete(`${url}/${id}`,headers)
-      .then((res)=>{
-        this.getAllPlaylists()
-      })
-      .catch((err)=>{
-        alert(err.response.data.message)
-      })
+    if (window.confirm("Tem certeza que deseja excluir esta playlist?")){
+      axios
+        .delete(`${url}/${id}`,headers)
+        .then((res)=>{
+          this.getAllPlaylists()
+        })
+        .catch((err)=>{
+          alert(err.response.data.message)
+        })
+    }
   }
 
   
@@ -86,7 +87,6 @@ export default class App extends React.Component {
             deletePlaylist={this.deletePlaylist}
             url={url}
             headers={headers}
-
           />
         </main>
         <footer>
