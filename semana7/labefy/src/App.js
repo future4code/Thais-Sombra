@@ -5,6 +5,12 @@ import axios from 'axios';
 import {RiNeteaseCloudMusicFill} from 'react-icons/ri';
 import PlaylistsContainer from './components/PlaylistsContainer'
 
+const TextoFooter = styled.p`
+  color: white;
+  opacity: 0.6;
+  align-self: right;
+
+`  
 
 const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
 
@@ -77,6 +83,7 @@ export default class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <RiNeteaseCloudMusicFill className="App-logo" /> 
+          <h1>Labefy</h1>
         </header>
         <main>
           <PlaylistsContainer
@@ -90,7 +97,7 @@ export default class App extends React.Component {
           />
         </main>
         <footer>
-
+          <TextoFooter>Desenvolvido por Thaís Sombra como<br></br>requisito do Bootcamp Labenu</TextoFooter>
         </footer>
       </div>
     )

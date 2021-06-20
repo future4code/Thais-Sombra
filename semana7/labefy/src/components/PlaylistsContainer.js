@@ -13,6 +13,12 @@ const Container = styled.div`
   height:100%;
   background-color:rgba(0,0,0);
   color: rgba(255,255,255);
+  @media (max-width: 1200px){
+    width: 40%
+  }
+  @media (max-width: 415px){
+    width: 100%
+  }
 `
 const PlayListDiv = styled.div`
   margin: 5px;
@@ -45,7 +51,7 @@ export default class PlaylistsContainer extends React.Component {
   state={
     playlistTracks:[],
     playlist:'',
-    addPlaylist: true,
+    addPlaylist: false,
   }
 
   getPlaylistTracks = (playlist) => {
@@ -67,7 +73,6 @@ export default class PlaylistsContainer extends React.Component {
     this.setState({
         addPlaylist: !this.state.addPlaylist
       })
-      console.log(this.state.addPlaylist)
   }
 
     render (){

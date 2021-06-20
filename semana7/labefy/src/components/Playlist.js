@@ -23,6 +23,12 @@ const Container = styled.div`
     h1{
         font-size: 80px;
     }
+    @media (max-width: 1200px){
+    width: 60%
+    }
+    @media (max-width: 415px){
+    width: 100%
+    }
 `
 
 const TrackDiv = styled.div`
@@ -34,10 +40,6 @@ const TrackDiv = styled.div`
     justify-content: space-around;
     align-items: center;
     color:white;
-`
-
-const IMG = styled.img`
-    width: 50px;
 `
 
 const HeaderContainer = styled.div`
@@ -115,22 +117,19 @@ export default class Playlist extends React.Component {
     render(){
         
         const tracks = this.props.playlistTracks.map((tracks) => {
-            return (<>
+            return (
                     <TrackDiv key={tracks.id}>  
-                    <IMG src= "https://picsum.photos/200/200?random=1" />
                         <p>{tracks.name}</p>
                         <p>{tracks.artist}</p>
-                    <IconButton
-                       onClick={()=>this.playMusic(tracks)}
-                       icone={<FaPlayCircle />}
-                    />
-                    <IconButton
-                        onClick={()=>this.removeTrackFromPlaylist(tracks.id)}
-                        icone={<IoCloseCircle/>}
-                      />
-                      </TrackDiv>
-                      <hr/>
-                    </>
+                        <IconButton
+                        onClick={()=>this.playMusic(tracks)}
+                        icone={<FaPlayCircle />}
+                        />
+                        <IconButton
+                            onClick={()=>this.removeTrackFromPlaylist(tracks.id)}
+                            icone={<IoCloseCircle/>}
+                        />
+                    </TrackDiv>
             )
           })
 

@@ -13,7 +13,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  font-size: 40px;
   pointer-events: none;
 }
 
@@ -28,10 +28,10 @@
   opacity: 0.95;
   height: 50px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: left;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
   color: white;
 }
 
@@ -55,8 +55,16 @@ main {
   flex-direction: row;
 }
 
+@media screen and (max-width: 415px){
+  main {
+    display: flex;
+    flex-direction: column;  
+  }
+}
+
 footer {
   height: 50px;
   background-color: #282c34;
   opacity: 0.98;
+  text-align: right;
 }
