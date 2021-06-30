@@ -14,42 +14,52 @@ const urlPutClear = `https://us-central1-missao-newton.cloudfunctions.net/astroM
 
 const getProfile = async () => {
   try {
-    const res = await axios.get(urlGetProfile);
-    return res.data.profile;
+    const res = await axios.get(urlGetProfile)
+    return res.data.profile
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-};
+}
+
+const getMatches = async () => {
+  try {
+    const res = await axios.get(urlGetMatches)
+    return res.data.matches
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 const postChoose = async (body) => {
   try {
-    const res = await axios.post(urlPostChoose, body);
-    if (body.choice && res.data.isMatch) {
-      return true;
-    }
+    const res = await axios.post(urlPostChoose, body)
+    // if (body.choice && res.data.isMatch) {
+    return true
+    // }
+    console.log(res)
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-};
+}
 
 const putClear = async () => {
   if (window.confirm('Deseja limpar seu histório de matches?')) {
     try {
-      const res = await axios.put(urlPutClear);
-      console.log(`Clear ${res.data.message}`);
+      const res = await axios.put(urlPutClear)
+      console.log(`Clear ${res.data.message}`)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
   }
-};
+}
 
 const reset = async () => {
   try {
-    const res = await axios.put(urlPutClear);
-    console.log(`Clear ${res.data.message}`);
+    const res = await axios.put(urlPutClear)
+    console.log(`Clear ${res.data.message}`)
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-};
+}
 
-export { getProfile, postChoose, putClear, reset };
+export { getProfile, getMatches, postChoose, putClear, reset };
