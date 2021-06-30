@@ -5,7 +5,7 @@ import { getProfile, postChoose, putClear, reset } from './components/api/Reques
 
 const App = () => {
 
-  const [profile, setProfile]=useState('')
+  const [profile, setProfile]=useState([])
 
   const loadProfile = async () => {
     try {
@@ -20,7 +20,9 @@ const App = () => {
   
   return (
     <div>
-      <Card />
+      <Card 
+        profile={profile}
+      />
       <button
         onClick={()=>loadProfile()}
       >Atualizar profiles</button>
