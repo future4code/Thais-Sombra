@@ -25,5 +25,6 @@ export const Span = styled.div`
     color: gray;
     :hover{
         color: darkgray;
+        cursor: pointer;
     }
 `

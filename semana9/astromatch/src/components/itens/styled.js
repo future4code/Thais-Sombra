@@ -30,6 +30,9 @@ export const Span = styled.span`
         border: 2px solid lightgrey;
         border-radius: 50%;
         padding: 10px;
+        :hover{
+            opacity: 0.7;
+        }
     }
     #like{
         color: green;
@@ -38,5 +41,8 @@ export const Span = styled.span`
         width: 70px;
         height: 70px;
         padding: 13px;
+        :hover{
+            opacity: 0.7;
+        }
     }
 `
