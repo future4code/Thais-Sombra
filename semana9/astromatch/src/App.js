@@ -1,7 +1,8 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import { Card } from './components/itens/Card'
-import { getProfile, getMatches, postChoose, putClear, reset } from './components/api/Requests'
+import { MatchList } from './components/itens/MatchList';
+import { getProfile, getMatches, postChoose, putClear } from './components/api/Requests'
 
 const App = () => {
 
@@ -29,6 +30,8 @@ const App = () => {
     }
   }
 
+  console.log(matches)
+
   return (
     <div>
       <Card 
@@ -41,6 +44,12 @@ const App = () => {
       <button
         onClick={()=>loadMatches()}
       >Puxar Matches</button>
+      <button
+        onClick={()=>putClear()}
+      > Limpar</button>
+      <MatchList 
+        matches={matches}
+      />
     </div>
   );
 }

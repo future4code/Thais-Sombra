@@ -53,13 +53,5 @@ const putClear = async () => {
   }
 }
 
-const reset = async () => {
-  try {
-    const res = await axios.put(urlPutClear)
-    console.log(`Clear ${res.data.message}`)
-  } catch (error) {
-    console.error(error)
-  }
-}
 
-export { getProfile, getMatches, postChoose, putClear, reset };
+export { getProfile, getMatches, postChoose, putClear };
