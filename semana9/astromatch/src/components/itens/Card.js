@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
+import { Container, ProfilePhoto, Span} from './styled';
 import { postChoose } from '../api/Requests'
-import { IoHeartCircle } from 'react-icons/io5'
-import { MdCancel } from 'react-icons/md'
+import { IoClose } from 'react-icons/io5'
+import { FaHeart } from 'react-icons/fa'
 
-const ProfilePhoto = styled.img`
-    width: 100px;
-    height: 200px;
-`
+
 
 export const Card = (props) => {
 
-    const matchProfile = async (chooseProfile) => {
+    const likeProfile = async (chooseProfile) => {
         try {
           const newChoose = await postChoose(
             {
@@ -25,16 +23,32 @@ export const Card = (props) => {
         }
       }
 
-    return <div>
-        <h2>Astromatch</h2>
+      const dislikeProfile = async (chooseProfile) => {
+        try {
+          const newChoose = await postChoose(
+            {
+                "id": chooseProfile,
+                "choice": false
+            })
+            props.loadProfile()
+        } catch (err){
+          console.log(err)
+          alert('Erro ao dar match, tente novamente mais tarde')
+        }
+      }
+
+    return <Container>
+
         <ProfilePhoto src={props.profile.photo} ></ProfilePhoto>
         <p><b>{props.profile.name}</b>, {props.profile.age}</p>
         <p>{props.profile.bio}</p>
-        <MdCancel
-            onClick={props.loadProfile}
-        ></MdCancel>
-        <IoHeartCircle
-            onClick={()=>matchProfile(props.profile.id)}
-        ></IoHeartCircle>
-    </div>
+        <Span>
+            <IoClose id="dislike"
+                onClick={()=>dislikeProfile(props.profile.id)}
+            />
+            <FaHeart id="like"
+                onClick={()=>likeProfile(props.profile.id)}
+            />
+        </Span>
+    </Container>
 }
