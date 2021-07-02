@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { Container, HeaderContainer, Span } from './styled';
+import { Container, HeaderContainer, Span, BodyContainer } from './styled';
 import { Card } from './itens/Card'
 import { MatchList } from './itens/MatchList';
 import { Config } from './itens/Config'
+import { MessageLimit } from './itens/MessageLimit';
 import { getProfile, getMatches, postChoose, putClear } from './api/Requests'
 import { IoChatbubblesSharp } from 'react-icons/io5'
 import { BsGearFill } from 'react-icons/bs'
@@ -12,7 +13,8 @@ const Main = () => {
 
   const [ profile, setProfile ] = useState([])
   const [ matches, setMatches ] = useState([])
-  const [ activePage, setActivePage] = useState('swipe')
+  const [ activePage, setActivePage] = useState('config')
+  const [reachLimit, setReachLimit] = useState (false)
 
 
   const loadProfile = async () => {
@@ -21,7 +23,7 @@ const Main = () => {
       setProfile(newProfile)
     } catch (err){
       console.log(err)
-      alert('Erro ao atualizar a lista de perfis, tente novamente mais tarde')
+      setReachLimit(true)
     }
   }
 
@@ -55,7 +57,6 @@ const Main = () => {
           <Span>
               {activePage==='swipe' ? (
                 <IoChatbubblesSharp 
-                //onClick={()=>loadMatches()}
                   onClick={()=>setActivePage('matches')}
                 />
                 ):(
@@ -65,25 +66,28 @@ const Main = () => {
                 )}
           </Span>
         </HeaderContainer>
-      {activePage === 'swipe' ? (
-        <Card 
-          profile={profile}
-          loadProfile={loadProfile}
-        />
-      ):( 
-        activePage === 'matches' ? (
-            <MatchList 
-              matches={matches}
-              loadMatches={loadMatches}
+        <BodyContainer>
+          {activePage === 'swipe' ? (
+            <Card 
+              profile={profile}
+              loadProfile={loadProfile}
+              putClear={putClear}
             />
-        ):(
-            <Config />
-          )
-      )}
+          ):( 
+            activePage === 'matches' ? (
+                <MatchList 
+                  matches={matches}
+                  loadMatches={loadMatches}
+                />
+            ):(
+                <Config 
+                  putClear={putClear}
+                />
+              )
+              )}
+        </BodyContainer>
 
-      <button
-        onClick={()=>putClear()}
-      > Limpar</button>
+      
     </Container>
   );
 }

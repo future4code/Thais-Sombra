@@ -30,7 +30,7 @@ export const Card = (props) => {
                 "id": chooseProfile,
                 "choice": false
             })
-            props.loadProfile()
+            {props.loadProfile()}
         } catch (err){
           console.log(err)
           alert('Erro ao dar match, tente novamente mais tarde')
@@ -39,16 +39,27 @@ export const Card = (props) => {
 
     return <Container>
 
-        <ProfilePhoto src={props.profile.photo} ></ProfilePhoto>
-        <p><b>{props.profile.name}</b>, {props.profile.age}</p>
-        <p>{props.profile.bio}</p>
-        <Span>
-            <IoClose id="dislike"
-                onClick={()=>dislikeProfile(props.profile.id)}
-            />
-            <FaHeart id="like"
-                onClick={()=>likeProfile(props.profile.id)}
-            />
-        </Span>
+      {props.profile === null ?
+        (<>
+            <h2>Não existem mais perfis próximos a você, para continuar será necessário resetar o app</h2>
+            <button
+            onClick={()=>props.putClear()}
+            > Resetar</button>
+          </>
+        ):(<>
+            <ProfilePhoto src={props.profile.photo} ></ProfilePhoto>
+            <p><b>{props.profile.name}</b>, {props.profile.age}</p>
+            <p>{props.profile.bio}</p>
+            <Span>
+                <IoClose id="dislike"
+                    onClick={()=>dislikeProfile(props.profile.id)}
+                    />
+                <FaHeart id="like"
+                    onClick={()=>likeProfile(props.profile.id)}
+                    />
+            </Span>
+          </>
+        )}
+
     </Container>
 }
