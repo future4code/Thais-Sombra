@@ -9,7 +9,6 @@ export const Container = styled.div`
     height: 550px;
     align-items: center;
     padding: 10px;
-    //justify-content: space-between;
 `
 
 export const HeaderContainer = styled.div`
@@ -32,5 +31,4 @@ export const Span = styled.div`
 `
 
 export const BodyContainer = styled.div`
-    //background-color: lightcoral;
 `

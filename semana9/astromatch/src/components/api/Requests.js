@@ -16,7 +16,6 @@ const getProfile = async () => {
     const res = await axios.get(urlGetProfile)
     return res.data.profile
   } catch (error) {
-    console.error(error)
   }
 }
 
@@ -25,19 +24,14 @@ const getMatches = async () => {
     const res = await axios.get(urlGetMatches)
     return res.data.matches
   } catch (error) {
-    console.error(error)
   }
 }
 
 const postChoose = async (body) => {
   try {
     const res = await axios.post(urlPostChoose, body)
-    // if (body.choice && res.data.isMatch) {
     return true
-    // }
-    console.log(res)
   } catch (error) {
-    console.error(error)
   }
 }
 
@@ -47,7 +41,6 @@ const putClear = async () => {
       const res = await axios.put(urlPutClear)
       console.log(`Clear ${res.data.message}`)
     } catch (error) {
-      console.error(error)
     }
   }
 }
