@@ -2,10 +2,10 @@ import React from 'react'
 import { Container } from './styled'
 
 
-const TripsDetaisPage = () => {
+const TripsDetailsPage = () => {
     return (<Container>
             </Container>
     )
 }
 
-export default TripsDetaisPage
+export default TripsDetailsPage
