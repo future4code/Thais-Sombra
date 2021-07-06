@@ -4,6 +4,7 @@ import { Container } from './styled'
 
 const LoginPage = () => {
     return (<Container>
+        Login
             </Container>
     )
 }

@@ -5,33 +5,17 @@ import { AdminHomePage, ApplicationFormPage, CreateTripPage, ErrorPage, HomePage
 const Routes = () => {
     return (
         <BrowserRouter>
-        <Switch>
-          <Route exact path={'/'}>
-            <HomePage />
-          </Route>
-          <Route exact path={'/admin'}>
-            <AdminHomePage />
-          </Route>
-          <Route exact path={'/application'}>
-            <ApplicationFormPage />
-          </Route>
-          <Route exact path={'/createtrip'}>
-            <CreateTripPage />
-          </Route>
-          <Route exact path={'/trips'}>
-            <ListTripsPage />
-          </Route>
-          <Route exact path={'/login'}>
-            <LoginPage />
-          </Route>
-          <Route exact path={'/trips/:id'}>
-            <TripsDetailsPage />
-          </Route>
-          <Route exact path={'/notfound'}>
-            <ErrorPage />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+            <Switch>
+                <Route path='/' exact component={HomePage}/>
+                <Route path='/trips/list' exact component={ListTripsPage} />
+                <Route path='/trips/application' exact component={ApplicationFormPage} />
+                <Route path="/login" exact component={LoginPage} />
+                <Route path='/admin/trips/list' exact component={AdminHomePage} />
+                <Route path='/admin/trips/create' exact component={CreateTripPage} />
+                <Route path='/admin/trips/:id' exact component={TripsDetailsPage} />
+                <Route path='/notfound' exact component={ErrorPage} />
+            </Switch>
+        </BrowserRouter>
     )
 }
 

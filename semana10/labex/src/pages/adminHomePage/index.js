@@ -4,6 +4,7 @@ import { Container } from './styled'
 
 const AdminHomePage = () => {
     return (<Container>
+            ADMIN
             </Container>
     )
 }
