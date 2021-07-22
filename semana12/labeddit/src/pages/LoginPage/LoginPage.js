@@ -1,22 +1,30 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { Container } from './styled';
+import Button from '@material-ui/core/Button'
+import { ScreenContainer, SignUpButtonContainer } from './styled'
+import LoginForm from './LoginForm'
+import { useHistory } from 'react-router-dom'
+import { goToSignUp } from '../../routes/coordinator'
 
 const LoginPage = () => {
+
+const history = useHistory()
+
     return (
         <div>
-            <Container>
+            <ScreenContainer>
                 <h1>LoginPage</h1>
-                <TextField id="outlined-basic" label="E-mail" variant="outlined" />
-                <TextField id="outlined-basic" label="Senha" variant="outlined" />
-                <Button variant="contained" color="primary">
-                Entrar
-                </Button>
-                <Button variant="contained" color="primary">
-                Cadastrar
-                </Button>
-            </Container>
+                <LoginForm />
+                <SignUpButtonContainer>
+                    <Button variant="text" color="primary"
+                        onClick={()=> goToSignUp(history)}
+                        type={'submit'}
+                        fullWidth
+                        margin={'normal'}
+                    >
+                    Não possui conta? Cadastre-se
+                    </Button>
+                </SignUpButtonContainer>
+            </ScreenContainer>
         </div>
     )
 }
