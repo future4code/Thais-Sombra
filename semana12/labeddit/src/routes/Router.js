@@ -21,7 +21,7 @@ const Router = () => {
                 <Route exact path='/'>
                     <FeedPage/>
                 </Route>
-                <Route exact path='/detalhe/:id'>
+                <Route exact path='/post/:id'>
                     <PostPage/>
                 </Route>
                 <Route>

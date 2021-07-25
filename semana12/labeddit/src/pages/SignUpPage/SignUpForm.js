@@ -1,26 +1,29 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import { InpustsContainer } from './styled'
-import useForm from '../../hooks/useForm'
-import { login } from '../../services/user'
-import { useHistory } from 'react-router-dom'
-import useUnprotectedPage from '../../hooks/useUnprotectedPage'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { InpustsContainer } from './styled';
+import useForm from '../../hooks/useForm';
 
-const LoginForm = () => {
-    useUnprotectedPage()
-    const [form, onChange, clear] = useForm({email:'',password:''})
-    const history = useHistory()
+const SignUpForm = () => {
 
+    const [form, onChange, clear] = useForm({username:'',email:'',password:''})
     const onSubmitForm = (event) => {
         event.preventDefault()
-        login(form, clear, history)
     }
 
     return (
         <div>
             <InpustsContainer>
                 <form onSubmit={onSubmitForm}>
+                    <TextField id="outlined-basic" label="Nome do usuário" variant="outlined"
+                        name={"username"}
+                        value={form.username}
+                        onChange={onChange}
+                        fullWidth
+                        margin={'normal'}
+                        required
+                        type={'name'}
+                    />
                     <TextField id="outlined-basic" label="E-mail" variant="outlined"
                         name={"email"}
                         value={form.email}
@@ -44,7 +47,7 @@ const LoginForm = () => {
                         fullWidth
                         margin={'normal'}
                     >
-                    Entrar
+                    Fazer cadastro
                     </Button>
                 </form>
             </InpustsContainer>
@@ -52,4 +55,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default SignUpForm
