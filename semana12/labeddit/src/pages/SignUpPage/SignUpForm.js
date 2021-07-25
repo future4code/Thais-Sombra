@@ -6,14 +6,14 @@ import useForm from '../../hooks/useForm'
 import { signUp } from '../../services/user'
 import { useHistory } from 'react-router-dom'
 
-const SignUpForm = () => {
+const SignUpForm = ({setRightButtonText}) => {
 
     const [form, onChange, clear] = useForm({username:'',email:'',password:''})
     const history = useHistory()
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        signUp(form, clear, history)
+        signUp(form, clear, history, setRightButtonText)
     }
 
     return (

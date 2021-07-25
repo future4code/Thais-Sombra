@@ -5,7 +5,7 @@ import SignUpForm from './SignUpForm'
 import { useHistory } from 'react-router-dom'
 import useUnprotectedPage from '../../hooks/useUnprotectedPage'
 
-const SignUpPage = () => {
+const SignUpPage = ({setRightButtonText}) => {
     useUnprotectedPage()
     const history = useHistory()
 
@@ -13,7 +13,9 @@ const SignUpPage = () => {
         <div>
             <ScreenContainer>
                 <h1>Sign Up</h1>
-                <SignUpForm />
+                <SignUpForm 
+                    setRightButtonText={setRightButtonText}
+                />
             </ScreenContainer>
         </div>
     )
