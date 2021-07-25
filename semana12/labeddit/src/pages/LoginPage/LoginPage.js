@@ -4,10 +4,12 @@ import { ScreenContainer, SignUpButtonContainer } from './styled'
 import LoginForm from './LoginForm'
 import { useHistory } from 'react-router-dom'
 import { goToSignUp } from '../../routes/coordinator'
+import useUnprotectedPage from '../../hooks/useUnprotectedPage'
 
 const LoginPage = () => {
 
-const history = useHistory()
+    useUnprotectedPage()
+    const history = useHistory()
 
     return (
         <div>

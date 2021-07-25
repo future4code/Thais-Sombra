@@ -1,14 +1,19 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { InpustsContainer } from './styled';
-import useForm from '../../hooks/useForm';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { InpustsContainer } from './styled'
+import useForm from '../../hooks/useForm'
+import { signUp } from '../../services/user'
+import { useHistory } from 'react-router-dom'
 
 const SignUpForm = () => {
 
     const [form, onChange, clear] = useForm({username:'',email:'',password:''})
+    const history = useHistory()
+
     const onSubmitForm = (event) => {
         event.preventDefault()
+        signUp(form, clear, history)
     }
 
     return (
@@ -22,7 +27,6 @@ const SignUpForm = () => {
                         fullWidth
                         margin={'normal'}
                         required
-                        type={'name'}
                     />
                     <TextField id="outlined-basic" label="E-mail" variant="outlined"
                         name={"email"}

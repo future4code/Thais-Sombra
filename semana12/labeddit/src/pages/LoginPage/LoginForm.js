@@ -5,10 +5,9 @@ import { InpustsContainer } from './styled'
 import useForm from '../../hooks/useForm'
 import { login } from '../../services/user'
 import { useHistory } from 'react-router-dom'
-import useUnprotectedPage from '../../hooks/useUnprotectedPage'
 
 const LoginForm = () => {
-    useUnprotectedPage()
+
     const [form, onChange, clear] = useForm({email:'',password:''})
     const history = useHistory()
 
