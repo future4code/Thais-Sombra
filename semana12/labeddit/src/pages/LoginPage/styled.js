@@ -15,7 +15,7 @@ export const ScreenContainer = styled.div`
     width: 100vw;
 `
 
-export const InpustsContainer = styled.div`
+export const InputsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 80vw;
