@@ -1,14 +1,21 @@
-import express from "express"
+import express, { Express } from "express"
 import cors from "cors"
 import { countries } from "./data"
 
-const app = express()
+const app: Express = express()
 
 app.use(express.json())
 app.use(cors())
 
 app.get("/countries", (req, res) => {
-   res.send(countries)
+   const result = countries.map(country => ({
+      id: country.id,
+      name: country.name
+    }))
+    
+    res
+      .status(200)
+      .send(result)
 })
 
 app.get("/countries/:id", (req, res) => {
