@@ -1,4 +1,4 @@
-import express, { Express } from "express"
+import express, { Express, Request, Response } from "express"
 import cors from "cors"
 import { countries } from "./data"
 
@@ -7,7 +7,7 @@ const app: Express = express()
 app.use(express.json())
 app.use(cors())
 
-app.get("/countries", (req, res) => {
+app.get("/countries", (req:Request, res:Response) => {
    const result = countries.map(country => ({
       id: country.id,
       name: country.name
@@ -18,7 +18,7 @@ app.get("/countries", (req, res) => {
       .send(result)
 })
 
-app.get("/countries/:id", (req, res) => {
+app.get("/countries/:id", (req:Request, res:Response) => {
 
    const result = countries.find(
       (country) => { return country.id === Number(req.params.id) }
