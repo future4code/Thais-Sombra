@@ -32,7 +32,86 @@ DESCRIBE Actor;
 ```
 
 ### Exercício 2
-a) A resposta é: Blablabla, porque:
+a) A resposta é: 
+```
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "002", 
+  "Glória Pires",
+  1200000,
+  "1963-08-23", 
+  "female"
+);
+```
+
+b) A resposta é:
+Error Code: 1062. Duplicate enry '002' for key 'PRIMARY' -> Erro de tentativa de cadastro duplicado devido ao mesmo ID.
+
+```
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "003", 
+  "Fernanda Montenegro",
+  300000,
+  "1929-10-19", 
+  "female"
+);
+```
+
+c) A resposta é:
+Error Code: 1136. Column count doesn't match value count at row1 -> A quantidade de colunas informadas para inserção de informações não é equivalente.
+```
+
+```
+
+d) A resposta é:
+Error Code: 1364. Field 'name' doesn't have a default value -> O campo name é de preenchimento obrigatório e nenhum dado foi passado query.
+```
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "004",
+  "Lázaro Ramos",
+  400000,
+  "1949-04-18", 
+  "male"
+);
+```
+
+e) A resposta é:
+Error Code: 1292. Incorrect date value: '1950' for column 'birth_date' at row1 -> O formato da data não condiz com o definido no banco.
+```
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "005", 
+  "Juliana Paes",
+  719333.33,
+  "1979-03-26", 
+  "female"
+);
+```
+
+f) A resposta é:
+```
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "006", 
+  "Taís Araújo",
+  719333.33,
+  "1979-03-26", 
+  "female"
+);
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "007", 
+  "Marjorie Estiano",
+  500000,
+  "1990-03-26", 
+  "female"
+);
+```
+
+porque:
 1. Bleus
 2. Blius
 3. Blos
