@@ -193,10 +193,21 @@ VALUES
 	("004","Deus é Brasileiro","Cansado da humanidade, Deus resolve tirar férias para descansar e procura alguém no Brasil capaz de substituí-lo. O borracheiro e pescador Taoca e a solitária Madá deverão guiá-lo até Quincas das Mulas, candidato de Deus a santo.","2003-01-31",9);
 ```
 
-1. Bleus
-2. Blius
-3. Blos
+### Exercício 6
+a) A resposta é:
+```
+SELECT id, title, rating FROM Movie
+WHERE id = "001";
+```
 
-b) Isso está errado, pelos motivos:
-* Óbvio
-* Sem dúvida
+b) A resposta é:
+```
+SELECT * FROM Movie
+WHERE title = "Deus é Brasileiro";
+```
+
+c) A resposta é:
+```
+SELECT id, title, rating FROM Movie
+WHERE rating > 7;
+```
