@@ -150,6 +150,28 @@ Error Code: 1054. Unknown column 'nome' in field list' -> Não encontrou coluna 
 SELECT id, name from Actor WHERE id = "002"
 ```
 
+### Exercício 4
+a) A resposta é:
+    A requisição avalia se os dados da coluna name começão com A ou com J e se o valor do salário for superior a 300.000, caso todas as condições sejam atendidas, ele retorna aquela linha de dados.
+
+b) A resposta é:
+```
+SELECT * FROM Actor
+WHERE (name NOT LIKE "A%") AND salary > 350000;
+```
+
+c) A resposta é:
+```
+SELECT * FROM Actor
+WHERE name LIKE "%G%"
+```
+d) A resposta é:
+```
+SELECT * FROM Actor
+WHERE (name LIKE "%A%" AND name LIKE "%J%") AND salary BETWEEN 350000 AND 900000;
+```
+
+
 1. Bleus
 2. Blius
 3. Blos
