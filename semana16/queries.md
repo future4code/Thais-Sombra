@@ -126,6 +126,30 @@ VALUES
 	("007","Marjorie Estiano",500000,"1990-03-26","female");
 ```
 
+### Exercício 3
+a) A resposta é:
+```
+SELECT * FROM Actor WHERE gender ="female";
+```
+b) A resposta é:
+```
+SELECT salary FROM Actor WHERE name = "Tony Ramos";
+```
+c) A resposta é:
+```
+SELECT * FROM Actor WHERE gender = "invalid";
+```
+d) A resposta é:
+```
+SELECT id, name, salary from Actor WHERE salary < 500000;
+```
+e) A resposta é:
+
+Error Code: 1054. Unknown column 'nome' in field list' -> Não encontrou coluna nome
+```
+SELECT id, name from Actor WHERE id = "002"
+```
+
 1. Bleus
 2. Blius
 3. Blos
