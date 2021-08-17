@@ -211,3 +211,30 @@ c) A resposta é:
 SELECT id, title, rating FROM Movie
 WHERE rating > 7;
 ```
+
+### Exercício 7
+a) A resposta é:
+```
+SELECT * FROM Movie
+WHERE title LIKE "%vida%";
+```
+
+b) A resposta é:
+```
+SELECT * FROM Movie
+WHERE (title LIKE "%Dona%" OR synopsis LIKE "%Dona%");
+```
+
+c) A resposta é:
+```
+SELECT * FROM Movie
+WHERE release_date < "2021-08-17";
+```
+
+d) A resposta é:
+```
+SELECT * FROM MOVIE
+WHERE release_date < "2021-08-17" AND 
+      (title LIKE "%TERMO DE BUSCA%" OR
+      synopsis LIKE "%TERMO DE BUSCA%") AND rating > 7;
+```
