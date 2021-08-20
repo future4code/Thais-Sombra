@@ -10,7 +10,8 @@ export const connection = knex({
     connection: {
         host: process.env.DB_HOST,
         port: 3306,
-        user: process.env.DB_PASSWORD,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
         database: process.env.DB_SCHEMA,
         multipleStatements: true
     }
@@ -19,6 +20,6 @@ export const connection = knex({
 const app = express()
 app.use(express.json())
 
-app.put('/', createUser)
+app.put('/user', createUser)
 
 app.listen(3003, ()=> console.log('Servidor rodando na porta 3003'))
