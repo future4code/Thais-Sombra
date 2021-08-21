@@ -14,6 +14,8 @@ export default async function editUser (
             res.status(400).send({
                 message: "Nenhum dos campos pode estar em branco"
             })
+
+            return
         }
 
         if(
@@ -24,6 +26,8 @@ export default async function editUser (
             res.status(400).send({
                 message: "Escolha ao menos um valor para alterar"
             })
+
+            return
         }
 
         await updateUser(
