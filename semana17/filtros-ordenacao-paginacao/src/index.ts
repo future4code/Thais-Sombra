@@ -3,6 +3,7 @@ import cors from "cors"
 import { AddressInfo } from "net"
 import { getAllRecipes } from "./endpoints/getAllRecipes"
 import { getAllUsers } from "./endpoints/getAllUsers"
+import { getAllUsersParam } from "./endpoints/getAllUsersParam"
 
 export const app = express()
 
@@ -10,7 +11,8 @@ app.use(express.json())
 app.use(cors())
 
 app.get("/recipes", getAllRecipes)
-app.get("/allUsers", getAllUsers)
+app.get("/users", getAllUsers)
+app.get("/users/:type", getAllUsersParam)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
