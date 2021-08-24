@@ -1,12 +1,13 @@
 import { Request, Response } from "express"
 import { connection } from "../data/connection"
 
-export const getAllUsersEx2 = async(req: Request,res: Response): Promise<void> =>{
+export const getAllUsersPag = async(req: Request,res: Response): Promise<void> =>{
     try {
         
        const name = req.query.name || "%"
        const sort = req.query.sort || 'email'
        const order = req.query.order || "asc"
+       const page = Number(req.query.page) || 1
  
        if(sort !== 'email' && sort !== "type" && sort !== "name"){
           res.statusCode = 422
@@ -18,9 +19,13 @@ export const getAllUsersEx2 = async(req: Request,res: Response): Promise<void> =
           throw new Error("'order' must be either 'asc' or 'desc'")
        }
 
+       const offset = 10 * (page - 1)
+
        const result = await connection("aula48_exercicio")
         .where("name", "LIKE", `%${name}%`)
         .orderBy(sort, order)
+        .limit(10)
+        .offset(offset)
  
        if(!result.length){
           res.statusCode = 404

@@ -5,6 +5,7 @@ import { getAllRecipes } from "./endpoints/getAllRecipes"
 import { getAllUsers } from "./endpoints/getAllUsers"
 import { getAllUsersParam } from "./endpoints/getAllUsersParam"
 import { getAllUsersEx2 } from "./endpoints/getAllUsersEx2"
+import { getAllUsersPag } from "./endpoints/getAllUsersPag"
 
 export const app = express()
 
@@ -15,6 +16,7 @@ app.get("/recipes", getAllRecipes)
 app.get("/users", getAllUsers)
 app.get("/users/:type", getAllUsersParam)
 app.get("/filter", getAllUsersEx2)
+app.get("/pag", getAllUsersPag)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
