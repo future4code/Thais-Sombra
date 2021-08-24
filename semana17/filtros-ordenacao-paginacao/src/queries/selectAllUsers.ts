@@ -1,5 +1,4 @@
 import { connection } from "../data/connection"
-import { user } from "../types"
 
 export default async function selectAllUsers(type:string):Promise<any> {
     const result = await connection.raw(`
