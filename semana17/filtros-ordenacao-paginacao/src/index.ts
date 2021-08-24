@@ -14,7 +14,7 @@ app.use(cors())
 app.get("/recipes", getAllRecipes)
 app.get("/users", getAllUsers)
 app.get("/users/:type", getAllUsersParam)
-app.get("/users/filter", getAllUsersEx2)
+app.get("/filter", getAllUsersEx2)
 
 const server = app.listen(process.env.PORT || 3003, () => {
    if (server) {
