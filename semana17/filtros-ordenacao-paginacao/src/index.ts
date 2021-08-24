@@ -6,6 +6,7 @@ import { getAllUsers } from "./endpoints/getAllUsers"
 import { getAllUsersParam } from "./endpoints/getAllUsersParam"
 import { getAllUsersEx2 } from "./endpoints/getAllUsersEx2"
 import { getAllUsersPag } from "./endpoints/getAllUsersPag"
+import { getUsers } from "./endpoints/getUsers"
 
 export const app = express()
 
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 app.get("/recipes", getAllRecipes)
+app.get("/", getUsers)
 app.get("/users", getAllUsers)
 app.get("/users/:type", getAllUsersParam)
 app.get("/filter", getAllUsersEx2)

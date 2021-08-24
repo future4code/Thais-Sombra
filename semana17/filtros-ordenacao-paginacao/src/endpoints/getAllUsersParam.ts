@@ -1,13 +1,18 @@
 import { Request, Response } from "express"
-import { connection } from "../data/connection"
-import { recipe, user } from "../types"
 import selectAllUsers from "../queries/selectAllUsers"
 
 export const getAllUsersParam = async(req: Request,res: Response): Promise<void> =>{
     try {
         
        const type = req.params.type
-       const result = await selectAllUsers(type)
+       const name = req.query.name
+       
+       if(typeof name !== "string"){
+          res.statusCode = 422
+          throw new Error (" 'name' must be either 'name' or 'type'")
+         }
+         
+      const result = await selectAllUsers(type,name)
  
        if(!result.length){
           res.statusCode = 404
