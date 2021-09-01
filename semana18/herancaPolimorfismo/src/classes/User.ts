@@ -1,4 +1,4 @@
-class User {
+export class User {
   private id: string;
   private email: string;
   private name: string;
@@ -28,4 +28,8 @@ class User {
 	public getName(): string {
 		return this.name
 	}
+
+    //public getPassword(): string {
+	//	return this.password
+	//}
 }
