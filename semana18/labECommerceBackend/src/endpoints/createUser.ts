@@ -14,18 +14,16 @@ export const createUser = async (req: Request, res: Response) =>{
             throw new Error("Digite um email válido");
         };
 
-        const id = (Date.now() + Math.random()).toString();
+        const id = Date.now() + Math.random().toString();
 
-        const user = new User(
-            id,
-            name,
-            email,
-            age
-        );
+        const user = new User(id, name, email, age);
 
         new UserDataBase().insertUser(user)
 
-        res.status(201).send({message: "Novo usuário cadastrado com sucesso"})
+        res.status(201).send({
+            message:`Novo usuário cadastrado com sucesso!`,
+            user: user})
+
     } catch (error: any ){
         switch (error.code) {
             case "ER_DUP_ENTRY":

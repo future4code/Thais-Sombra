@@ -8,7 +8,7 @@ export default class TableDataBase extends BaseDataBase {
             CREATE TABLE labcommerce_backend_users (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 name VARCHAR(64) NOT NULL,
-                email VARCHAR(64) NOT NULL,
+                email VARCHAR(64) NOT NULL UNIQUE,
                 age INT NOT NULL
             );
 

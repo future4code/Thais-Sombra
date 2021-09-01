@@ -16,15 +16,4 @@ export default class User {
         return this.id
     }
 
-    public getName(): string {
-        return this.name
-    }
-
-    public getEmail(): string {
-        return this.email
-    }
-
-    public getAge(): number {
-        return this.age
-    }
 }
