@@ -1,6 +1,6 @@
 import BaseDataBase from "./BaseDataBase";
 
-export class TableDataBase extends BaseDataBase {
+export default class TableDataBase extends BaseDataBase {
     public createTables = async () : Promise<void> => {
         await BaseDataBase.connection.raw(`
             CREATE TABLE labcommerce_backend_users (
