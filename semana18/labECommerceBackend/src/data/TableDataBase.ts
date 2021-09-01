@@ -1,5 +1,7 @@
 import BaseDataBase from "./BaseDataBase";
 
+const printError = ( error: any ) => { console.log(error.sqlMessage || error.message )};
+
 export default class TableDataBase extends BaseDataBase {
     public createTables = async () : Promise<void> => {
         await BaseDataBase.connection.raw(`
@@ -22,7 +24,7 @@ export default class TableDataBase extends BaseDataBase {
                 description VARCHAR(260) NOT NULL,
                 price FLOAT NOT NULL,
                 ticket_id VARCHAR(64),
-                FOREIGN LEY (ticket_id) REFERENCE labcommerce_backend_tickets(id)
+                FOREIGN KEY (ticket_id) REFERENCES labcommerce_backend_tickets(id)
             );
 
             CREATE TABLE labcommerce_backend_purchase (
@@ -31,9 +33,11 @@ export default class TableDataBase extends BaseDataBase {
                 product_id VARCHAR(64) NOT NULL,
                 quantity INT NOT NULL,
                 total_value FLOAT NOT NULL,
-                FOREING KEY (user_id) REFERENCES labcommerce_backend_users(id),
-                FOREING KEY (product_id) labcommerce_backend_products(id)
+                FOREIGN KEY (user_id) REFERENCES labcommerce_backend_users(id),
+                FOREIGN KEY (product_id) REFERENCES labcommerce_backend_products(id)
             );
         `)
+        .then(()=> { console.log("Tabelas criadas") })
+        .catch(printError);
     }
 };

@@ -13,7 +13,7 @@ export default class UserDataBase extends BaseDataBase{
             });
     };
 
-    public getAllUsers = async () : Promise<any> =>{
+    public getAll = async () : Promise<any> =>{
         return await BaseDataBase.connection("labcommerce_backend_users");
     };
 
