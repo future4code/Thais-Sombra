@@ -5,29 +5,23 @@ const printError = ( error: any ) => { console.log(error.sqlMessage || error.mes
 export default class TableDataBase extends BaseDataBase {
     public createTables = async () : Promise<void> => {
         await BaseDataBase.connection.raw(`
-            CREATE TABLE labcommerce_backend_users (
+            CREATE TABLE IF NOT EXISTS labcommerce_backend_users (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 name VARCHAR(64) NOT NULL,
                 email VARCHAR(64) NOT NULL UNIQUE,
                 age INT NOT NULL
             );
 
-            CREATE TABLE labcommerce_backend_tickets (
-                id VARCHAR(64) NOT NULL PRIMARY KEY,
-                origin VARCHAR(100) NOT NULL,
-                destiny VARCHAR(64) NOT NULL
-            );
-
-            CREATE TABLE labcommerce_backend_products (
+            CREATE TABLE IF NOT EXISTS labcommerce_backend_products (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 name VARCHAR(120) NOT NULL,
                 description VARCHAR(260) NOT NULL,
                 price FLOAT NOT NULL,
-                ticket_id VARCHAR(64),
-                FOREIGN KEY (ticket_id) REFERENCES labcommerce_backend_tickets(id)
+                origin VARCHAR(120),
+                destination VARCHAR(120)
             );
 
-            CREATE TABLE labcommerce_backend_purchase (
+            CREATE TABLE IF NOT EXISTS labcommerce_backend_purchase (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 user_id VARCHAR(64) NOT NULL,
                 product_id VARCHAR(64) NOT NULL,

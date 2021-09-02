@@ -27,13 +27,13 @@ export const createUser = async (req: Request, res: Response) =>{
     } catch (error: any ){
         switch (error.code) {
             case "ER_DUP_ENTRY":
-                res.status(400).send("E-mail já existe")
+                res.status(400).send("E-mail já cadastrado, insira um novo e-mail válido")
                 break
             case "ER_TRUNCATED_WRONG_VALUE":
-                res.status(400).send("Data de nascimento deve ser informada no formato DD/MM/AAAA")
+                res.status(400).send("Idade precisa ser um número inteiro, verifique o valor informado")
                 break
             default:
                 res.status(500).send(error.message || error.sqlMessage)
         };
-    }
+    };
 };
