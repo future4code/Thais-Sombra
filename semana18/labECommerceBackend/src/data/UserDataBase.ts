@@ -11,7 +11,6 @@ export default class UserDataBase extends BaseDataBase{
                 email: user.email,
                 age: user.age
             });
-            console.log("UserDataBase")
             return result;
     };
 
@@ -19,4 +18,4 @@ export default class UserDataBase extends BaseDataBase{
         return await BaseDataBase.connection("labcommerce_backend_users");
     };
 
-}
+};

@@ -7,9 +7,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
         const returnList = await userDataBase.getAll();
 
-        console.log(returnList)
-
-        res.status(200).send(returnList)
+        res.status(200).send(returnList);
+        
     } catch (error: any){
         res.status(500).send(error.message || error.sqlMessage)
     };

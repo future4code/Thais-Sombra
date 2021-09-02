@@ -1,10 +1,11 @@
-export class Product {
+export default class Product {
     constructor(
         private id: string,
         public name: string,
         public description: string,
         public price: number,
-        public ticketId?: string
+        public origin?: string,
+        public destination?: string
     ){ }
 
     public getId(): string {

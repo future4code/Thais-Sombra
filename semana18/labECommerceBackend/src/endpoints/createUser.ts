@@ -18,22 +18,23 @@ export const createUser = async (req: Request, res: Response) =>{
 
         const user = new User(id, name, email, age);
 
-        await new UserDataBase().insertUser(user)
+        await new UserDataBase().insertUser(user);
 
         res.status(201).send({
-            message:`Novo usuário cadastrado com sucesso!`,
-            user: user})
+            message:"Novo usuário cadastrado com sucesso!",
+            user: user
+        });
 
     } catch (error: any ){
         switch (error.code) {
             case "ER_DUP_ENTRY":
-                res.status(400).send("E-mail já cadastrado, insira um novo e-mail válido")
-                break
+                res.status(400).send("E-mail já cadastrado, insira um novo e-mail válido");
+                break;
             case "ER_TRUNCATED_WRONG_VALUE":
-                res.status(400).send("Idade precisa ser um número inteiro, verifique o valor informado")
-                break
+                res.status(400).send("Idade precisa ser um número inteiro, verifique o valor informado");
+                break;
             default:
-                res.status(500).send(error.message || error.sqlMessage)
+                res.status(500).send(error.message || error.sqlMessage);
         };
     };
 };
