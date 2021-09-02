@@ -18,7 +18,7 @@ export const createUser = async (req: Request, res: Response) =>{
 
         const user = new User(id, name, email, age);
 
-        new UserDataBase().insertUser(user)
+        await new UserDataBase().insertUser(user)
 
         res.status(201).send({
             message:`Novo usuário cadastrado com sucesso!`,
