@@ -1,6 +1,6 @@
 import Product from "./Product";
 
-export class Ticket extends Product {
+export default class Ticket extends Product {
     constructor(
         id: string,
         name:string,

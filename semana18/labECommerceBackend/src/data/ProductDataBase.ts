@@ -18,6 +18,6 @@ export default class ProductDataBase extends BaseDataBase{
 
     public getAll = async (): Promise<any> =>{
         return await BaseDataBase.connection("labcommerce_backend_products")
-    }
+    };
 
 };

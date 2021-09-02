@@ -4,7 +4,7 @@ import Product from "../entities/Product";
 
 export const createProduct = async (req: Request, res: Response) => {
     try{
-        const { name, description, price, origin, destination } = req.body;
+        const { name, description, price } = req.body;
 
         if (!name || !description || !price){
             throw new Error("Preencha todos os campos")
@@ -12,7 +12,7 @@ export const createProduct = async (req: Request, res: Response) => {
 
         const id = Date.now() + Math.random().toString();
 
-        const product = new Product(id, name, description, price, origin, destination );
+        const product = new Product(id, name, description, price);
 
         await new ProductDataBase().insertProduct(product);
 
