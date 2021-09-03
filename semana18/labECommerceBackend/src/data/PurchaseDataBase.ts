@@ -7,10 +7,10 @@ export default class PurchaseDataBase extends BaseDataBase{
         const result = await BaseDataBase.connection("labcommerce_backend_purchase")
             .insert({
                 id: purchase.getId(),
-                userId: purchase.getUserId(),
-                productId: purchase.getProductId(),
+                user_id: purchase.getUserId(),
+                product_id: purchase.getProductId(),
                 quantity: purchase.quantity,
-                totalValue: purchase.totalValue
+                total_value: purchase.totalValue
             });
             return result;
     };

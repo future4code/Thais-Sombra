@@ -36,7 +36,7 @@ export default class ProductDataBase extends BaseDataBase{
                 WHERE id = "${id}"
                 ;
             `);
-            return result[0]
+            return result[0][0]
     };
 
 };

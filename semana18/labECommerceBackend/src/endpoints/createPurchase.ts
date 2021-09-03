@@ -15,7 +15,7 @@ export const createPurchase = async (req: Request, res: Response) => {
 
         const price = await new ProductDataBase().getProductById(productId);
         
-        const totalValue = price*quantity
+        const totalValue = price.price*Number(quantity);
 
         const purchase = new Purchase(id, userId, productId, quantity, totalValue);
 
