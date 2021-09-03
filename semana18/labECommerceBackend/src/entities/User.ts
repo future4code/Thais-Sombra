@@ -1,9 +1,12 @@
+import Purchase from "./Purchase"
+
 export default class User {
     constructor(
         private id: string,
         public name: string,
         public email: string,
-        public age: number
+        public age: number,
+        public purchases: Purchase[]=[]
     ){
         console.log("Constructor da classe User")
             this.id = id
