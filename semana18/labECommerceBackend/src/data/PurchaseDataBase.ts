@@ -1,11 +1,11 @@
 import Purchase from "../entities/Purchase";
 import BaseDataBase from "./BaseDataBase";
-import { usersTableName } from "./TableDataBase";
+import { purchaseTableName } from "./TableDataBase";
 
 export default class PurchaseDataBase extends BaseDataBase{
 
     public insertPurchase = async ( purchase: Purchase): Promise<any> => {
-        const result = await BaseDataBase.connection(usersTableName)
+        const result = await BaseDataBase.connection(purchaseTableName)
             .insert({
                 id: purchase.getId(),
                 user_id: purchase.getUserId(),
@@ -17,13 +17,13 @@ export default class PurchaseDataBase extends BaseDataBase{
     };
 
     public getAll = async (): Promise<any> =>{
-        const result = await BaseDataBase.connection(usersTableName);
+        const result = await BaseDataBase.connection(purchaseTableName);
         return result;
     };
 
     public selectPurchaseByUserId = async (userId: string): Promise<any> =>{
         const result = await BaseDataBase.connection.raw(`
-                SELECT * FROM ${usersTableName}
+                SELECT * FROM ${purchaseTableName}
                 WHERE user_id = "${userId}"
                 ;
             `);
