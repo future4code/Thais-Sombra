@@ -2,17 +2,21 @@ import BaseDataBase from "./BaseDataBase";
 
 const printError = ( error: any ) => { console.log(error.sqlMessage || error.message )};
 
+export const usersTableName = "labcommerce_backend_users"
+export const productsTableName = "labcommerce_backend_products"
+export const purchaseTableName = "labcommerce_backend_purchase"
+
 export default class TableDataBase extends BaseDataBase {
     public createTables = async () : Promise<void> => {
         await BaseDataBase.connection.raw(`
-            CREATE TABLE IF NOT EXISTS labcommerce_backend_users (
+            CREATE TABLE IF NOT EXISTS ${usersTableName} (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 name VARCHAR(64) NOT NULL,
                 email VARCHAR(64) NOT NULL UNIQUE,
                 age INT NOT NULL
             );
 
-            CREATE TABLE IF NOT EXISTS labcommerce_backend_products (
+            CREATE TABLE IF NOT EXISTS ${productsTableName} (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 name VARCHAR(120) NOT NULL,
                 description VARCHAR(260) NOT NULL,
@@ -21,7 +25,7 @@ export default class TableDataBase extends BaseDataBase {
                 destination VARCHAR(120)
             );
 
-            CREATE TABLE IF NOT EXISTS labcommerce_backend_purchase (
+            CREATE TABLE IF NOT EXISTS ${purchaseTableName} (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
                 user_id VARCHAR(64) NOT NULL,
                 product_id VARCHAR(64) NOT NULL,

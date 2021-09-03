@@ -1,12 +1,11 @@
 import User from "../entities/User";
 import BaseDataBase from "./BaseDataBase";
-
-const tableName = "labcommerce_backend_users"
+import { usersTableName } from "./TableDataBase";
 
 export default class UserDataBase extends BaseDataBase{
     
     public insertUser = async ( user: User ): Promise<any> => {
-        const result = await BaseDataBase.connection(tableName)
+        const result = await BaseDataBase.connection(usersTableName)
             .insert({
                 id: user.getId(),
                 name: user.name,
@@ -17,12 +16,12 @@ export default class UserDataBase extends BaseDataBase{
     };
 
     public getAll = async () : Promise<any> =>{
-        return await BaseDataBase.connection(tableName);
+        return await BaseDataBase.connection(usersTableName);
     };
 
     public selectUserById = async (userId: string): Promise<any> =>{
         const result = await BaseDataBase.connection.raw(`
-                SELECT * FROM ${tableName}
+                SELECT * FROM ${usersTableName}
                 WHERE id = "${userId}"
                 ;
             `);

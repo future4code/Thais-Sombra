@@ -1,10 +1,11 @@
 import Product from "../entities/Product";
 import BaseDataBase from "./BaseDataBase";
+import { productsTableName } from "./TableDataBase";
 
 export default class ProductDataBase extends BaseDataBase{
 
     public insertProduct = async ( product: Product): Promise<any> => {
-        const result = await BaseDataBase.connection("labcommerce_backend_products")
+        const result = await BaseDataBase.connection(productsTableName)
             .insert({
                 id: product.getId(),
                 name: product.name,
@@ -18,7 +19,7 @@ export default class ProductDataBase extends BaseDataBase{
 
     public getAll = async (order:string): Promise<any> =>{
         const result = await BaseDataBase.connection.raw(`
-            SELECT * FROM labcommerce_backend_products
+            SELECT * FROM ${productsTableName}
             ORDER BY price ${order}
             ;
         `);
@@ -27,7 +28,7 @@ export default class ProductDataBase extends BaseDataBase{
 
     public getAllTickets = async (): Promise<any> =>{
         const result = await BaseDataBase.connection.raw(`
-                SELECT * FROM labcommerce_backend_products
+                SELECT * FROM ${productsTableName}
                 WHERE origin IS NOT NULL
                 ;
             `);
@@ -36,7 +37,7 @@ export default class ProductDataBase extends BaseDataBase{
 
     public getProductById = async (id: string): Promise<any> =>{
         const result = await BaseDataBase.connection.raw(`
-                SELECT * FROM labcommerce_backend_products
+                SELECT * FROM ${productsTableName}
                 WHERE id = "${id}"
                 ;
             `);
