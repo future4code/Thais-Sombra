@@ -3,9 +3,15 @@ import ProductDataBase from "../data/ProductDataBase";
 
 export const getAllProducts = async (req: Request, res: Response) => {
     try {
+        const order = req.query.order;
+
+        if( order !== "ASC" && order !== "DESC" && order !== ""){
+            throw new Error("A ordenação deverá ser 'ASC' ou 'DESC'");
+        }
+
         const productDataBase = new ProductDataBase();
 
-        const returnList = await productDataBase.getAll();
+        const returnList = await productDataBase.getAll(order);
 
         res.status(200).send(returnList);
 

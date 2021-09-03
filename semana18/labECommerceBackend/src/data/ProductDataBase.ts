@@ -16,9 +16,13 @@ export default class ProductDataBase extends BaseDataBase{
             return result;
     };
 
-    public getAll = async (): Promise<any> =>{
-        const result = await BaseDataBase.connection("labcommerce_backend_products");
-        return result;
+    public getAll = async (order:string): Promise<any> =>{
+        const result = await BaseDataBase.connection.raw(`
+            SELECT * FROM labcommerce_backend_products
+            ORDER BY price ${order}
+            ;
+        `);
+        return result[0]
     };
 
     public getAllTickets = async (): Promise<any> =>{
