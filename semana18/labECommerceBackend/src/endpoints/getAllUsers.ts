@@ -3,9 +3,11 @@ import UserDataBase from "../data/UserDataBase";
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const userDataBase = new UserDataBase();
+        const usersId = await new UserDataBase().selectAllUsersId();
 
-        const returnList = await userDataBase.getAll();
+        const filteredIds = usersId.filter(function (elem: any, index: any, self: any) {
+            return index === self.indexOf(elem);
+        });
 
         res.status(200).send(returnList);
         
