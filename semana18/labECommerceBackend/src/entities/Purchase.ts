@@ -1,4 +1,4 @@
-export class Purchase {
+export default class Purchase {
     constructor(
         private id: string,
         private userId: string,

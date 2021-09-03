@@ -19,9 +19,9 @@ export const createProduct = async (req: Request, res: Response) => {
         res.status(201).send({
             message: "Novo produto cadastrado com sucesso!",
             product: product
-        })
+        });
         
     } catch(error: any){
                 res.status(500).send(error.message || error.sqlMessage);
     };
-}
+};

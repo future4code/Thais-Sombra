@@ -30,4 +30,13 @@ export default class ProductDataBase extends BaseDataBase{
             return result[0]
     };
 
+    public getProductById = async (id: string): Promise<any> =>{
+        const result = await BaseDataBase.connection.raw(`
+                SELECT * FROM labcommerce_backend_products
+                WHERE id = "${id}"
+                ;
+            `);
+            return result[0]
+    };
+
 };
