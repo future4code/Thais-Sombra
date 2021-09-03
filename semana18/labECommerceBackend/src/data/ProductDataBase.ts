@@ -17,7 +17,17 @@ export default class ProductDataBase extends BaseDataBase{
     };
 
     public getAll = async (): Promise<any> =>{
-        return await BaseDataBase.connection("labcommerce_backend_products")
+        const result = await BaseDataBase.connection("labcommerce_backend_products");
+        return result;
+    };
+
+    public getAllTickets = async (): Promise<any> =>{
+        const result = await BaseDataBase.connection.raw(`
+                SELECT * FROM labcommerce_backend_products
+                WHERE origin IS NOT NULL
+                ;
+            `);
+            return result[0]
     };
 
 };
