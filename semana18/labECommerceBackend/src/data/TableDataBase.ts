@@ -31,8 +31,8 @@ export default class TableDataBase extends BaseDataBase {
                 product_id VARCHAR(64) NOT NULL,
                 quantity INT NOT NULL,
                 total_value FLOAT NOT NULL,
-                FOREIGN KEY (user_id) REFERENCES labcommerce_backend_users(id),
-                FOREIGN KEY (product_id) REFERENCES labcommerce_backend_products(id)
+                FOREIGN KEY (user_id) REFERENCES ${usersTableName}(id),
+                FOREIGN KEY (product_id) REFERENCES ${productsTableName}(id)
             );
         `)
         .then(()=> { console.log("Tabelas criadas") })

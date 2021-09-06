@@ -15,8 +15,12 @@ export default class UserDataBase extends BaseDataBase{
             return result;
     };
 
-    public getAll = async () : Promise<any> =>{
-        return await BaseDataBase.connection(usersTableName);
+    public selectAllUsersId = async () : Promise<any> =>{
+        const result = await BaseDataBase.connection.raw(`
+            SELECT id FROM ${usersTableName}
+            ;
+        `);
+        return result[0]
     };
 
     public selectUserById = async (userId: string): Promise<any> =>{

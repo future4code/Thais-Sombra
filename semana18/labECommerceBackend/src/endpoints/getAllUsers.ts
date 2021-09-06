@@ -9,7 +9,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
             return index === self.indexOf(elem);
         });
 
-        res.status(200).send(returnList);
+        res.status(200).send(usersId);
         
     } catch (error: any){
         res.status(500).send(error.message || error.sqlMessage)

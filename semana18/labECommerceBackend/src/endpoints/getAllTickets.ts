@@ -3,9 +3,8 @@ import ProductDataBase from "../data/ProductDataBase";
 
 export const getAllTickets = async (req: Request, res: Response) => {
     try {
-        const productDataBase = new ProductDataBase();
 
-        const returnList = await productDataBase.getAllTickets();
+        const returnList = await new ProductDataBase().getAllTickets();
 
         res.status(200).send(returnList);
 

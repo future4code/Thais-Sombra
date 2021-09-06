@@ -3,9 +3,7 @@ import PurchaseDataBase from "../data/PurchaseDataBase";
 
 export const getAllPurchases = async (req: Request, res: Response) => {
     try {
-        const purchaseDataBase = new PurchaseDataBase();
-
-        const returnList = await purchaseDataBase.getAll();
+        const returnList = await new PurchaseDataBase().getAll();
 
         res.status(200).send(returnList);
 

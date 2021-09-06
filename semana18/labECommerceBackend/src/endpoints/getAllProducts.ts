@@ -9,9 +9,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
             throw new Error("A ordenação deverá ser 'ASC' ou 'DESC'");
         }
 
-        const productDataBase = new ProductDataBase();
-
-        const returnList = await productDataBase.getAll(order);
+        const returnList = await new ProductDataBase().getAll(order);
 
         res.status(200).send(returnList);
 

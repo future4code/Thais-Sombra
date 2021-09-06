@@ -8,15 +8,14 @@ export default class User {
         public age: number,
         public purchases: Purchase[]=[]
     ){
-        console.log("Constructor da classe User")
             this.id = id
             this.name = name
             this.email = email
             this.age = age
-    }
+    };
 
     public getId(): string {
         return this.id
-    }
+    };
 
-}
+};
