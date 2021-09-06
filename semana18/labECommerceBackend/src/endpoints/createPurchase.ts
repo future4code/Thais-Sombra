@@ -5,19 +5,19 @@ import Purchase from "../entities/Purchase";
 
 export const createPurchase = async (req: Request, res: Response) => {
     try{
-        const { userId, productId, quantity } = req.body;
+        const { userID, productID, quantity } = req.body;
 
-        if (!userId || !productId || !quantity){
+        if (!userID || !productID || !quantity){
             throw new Error("Preencha todos os campos")
         };
 
-        const id = Date.now() + Math.random().toString();
+        const purchaseID = Date.now() + Math.random().toString();
 
-        const price = await new ProductDataBase().getProductById(productId);
+        const price = await new ProductDataBase().getProductById(productID);
         
         const totalValue = price.price*quantity;
 
-        const purchase = new Purchase(id, userId, productId, quantity, totalValue);
+        const purchase = new Purchase(purchaseID, userID, productID, quantity, totalValue);
 
         await new PurchaseDataBase().insertPurchase(purchase);
 
