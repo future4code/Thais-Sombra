@@ -1,7 +1,5 @@
 <h1 align="center" id="top">== LabECommerce Backend ==</h1>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/80704054/121716694-b5546e00-cab6-11eb-815d-0fc9412f8094.png" /></p>
-
 <p align="center">
   <a href="#sobre">Sobre</a> &#xa0; | &#xa0; 
   <a href="#funciona">O que funciona</a> &#xa0; | &#xa0;
@@ -31,7 +29,22 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h2 id="funciona">:heavy_check_mark: O que funciona</h2>
 
-* Preencher com tópicos que funcionam
+* Endpoint mínimo do MVP
+- [x] 1. Criar um usuário
+- [x] 2. Criar um produto
+- [x] 3. Listar todos os usuários
+- [x] 4 . Listar todos os produtos
+
+* Desafios
+
+- [x] 5. Criar uma viagem
+- [x] 6. Listar todas as viagens
+- [x] 7. Criar uma compra
+- [x] 8. Ordenação por preço dos produtos - queryParams
+- [x] 9. Classe User receber um array de Purchases
+- [x] 10. Listar todas as compras
+- [x] 11. Listar todas as compras de um usuário
+- [x] 12. Endpoint de listar usuários também busca as compras
 <!--
 <h2 id="nao-funciona">:x: O que não funciona</h2>
 
@@ -39,11 +52,9 @@ As seguintes ferramentas foram usadas na construção do projeto:
  
 <h2 id="pendente">:construction: Em desenvolvimento</h2>
 
-- [ ] Preencher com itens que estão em desenvolvimento
-
-<h2 id="link">:link: Links Importantes</h2>
-<br/><a href="/"/>Deploy Heroku</a></br>
-<br/><a href="/"/>Documentação Postman</a></br>
+- [ ] Manipular array de objetos de retorno do getAllUsers  
+- [ ] Deploy no Heroku
+- [ ] Documentação do postman
 
 <h2 id="requisitos">:leftwards_arrow_with_hook: Pré-requisitos</h2>
 
@@ -55,10 +66,10 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/future4code/incluirPasta>
+$ git clone <https://github.com/future4code/Thais-Sombra>
 
 # Acesse a pasta do projeto no terminal
-$ cd ./labECommerceBackend
+$ cd ./semana18/labECommerceBackend
 
 # Instale as dependências
 $ npm install
@@ -80,7 +91,6 @@ $ npm run start
 <br/>:package: nova funcionalidade</br> 
 <br/>:arrow_up: atualização</br> 
 <br/>:bug: correção de bug</br>
-<br/>:art: estilização</br>
 
 <h2 id="desenvolvedores">:construction_worker: Desenvolvedoras</h2>
 

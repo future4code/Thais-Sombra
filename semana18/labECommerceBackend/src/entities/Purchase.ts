@@ -1,22 +1,22 @@
 export default class Purchase {
     constructor(
-        private id: string,
-        private userId: string,
-        private productId: string,
+        private purchaseID: string,
+        private userID: string,
+        private productID: string,
         public quantity: number,
         public totalValue: number
     ){ }
 
     public getId (): string{
-        return this.id
+        return this.purchaseID
     }
 
     public getUserId (): string{
-        return this.userId
+        return this.userID
     }
 
     public getProductId (): string{
-        return this.productId
+        return this.productID
     }
 
 }

@@ -25,6 +25,7 @@ export default class PurchaseDataBase extends BaseDataBase{
         const result = await BaseDataBase.connection.raw(`
                 SELECT * FROM ${purchaseTableName}
                 WHERE user_id = "${userId}"
+                ORDEY BY user_id ASC
                 ;
             `);
             return result[0]
