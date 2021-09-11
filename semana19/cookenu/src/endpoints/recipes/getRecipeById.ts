@@ -12,14 +12,23 @@ export default async function getRecipeById(
         const token: string = req.headers.authorization!;
 
         const recipeId  = req.params.id;
-        console.log(token, recipeId)
 
         const tokenData = getTokenData(token);
 
         const [recipe] = await connection(recipeTableName)
             .where ({ id: recipeId });
 
-        res.send ({ recipe });
+        if(!recipe){
+            res.statusCode = 404;
+            throw new Error("Recipe not found");
+        };
+
+        res.send ({ 
+            id: recipe.id,
+            title: recipe.title,
+            description: recipe.description,
+            createdAt: recipe. created_at
+        });
 
     } catch (error: any) {
         console.log(error.message);
