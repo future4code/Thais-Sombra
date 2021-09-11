@@ -13,12 +13,12 @@ export default async function signup(
         const { name, email, password } = req.body;
 
         if( !name || !email || !password ){
-            res.statusCode = 422;
+            res.statusCode = 422
             throw new Error("'name', 'email' and 'password' required");
         };
 
         if ( password.length <6 ) {
-            res.statusCode = 422;
+            res.statusCode = 422
             throw new Error("'password' must be at least 6 characters long")
         };
 
@@ -42,7 +42,10 @@ export default async function signup(
         res.send({token});
 
     } catch (error: any) {
-        console.log(error.message);
-        res.status(500).send("Internal server error");
+        if(res.statusCode === 200){
+            res.status(500).send("Internal server error");
+        } else {
+            res.send(error.message)
+        };
     };
 };

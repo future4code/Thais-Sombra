@@ -31,8 +31,6 @@ export default async function login(
         res.send({token});
      
     } catch (error: any) {
-        console.log(error.message);
-
         if(res.statusCode === 200){
             res.status(500).send("Internal server error");
         } else {

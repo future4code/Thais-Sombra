@@ -38,8 +38,6 @@ export default async function createRecipe(
         res.send("Recipe successfuly created")
 
     } catch (error: any) {
-        console.log(error.message);
-
         if(res.statusCode === 200){
             res.status(500).send("Internal server error");
         } else {
