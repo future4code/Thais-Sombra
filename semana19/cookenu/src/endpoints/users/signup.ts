@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import connection from "../../../connection";
-import { generateToken } from "../../../services/authenticator";
-import { generateHash } from "../../../services/hashManager";
-import generateId from "../../../services/idGenerator";
-import { userTableName } from "../../../types";
+import connection from "../../connection";
+import { generateToken } from "../../services/authenticator";
+import { generateHash } from "../../services/hashManager";
+import generateId from "../../services/idGenerator";
+import { userTableName } from "../../types";
 
 export default async function signup(
     req: Request,
@@ -21,10 +21,10 @@ export default async function signup(
 
         const token:string = generateToken({id});
         
-        res.send({token})
+        res.send({token});
 
     } catch (error: any) {
         console.log(error.message);
-        res.status(500).send("Internal server error")
-    }
-}
+        res.status(500).send("Internal server error");
+    };
+};
