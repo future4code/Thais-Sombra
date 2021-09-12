@@ -1,5 +1,5 @@
 import connection from "./connection";
-import { userTableName, recipeTableName } from "./types";
+import { userTableName, recipeTableName, userFollowTable } from "./types";
 
 connection.raw(`
     CREATE TABLE IF NOT EXISTS ${userTableName} (
@@ -17,6 +17,10 @@ connection.raw(`
         author_id VARCHAR(255),
         FOREIGN KEY (author_id) REFERENCES ${userTableName} (id)
     );
+
+    CREATE TABLE IF NOT EXISTS ${userFollowTable} (
+        
+    )
 
 `).then(() => console.log(
     "MySql tables were successfully created"

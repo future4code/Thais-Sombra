@@ -19,3 +19,4 @@ export type user = {
 
 export const userTableName = "cookenu_users";
 export const recipeTableName = "cookenu_recipes";
+export const userFollowTable = "cookenu_user_follow";
