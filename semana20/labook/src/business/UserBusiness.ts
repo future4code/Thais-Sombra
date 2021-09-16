@@ -48,24 +48,23 @@ export default class UserBusiness {
   };
 
   async login(loginDTO: LoginDTO) {
-
-        const user = await this.userDatabase.findUserByEmail(loginDTO.email);
+    const user = await this.userDatabase.findUserByEmail(loginDTO.email);
+     
+    if(!user) {
+      throw new Error('Usuário não existe')
+    };
     
-        if(!user) {
-          throw new Error('Usuário não existe')
-        };
+    const isPasswordCorrect: Boolean = await this.hashManager.compare(loginDTO.password, user.password);
     
-        const isPasswordCorrect = await this.hashManager.compare(loginDTO.password, user.passwordHash);
+    if(!isPasswordCorrect) {
+      throw new Error('Senha incorreta!')
+    };
     
-        if(!isPasswordCorrect) {
-          throw new Error('Senha incorreta!')
-        };
+    const token = this.authenticator.generateToken({id: user.id});
     
-        const token = this.authenticator.generateToken({id: user.id});
-    
-        return {
-          token: token,
-          user: user
-        };
+    return {
+      token: token,
+      user: user
+    };
   };
 };

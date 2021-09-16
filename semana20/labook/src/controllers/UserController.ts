@@ -55,20 +55,22 @@ export default class UserController {
             };
 
             if (!loginDTO.email || !loginDTO.password) {
+                res.statusCode = 400;
                 throw new Error("Preencha todos os campos");
             };
 
             if (loginDTO.email.indexOf("@") === -1) {
+                res.statusCode = 400;
                 throw new Error("Digite um email válido");
             };
 
-            const output = await this.userBusiness.login(loginDTO);
+            const output = await new UserBusiness().login(loginDTO);
             
             res.status(202).send({output})
 
         } catch (error: any){
             if(res.statusCode === 200){
-                res.status(500).send("Internal server error");
+                res.status(500).send(error.message);
             } else {
                 res.send(error.message);
             };

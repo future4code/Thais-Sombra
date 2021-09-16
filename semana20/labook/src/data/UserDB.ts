@@ -16,7 +16,7 @@ export default class UserDB extends BaseDB{
 
     public findUserByEmail = async (email: string): Promise<any> => {
         const result = await BaseDB.connection(userTableName)
-            .select('email')
+            .select('*')
             .where({
                 email: email
             });
