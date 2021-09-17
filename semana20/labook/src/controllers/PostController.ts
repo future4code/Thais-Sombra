@@ -33,6 +33,12 @@ export default class PostController {
     async searchPostById (req: Request, res: Response){
         try {
 
+            const postId = req.params.postId;
+
+            const post = await new PostBusiness().searchPostByID(postId);
+
+            res.status(200).send(post);
+
         } catch (error: any){
             if(res.statusCode === 200){
                 res.status(500).send(error.message);

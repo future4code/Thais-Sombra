@@ -21,4 +21,14 @@ export default class PostBusiness {
             post: postModel
         };
     };
+
+    async searchPostByID (postId: string) {
+
+        const post = await new PostDB().findPostById(postId);
+
+        return {
+            post: post
+        };
+    };
+
 };
