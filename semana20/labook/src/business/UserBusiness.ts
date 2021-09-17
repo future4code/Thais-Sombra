@@ -37,7 +37,7 @@ export default class UserBusiness {
     const savedUser = await this.userDatabase.insertUser(userModel);
 
     const token = this.authenticator.generateToken({id: savedUser.id});
-    
+ 
     return {
       token: token,
       id: randomId,
