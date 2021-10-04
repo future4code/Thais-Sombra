@@ -25,6 +25,28 @@ console.log(returnMatrixNumbers(matrix));
 
 // b. Implemente uma função que receba duas matrizes e devolva a soma delas
 
+export const sumMatrix =(
+    matrixA: number[][],
+    matrixB: number[][],
+): any => {
+
+    const newMatrix: number[][] = [];
+
+    const rowSize = matrixA[0].length;
+    const columnSize = matrixB[0].length;
+
+    for (let i = 0; i < rowSize; i++) {
+        let newMatrixRow = [];
+        for (let j = 0; j < columnSize; j++) {
+          newMatrixRow.push(matrixA[i][j] + matrixB[i][j]);
+        }
+        newMatrix.push(newMatrixRow);
+      }
+      return newMatrix;
+};
+
+console.log(sumMatrix(matrix,matrix));
+
 // c. Implemente uma função que receba uma matriz e devolva a sua matriz transposta
 
 // d. Implemente uma função que receba duas matrizes e devolva a multiplicação delas
