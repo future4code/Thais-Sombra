@@ -80,7 +80,7 @@ console.log(realizeCompression("accurate "));
 console.log(realizeCompression("escola"));
 console.log(realizeCompression("accuraaaaaaaaaate"));
 
-export const stringCompression = (input) => {
+export const stringCompression = (input: any) => {
     const substrings = [];
     let lastChar = input[0];
     let charCount = 0;
