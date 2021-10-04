@@ -7,7 +7,7 @@
 // "panana" é 'one edit' de "banana" (troca de um caracter)
 // "bananaaa" não é 'one edit' de "banana" (adição de dois caracteres)
 
-// [3] ALGORITMO DE FORÇA BRUTA
+
 
 // Comparar length das strings
 // A maior inclui a menor
