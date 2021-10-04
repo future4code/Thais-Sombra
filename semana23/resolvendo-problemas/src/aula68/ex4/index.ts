@@ -49,4 +49,21 @@ console.log(sumMatrix(matrix,matrix));
 
 // c. Implemente uma função que receba uma matriz e devolva a sua matriz transposta
 
+const transposeMatrix = (m: number[][]): number[][] => {
+    const transposed: number[][] = [];
+    if (!m.length) {
+      throw new Error("Matriz inválida");
+    }
+    for (let j = 0; j < m[0].length; j++) {
+      let row = [];
+      for (let i = 0; i < m.length; i++) {
+        row.push(m[i][j]);
+      }
+      transposed.push(row);
+    }
+    return transposed;
+  };
+
+  console.log(transposeMatrix(matrix));
+
 // d. Implemente uma função que receba duas matrizes e devolva a multiplicação delas
