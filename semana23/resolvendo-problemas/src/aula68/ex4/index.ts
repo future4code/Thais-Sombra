@@ -67,3 +67,27 @@ const transposeMatrix = (m: number[][]): number[][] => {
   console.log(transposeMatrix(matrix));
 
 // d. Implemente uma função que receba duas matrizes e devolva a multiplicação delas
+
+export const multiplyMatrix = (
+    matrixA: number[][],
+    matrixB: number[][]
+  ): number[][] => {
+    const result: number[][] = [];
+    if (matrixA[0].length !== matrixB.length) {
+      throw new Error("Matrizes inválidas");
+    }
+    for (let i = 0; i < matrixA.length; i++) {
+      let rowResult: number[] = [];
+      for (let j = 0; j < matrixB[0].length; j++) {
+        let sumResult = 0;
+        for (let k = 0; k < matrixA[0].length; k++) {
+          sumResult += matrixA[i][k] * matrixB[k][j];
+        }
+        rowResult.push(sumResult);
+      }
+      result.push(rowResult);
+    }
+    return result;
+  };
+
+  console.log(multiplyMatrix(matrix,matrix))
