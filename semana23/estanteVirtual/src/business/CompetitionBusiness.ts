@@ -42,13 +42,25 @@ export default class CompetitionBusiness {
 
     };
 
-    async updateStatusCompetitionToFinished (id: string){
+    async getCompetitionById (competitionId: string) {
 
-        if(!id){
-            throw new BaseError("Preencha todos os campos", 400);
+        if(!competitionId){
+            throw new BaseError("Informe o Id da competição", 400);
+        };
+
+        const result = await this.competitionDB.getCompetitionById(competitionId);
+
+        return result;
+    };
+
+
+    async updateStatusCompetitionToFinished (competitionId: string){
+
+        if(!competitionId){
+            throw new BaseError("Informe o Id da competição", 400);
         }
 
-        const result = await this.competitionDB.updateStatusCompetitionToFinished(id);
+        const result = await this.competitionDB.updateStatusCompetitionToFinished(competitionId);
 
         return result;
     };

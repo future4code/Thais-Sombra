@@ -12,4 +12,10 @@ export default class AthleteDB extends BaseDB {
         return athlete;
     };
 
+    public getAllAthletes = async (): Promise<any> => {
+        const result = await BaseDB.connection(athleteTableName)
+            .select("*");
+        return result;
+    };
+
 };

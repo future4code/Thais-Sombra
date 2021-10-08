@@ -19,4 +19,20 @@ export default class AthleteController {
         };
     };
 
+    async getAllAthletes(req: Request, res:Response){
+        try{
+
+            const result = await new AthleteBusiness().getAllAthletes();
+    
+            res.status(200).send(result)
+
+        } catch (error:any){
+            if (error.code) {
+                res.status(error.code).send({ message: error.message });
+            } else {
+                res.status(500).send({ message: error.message });
+            };
+        };
+    };
+
 };

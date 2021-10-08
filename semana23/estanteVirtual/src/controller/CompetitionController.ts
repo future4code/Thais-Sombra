@@ -35,6 +35,22 @@ export default class CompetitionController {
         };
     };
 
+    async getCompetitionById(req: Request, res:Response){
+        try{
+
+            const result = await new CompetitionBusiness().getCompetitionById(req.params.id);
+    
+            res.status(200).send(result)
+
+        } catch (error:any){
+            if (error.code) {
+                res.status(error.code).send({ message: error.message });
+            } else {
+                res.status(500).send({ message: error.message });
+            };
+        };
+    };
+
     async updateStatusCompetitionToFinished (req: Request, res:Response){
         try{
 

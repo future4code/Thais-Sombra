@@ -23,15 +23,20 @@ export default class AthleteBusiness {
 
         const randomId = new IdGenerator().generateId();
 
-        const athleteResult = {
+        const athlete = {
             id: randomId,
             name: resultDTO.name
         };
 
-        const result = await this.athleteDB.insertAthlete(athleteResult);
+        const result = await this.athleteDB.insertAthlete(athlete);
 
         return result;
 
+    };
+
+    async getAllAthletes (){
+        const result = await this.athleteDB.getAllAthletes();
+        return result;
     };
 
 

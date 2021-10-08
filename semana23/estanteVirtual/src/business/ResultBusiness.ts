@@ -17,7 +17,7 @@ export default class ResultBusiness {
             athleteId: params.id,
             value: body.value,
             unit: body.unit,
-            competitionId: body.competitionId
+            competitionId: body.competition_id
         };
 
         if(!resultDTO.athleteId || !resultDTO.value || !resultDTO.unit || !resultDTO.competitionId){
@@ -40,5 +40,17 @@ export default class ResultBusiness {
 
     };
 
+    async getAllResultsByCompetitionId (params:any){
+
+        const competitionId = params.id;
+
+        if(!competitionId){
+            throw new BaseError("Informe o id da competição", 400);
+        };
+
+        const result = await this.resultDB.getAllResultByCompetitionId(competitionId);
+
+        return result;
+    };
 
 };

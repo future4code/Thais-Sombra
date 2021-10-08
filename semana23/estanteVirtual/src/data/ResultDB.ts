@@ -15,4 +15,12 @@ export default class ResultDB extends BaseDB {
         return result;
     };
 
+    public getAllResultByCompetitionId = async (competitionId:string): Promise<any> =>{
+        const result = await BaseDB.connection(resultsTableName)
+            .select("*")
+            .where({
+                competition_id: competitionId
+            });
+        return result;
+    };
 };
