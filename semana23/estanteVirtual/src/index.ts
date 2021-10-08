@@ -9,4 +9,4 @@ app.post("/register/competition", competitionController.insertCompetition);
 app.get("/competitions", competitionController.getAllCompetitions);
 app.put("/update/competitions/:id",competitionController.updateStatusCompetitionToFinished);
 
-app.post("/register/athleteresult",resultController.insertAthleteResult);
+app.post("/register/athleteresult/:id",resultController.insertAthleteResult);

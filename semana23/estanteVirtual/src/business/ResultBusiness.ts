@@ -11,10 +11,10 @@ export default class ResultBusiness {
         this.resultDB = new ResultDB
     };
 
-    async insertAthleteResult (body:any){
+    async insertAthleteResult (params:any, body:any){
 
         const resultDTO: ResultDTO={
-            athleteId: body.athleteId,
+            athleteId: params.id,
             value: body.value,
             unit: body.unit,
             competitionId: body.competitionId

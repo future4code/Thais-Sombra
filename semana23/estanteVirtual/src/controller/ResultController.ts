@@ -6,7 +6,7 @@ export default class ResultController {
     async insertAthleteResult(req: Request, res:Response){
         try{
 
-            await new ResultBusiness().insertAthleteResult(req.body);
+            await new ResultBusiness().insertAthleteResult(req.params,req.body);
 
             res.status(201).send("Sucess")
 
