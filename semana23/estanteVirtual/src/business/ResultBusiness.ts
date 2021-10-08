@@ -14,21 +14,21 @@ export default class ResultBusiness {
     async insertAthleteResult (body:any){
 
         const resultDTO: ResultDTO={
-            athlete: body.athlete,
+            athleteId: body.athleteId,
             value: body.value,
             unit: body.unit,
             competitionId: body.competitionId
         };
 
-        if(!resultDTO.athlete || !resultDTO.value || !resultDTO.unit || !resultDTO.competitionId){
+        if(!resultDTO.athleteId || !resultDTO.value || !resultDTO.unit || !resultDTO.competitionId){
             throw new BaseError("Preencha todos os campos", 400);
         };
 
-        const randomId = new IdGenerator().generateId;
+        const randomId = new IdGenerator().generateId();
 
         const athleteResult = {
             id: randomId,
-            athlete: resultDTO.athlete, 
+            athleteId: resultDTO.athleteId, 
             value: resultDTO.value, 
             unit: resultDTO.unit, 
             competitionId: resultDTO.competitionId
