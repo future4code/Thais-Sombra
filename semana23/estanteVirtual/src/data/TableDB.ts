@@ -1,5 +1,5 @@
 import BaseDB from "./BaseDB";
-import { competitionsTableName, resultsTableName } from "./constants";
+import { competitionsTableName, resultsTableName, athleteTableName } from "./constants";
 
 const printError = ( error: any ) => { console.log(error.sqlMessage || error.message )};
 
@@ -12,13 +12,19 @@ export default class TableDB extends BaseDB {
                 status ENUM('in_progress','finished') DEFAULT 'in_progress'
             );
 
+            CREATE TABLE IF NOT EXISTS ${athleteTableName} (
+                id VARCHAR(64) NOT NULL PRIMARY KEY,
+                name VARCHAR(64) NOT NULL
+            );
+
             CREATE TABLE IF NOT EXISTS ${resultsTableName} (
                 id VARCHAR(64) NOT NULL PRIMARY KEY,
-                athlete VARCHAR(64) NOT NULL,
                 value FLOAT NOT NULL,
                 unit ENUM('s','m'),
-                competition_id VARCHAR(64),
-                FOREIGN KEY (competition_id) REFERENCES ${competitionsTableName}(id) 
+                athlete_id VARCHAR(64) NOT NULL,
+                competition_id VARCHAR(64) NOT NULL,
+                FOREIGN KEY (competition_id) REFERENCES ${competitionsTableName}(id),
+                FOREIGN KEY (athlete_id) REFERENCES ${athleteTableName}(id)  
             );
         `)
         .then(()=> { console.log("MySQL tables created successfully") })
