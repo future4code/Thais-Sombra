@@ -30,15 +30,27 @@ export default class CompetitionBusiness {
             status: competitionDTO.status
         };
 
-        await this.competitionDB.insertCompetition(competition);
-
+        const result = await this.competitionDB.insertCompetition(competition);
+        
+        return result; 
     };
 
     async getAllCompetitions () {
 
-        const competitions = await this.competitionDB.getAllCompetitions();
-        return competitions;
+        const result = await this.competitionDB.getAllCompetitions();
+        return result;
 
+    };
+
+    async updateStatusCompetitionToFinished (id: string){
+
+        if(!id){
+            throw new BaseError("Preencha todos os campos", 400);
+        }
+
+        const result = await this.competitionDB.updateStatusCompetitionToFinished(id);
+
+        return result;
     };
 
 };
