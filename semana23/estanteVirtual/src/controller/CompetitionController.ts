@@ -24,9 +24,9 @@ export default class CompetitionController {
         
         try{
 
-            console.log("Chamou")
+            const result = await new CompetitionBusiness().getAllCompetitions();
     
-            res.status(200).send("Sucess")
+            res.status(200).send(result)
 
         } catch (error:any){
           

@@ -30,7 +30,14 @@ export default class CompetitionBusiness {
             status: competitionDTO.status
         };
 
-        await new CompetitionDB().insertCompetition(competition);
+        await this.competitionDB.insertCompetition(competition);
+
+    };
+
+    async getAllCompetitions () {
+
+        const competitions = await this.competitionDB.getAllCompetitions();
+        return competitions;
 
     };
 

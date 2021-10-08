@@ -13,6 +13,11 @@ export default class CompetitionDB extends BaseDB {
         return result;
     };
 
+    public getAllCompetitions = async (): Promise<any> => {
+        const result = await BaseDB.connection(competitionsTableName)
+            .select("*");
+        return result;
+    };
 
 
 };
