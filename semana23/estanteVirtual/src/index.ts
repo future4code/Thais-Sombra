@@ -17,3 +17,4 @@ app.get("/results/competition/:id", resultController.getAllResultsByCompetitionI
 
 app.post("/register/athlete",athleteController.insertAthlete);
 app.get("/athletes", athleteController.getAllAthletes);
+app.get("/athlete/:id", athleteController.getAthleteById);

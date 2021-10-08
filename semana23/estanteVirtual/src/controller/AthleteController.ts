@@ -35,4 +35,20 @@ export default class AthleteController {
         };
     };
 
+    async getAthleteById(req: Request, res:Response){
+        try{
+
+            const result = await new AthleteBusiness().getAthleteById(req.params.id);
+    
+            res.status(200).send(result)
+
+        } catch (error:any){
+            if (error.code) {
+                res.status(error.code).send({ message: error.message });
+            } else {
+                res.status(500).send({ message: error.message });
+            };
+        };
+    };
+
 };
