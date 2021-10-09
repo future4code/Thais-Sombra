@@ -39,13 +39,13 @@ export default class AthleteBusiness {
         return result;
     };
 
-    async getAthleteById (AthleteId: string) {
+    async getAthleteById (athleteId: string) {
 
-        if(!AthleteId){
+        if(!athleteId){
             throw new BaseError("Informe o Id do atleta", 400);
         };
 
-        const result = await this.athleteDB.getAthleteById(AthleteId);
+        const result = await this.athleteDB.getAthleteById(athleteId);
 
         return result;
     };

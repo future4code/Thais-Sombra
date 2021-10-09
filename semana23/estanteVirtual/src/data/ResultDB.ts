@@ -1,5 +1,5 @@
 import BaseDB from "./BaseDB";
-import { resultsTableName } from "./constants";
+import { resultsTableName, athleteTableName, competitionsTableName } from "./constants";
 
 export default class ResultDB extends BaseDB {
 
@@ -17,10 +17,12 @@ export default class ResultDB extends BaseDB {
 
     public getAllResultByCompetitionId = async (competitionId:string): Promise<any> =>{
         const result = await BaseDB.connection(resultsTableName)
-            .select("*")
+            .select('athlete.id')
+            .innerJoin(competitionsTableName, `${competitionsTableName}.id`, '=', `${resultsTableName}.competition_id`)
             .where({
                 competition_id: competitionId
             });
         return result;
     };
+
 };
