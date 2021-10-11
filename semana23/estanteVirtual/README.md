@@ -1,4 +1,4 @@
-<h1 align="center" id="top">== Telzir - Backend ==</h1>
+<h1 align="center" id="top">== Jogos Olímpicos - Estante Virtual ==</h1>
 
 <p align="center">
   <a href="#sobre">Sobre</a> &#xa0; | &#xa0; 
@@ -37,7 +37,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [x] 9. Retornar uma competição pelo id;
 
 <h2 id="link">:link: Links Importantes</h2>
-<br/><a href="https://documenter.getpostman.com/view/16226320/UV5Ro1Vr"/>Documentação Postman</a></br>
+<br><a href="https://documenter.getpostman.com/view/16226320/UV5Ro1Vr">Documentação Postman</a></br>
+<br><a href="https://github.com/estantevirtual/teste_ev">Case legado de referência</a></br>
 
 <h2 id="requisitos">:leftwards_arrow_with_hook: Pré-requisitos</h2>
 
