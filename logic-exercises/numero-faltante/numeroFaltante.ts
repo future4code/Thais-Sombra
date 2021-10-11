@@ -8,4 +8,4 @@ export const findMissingNumber = (arr: number[]): number => {
       sum += num;
     }
     return expectedSum - sum;
-  };
+};
