@@ -7,7 +7,7 @@
     "dev": "clear && ts-node-dev ./src/index.ts",
     "start": "tsc && node ./build/index.js",
     "migrations": "tsc && node ./build/data/migrations.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/jest/bin/jest.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,9 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.3",
+    "ts-node": "^10.3.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.4.3"
   },
@@ -28,9 +31,11 @@
     "dotenv": "^10.0.0",
     "excel-to-mysql": "^2.6.2",
     "express": "^4.17.1",
+    "jest": "^27.2.5",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.11",
     "mysql": "^2.18.1",
+    "ts-jest": "^27.0.5",
     "uuid": "^8.3.2"
   }
 }

@@ -1,6 +1,6 @@
 import CompetitionDB from "../data/CompetitionDB";
 import { BaseError } from "../error/BaseError";
-import { CompetitionDTO, STATUS } from "../model/Competition";
+import { CompetitionDTO } from "../model/Competition";
 import { IdGenerator } from "../services/IdGenerator";
 
 export default class CompetitionBusiness {

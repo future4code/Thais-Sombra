@@ -13,11 +13,11 @@ export default class AthleteBusiness {
 
     async insertAthlete (body:any){
 
-        const resultDTO: AthleteDTO={
+        const athleteDTO: AthleteDTO={
             name: body.name
         };
 
-        if(!resultDTO.name){
+        if(!athleteDTO.name){
             throw new BaseError("Preencha todos os campos", 400);
         };
 
@@ -25,7 +25,7 @@ export default class AthleteBusiness {
 
         const athlete = {
             id: randomId,
-            name: resultDTO.name
+            name: athleteDTO.name
         };
 
         const result = await this.athleteDB.insertAthlete(athlete);
