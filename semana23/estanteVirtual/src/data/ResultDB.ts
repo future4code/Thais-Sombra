@@ -17,8 +17,8 @@ export default class ResultDB extends BaseDB {
 
     public getAllResultByCompetitionId = async (competitionId:string): Promise<any> =>{
         const result = await BaseDB.connection(resultsTableName)
-            .select('athlete.id')
             .innerJoin(competitionsTableName, `${competitionsTableName}.id`, '=', `${resultsTableName}.competition_id`)
+            .innerJoin(athleteTableName, `${athleteTableName}.id`, '=', `${resultsTableName}.athlete_id`)
             .where({
                 competition_id: competitionId
             });

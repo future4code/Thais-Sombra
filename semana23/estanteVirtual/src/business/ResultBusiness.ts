@@ -2,6 +2,7 @@ import ResultDB from "../data/ResultDB";
 import { BaseError } from "../error/BaseError";
 import { IdGenerator } from "../services/IdGenerator";
 import { ResultDTO } from "../model/AthleteResult";
+import Ranking from "../services/Ranking";
 
 export default class ResultBusiness {
 
@@ -50,7 +51,9 @@ export default class ResultBusiness {
 
         const result = await this.resultDB.getAllResultByCompetitionId(competitionId);
 
-        return result;
+        const ranking = Ranking(result)
+
+        return ranking;
     };
 
 };
