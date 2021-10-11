@@ -23,7 +23,7 @@ export default class CompetitionDB extends BaseDB {
         const result = await BaseDB.connection(competitionsTableName)
             .select("*")
             .where({id: competitionId});
-        return result;
+        return result[0];
     };
 
     public updateStatusCompetitionToFinished = async (competitionId:string): Promise<any> =>{
