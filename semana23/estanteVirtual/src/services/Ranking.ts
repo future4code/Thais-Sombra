@@ -3,7 +3,15 @@ import { BaseError } from "../error/BaseError";
 const Ranking = (results: any) => {
 
     if(results[0].unit==="m"){
-        console.log(results[0].unit)
+        let athleteId: any = [];
+        results.map((result:any)=>{
+            athleteId.push(result.id);
+        });
+
+        const athleteIdFilter = [...new Set(athleteId)];
+
+        console.log(athleteIdFilter);
+
     } else if (results[0].unit === "s"){
         results.sort(function(a: any,b: any){
             if(a.value > b.value){
